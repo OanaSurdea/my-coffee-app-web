@@ -4,6 +4,10 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
+    browserConsoleLogOptions: {
+      terminal: true,
+      level: 'log'
+    },
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -33,11 +37,17 @@ module.exports = function (config) {
       ]
     },
     reporters: ['progress', 'kjhtml'],
+    thresholds: {
+      statements: 80,
+      lines: 80,
+      branches: 80,
+      functions: 80
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     singleRun: false,
     restartOnFileChange: true
   });
