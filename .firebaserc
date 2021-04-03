@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "my-coffee-app-2": {
+      "hosting": {
+        "my-coffee-app": [
+          "my-coffee-app-2"
+        ]
+      }
+    }
+  }
+}
