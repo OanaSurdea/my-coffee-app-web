@@ -10,15 +10,32 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+
 @NgModule({
   imports: [
+    // Angular
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+
+    // App
     AppRoutingModule,
     MaterialUiModule,
     CoffeeModule,
-    HttpClientModule,
+
+    // Pwa
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+
+    // Firebase
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    // AngularFireAuthModule, // auth
+    // AngularFireStorageModule // storage
   ],
   declarations: [
     AppComponent,
