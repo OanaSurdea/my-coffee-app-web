@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CafeLocation } from 'src/app/models/cafe-location.model';
+import { CafeLocation } from 'src/app/core/models/cafe-location.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class GeolocationService {
         onSuccess(position.coords);
       },
       error => {
+        console.error(error);
         onError(null);
       }
     );

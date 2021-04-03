@@ -63,3 +63,13 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+
+/***************************************************************************************************
+ * AWS REQUIREMENTS
+ * Learn more in https://docs.amplify.aws/start/getting-started/setup/q/integration/angular#create-a-new-angular-app
+ */
+(window as any).global = window;
+(window as any).process = {
+  env: { DEBUG: undefined },
+};

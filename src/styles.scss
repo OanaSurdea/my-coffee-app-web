@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/scss/bootstrap';
+$enable-negative-margins: true;
+@import 'mca-theme';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.grid-auto-column {
+  @media screen and (min-width: 768px) {
+    grid-auto-flow: column;
+  }
+}
+
+.mat-card-header-text {
+  margin: 0 !important;
+}
+
+.logo-font {
+  color: #dcc2a7;
+  font-family: "Quicksand", sans-serif;
+  line-height: 28px;
+  font-size: 18px;
+  font-weight: 700;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
+}

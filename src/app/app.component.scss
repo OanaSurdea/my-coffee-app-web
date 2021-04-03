@@ -1,0 +1,17 @@
+@import 'mca-theme-variables';
+
+header {
+  background: $primary;
+
+  h1 {
+    margin: 0;
+    padding: 28px 8px;
+    font-size: 20px;
+  }
+}
+
+.page {
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

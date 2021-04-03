@@ -1,0 +1,34 @@
+@import "~material-theme-creator/ngx-mtc";
+@import '~@angular/material/theming';
+@include mat-core();
+@include ngx-mtc-init();
+
+/* ------------------------------------------------------------ */
+/* - MCA Theme - Angular Material
+/* ------------------------------------------------------------ */
+$primary-map: ngx-mtc-create-theme-map('primary');
+$accent-map: ngx-mtc-create-theme-map('accent');
+$warn-map: ngx-mtc-create-theme-map('warn');
+
+
+// Setup
+:root {
+  --is-dark-theme: 0; // Is dark theme? 1 or 0;
+  @include ngx-mtc-theme-base(); // Creates base colors
+
+  // Creates theme colors
+  @include ngx-mtc-create-variables-from-color('primary', #754C29, 100%);
+  @include ngx-mtc-create-variables-from-color('accent', #e5b78f, 100%);
+  @include ngx-mtc-create-variables-from-color('warn', #db6a06, 100%);
+}
+
+
+// Creation
+@include angular-material-theme(
+  ngx-mtc-custom-theme(
+    mat-palette($primary-map),
+    mat-palette($accent-map),
+    mat-palette($warn-map)
+  )
+);
+/* ------------------------------------------------------------ */

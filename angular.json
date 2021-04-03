@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mycoffeeapp": {
+    "my-coffee-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,21 +12,34 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "mca",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mycoffeeapp",
+            "outputPath": "dist/my-coffee-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
+              "src/pwa",
+              "src/pwa/splash/*.png",
+              "src/assets/icons",
+              "src/assets/media",
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/ngsw-config.js",
+              "src/site.webmanifest",
+              "src/manifest.webmanifest",
+              "src/manifest.json"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/scss/"
+              ]
+            },
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
@@ -59,25 +72,27 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mycoffeeapp:build"
+            "browserTarget": "my-coffee-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mycoffeeapp:build:production"
+              "browserTarget": "my-coffee-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mycoffeeapp:build"
+            "browserTarget": "my-coffee-app:build"
           }
         },
         "test": {
@@ -89,9 +104,22 @@
             "karmaConfig": "karma.conf.js",
             "codeCoverage": true,
             "assets": [
+              "src/pwa",
+              "src/pwa/splash/*.png",
+              "src/assets/icons",
+              "src/assets/media",
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/ngsw-config.js",
+              "src/site.webmanifest",
+              "src/manifest.webmanifest",
+              "src/manifest.json"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/scss/"
+              ]
+            },
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
@@ -116,16 +144,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mycoffeeapp:serve"
+            "devServerTarget": "my-coffee-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mycoffeeapp:serve:production"
+              "devServerTarget": "my-coffee-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "mycoffeeapp"
+  "defaultProject": "my-coffee-app"
 }

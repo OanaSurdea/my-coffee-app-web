@@ -1,0 +1,17 @@
+<form [formGroup]="coffeeForm" (ngSubmit)="onCoffeeFormSubmit(coffeeModel)">
+  <mat-card class="m-3 overflow-hidden">
+    <mat-card-header>
+      <mat-card-title>{{ 'Add a new Coffee' }}</mat-card-title>
+      <mat-card-subtitle>{{ 'Please fill out the form with the coffee details.' }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <formly-form [form]="coffeeForm" [fields]="coffeeFormFields" [model]="coffeeModel"></formly-form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-flat-button type="submit" color="primary">Submit</button>
+      <button mat-stroked-button type="button" routerLink="/coffee/list">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

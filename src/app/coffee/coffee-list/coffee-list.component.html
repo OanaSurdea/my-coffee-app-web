@@ -1,0 +1,43 @@
+<ng-container *ngFor="let coffee of coffeeList; let i = index">
+  <mat-card matBadge="1" matBadgeSize="large" class="my-3 mx-3">
+    <mat-card-header cla>
+      <mat-card-title class="mb-3">
+        <a [routerLink]="['/coffee', (i+1)]" class="text-dark text-decoration-none">
+          {{ coffee.name }}
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle>Place: {{ coffee.cafe }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+      <button
+        mat-stroked-button
+        color="primary"
+        aria-label="Example icon button with map icon"
+        (click)="openMaps(coffee)"
+      >Map<mat-icon>map</mat-icon>
+      </button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        aria-label="Example icon button with a list icon"
+        (click)="viewCoffeeDetails(coffee._id)"
+      >Details<mat-icon>list</mat-icon>
+      </button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        aria-label="Example icon button with a share icon"
+        class="mx-0"
+        (click)="shareCoffeeRating(coffee)"
+      >Share<mat-icon>share</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
+
+<a mat-fab routerLink="/coffee/add" class="position-fixed bottom-0 end-0 m-4">
+  <mat-icon>add</mat-icon>
+</a>

@@ -1,4 +1,4 @@
-import { CafeLocation } from 'src/app/models/cafe-location.model';
+import { CafeLocation } from 'src/app/core/models/cafe-location.model';
 import { TestBed } from '@angular/core/testing';
 
 import { GeolocationService } from './geolocation.service';
