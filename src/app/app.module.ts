@@ -29,7 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     // AngularFireAuthModule, // auth
     // AngularFireStorageModule // storage
 
@@ -37,7 +37,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ServiceWorkerModule.register('ngsw-worker.js', {
       scope: '/',
       enabled: environment.production,
-      registrationStrategy: 'registerImmediately'
+      registrationStrategy: 'registerWhenStable:30000'
     }), // firestore
   ],
   declarations: [

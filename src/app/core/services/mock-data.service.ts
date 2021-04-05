@@ -17,8 +17,8 @@ export class MockCofeeDataService {
     const coffeeList: Coffee[] = [
       new Coffee(
         'Double Espresso',
-        'Sunny Cafe',
         CoffeeTypeEnum.Espresso,
+        'Sunny Cafe',
         new CafeLocation('123 Market St', 'San Francisco'),
         4,
         new TasteRating(4, 4, 4, 3, 4, 3),
@@ -26,8 +26,8 @@ export class MockCofeeDataService {
       ),
       new Coffee(
         'Caramel Americano',
-        'Starcoffee',
         CoffeeTypeEnum.Americano,
+        'Starcoffee',
         new CafeLocation('Gran Via 34', 'Madrid'),
         5,
         new TasteRating(5, 5, 5, 5, 4, 4),

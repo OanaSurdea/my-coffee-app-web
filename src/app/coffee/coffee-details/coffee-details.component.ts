@@ -33,7 +33,6 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.subscribeToRoute();
     this.populateFormFields();
-    this.requestGeolocation();
   }
 
   public subscribeToRoute(): void {
@@ -65,6 +64,8 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onCoffeeFormSubmit(coffeeModel: any): void {
+    this.requestGeolocation();
+
     this.coffeeDataService.saveCoffeeEntry(coffeeModel, success => {
       if(success) {
         this.router.navigateByUrl('/');

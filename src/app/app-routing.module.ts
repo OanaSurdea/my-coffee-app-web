@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const appRoutes: Routes = [
   // Modules
-  { path: 'coffee', loadChildren: () => import('./coffee/coffee.module').then(m => m.CoffeeModule) },
+  { path: 'coffees', loadChildren: () => import('./coffee/coffee.module').then(m => m.CoffeeModule) },
 
   // Redirects
-  { path: '', redirectTo: 'coffee', pathMatch: 'full' },
+  { path: '', redirectTo: 'coffees', pathMatch: 'full' },
 ];
 
 @NgModule({

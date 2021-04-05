@@ -6,13 +6,11 @@ import { CoffeeComponent } from './coffee.component';
 
 export const coffeeRoutes: Routes = [
   // Routes
-  { path: ':id/details', data: { name: 'View coffee' }, component: CoffeeDetailsComponent },
-  { path: 'list', data: { name: 'List coffees' }, component: CoffeeListComponent },
+  { path: '', data: { name: 'List coffees' }, component: CoffeeListComponent },
   { path: 'add', data: { name: 'Add coffee' }, component: CoffeeDetailsComponent },
+  { path: ':id', data: { name: 'View coffee' }, component: CoffeeDetailsComponent },
 
   // Redirects
-  { path: ':id', redirectTo: ':id/details', pathMatch: 'full' },
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: '', component: CoffeeComponent },
 ];
 

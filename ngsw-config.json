@@ -1,6 +1,6 @@
 {
-  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
-  "index": "/index.html",
+   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+ "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -16,15 +16,38 @@
       }
     },
     {
+      "name": "fonts",
+      "resources": {
+        "urls": [
+          "https://fonts.googleapis.com/**",
+          "https://fonts.gstatic.com/**"
+        ]
+      }
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**",
+          "/fontawesome-webfont*",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
     }
-  ]
+  ],
+  "dataGroups": [{
+    "name": "api-freshness",
+    "urls": [
+      "/coffees"
+    ],
+    "cacheConfig": {
+      "strategy": "performance",
+      "maxSize": 50,
+      "maxAge": "3d",
+      "timeout": "10s"
+    }
+  }
+]
 }

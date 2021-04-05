@@ -28,7 +28,7 @@ export class CoffeeListComponent implements OnInit {
   }
 
   public viewCoffeeDetails(id: string): void {
-    this.router.navigate(['coffee', id, 'details']);
+    this.router.navigate(['coffees', id]);
   }
 
   public openMaps(coffee: Coffee): void {

@@ -1,14 +1,16 @@
-<mat-toolbar color="primary" class="sticky-top mat-elevation-z5 px-4">
-  <a routerLink="/" class="text-white text-decoration-none">
-    <img src="/assets/media/mca-logo.svg" height="28" width="28" class="me-2" alt="Coffee cup logo">
-    <span class="logo-font">{{ title }}</span>
-  </a>
-</mat-toolbar>
+<div [class.grayscale]="isAppOffline">
+  <mat-toolbar color="primary" class="sticky-top mat-elevation-z5 px-4">
+    <a routerLink="/" class="text-white text-decoration-none">
+      <img src="/assets/media/mca-logo.svg" height="28" width="28" class="me-2" alt="Coffee cup logo">
+      <span class="logo-font">{{ title }}</span>
+    </a>
+  </mat-toolbar>
 
-<header class="px-3">
-  <h1 class="text-white-70">{{ routeName | async }}</h1>
-</header>
+  <header class="px-3">
+    <h1 class="text-white-70">{{ routeName | async }}</h1>
+  </header>
 
-<div class="page">
-  <router-outlet></router-outlet>
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
 </div>

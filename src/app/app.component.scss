@@ -11,11 +11,16 @@ header {
 }
 
 .page {
-  max-height: 100%;
+  min-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 .text-white-70 {
   color: hsla(0, 0%, 100%, 0.7);
+}
+
+.grayscale {
+  filter: grayscale(1);
+  min-height: 100%;
 }

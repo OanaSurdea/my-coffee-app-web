@@ -2,7 +2,7 @@
   <mat-card matBadge="1" matBadgeSize="large" class="my-3 mx-3">
     <mat-card-header cla>
       <mat-card-title class="mb-3">
-        <a [routerLink]="['/coffee', coffee.id]" class="text-dark text-decoration-none">
+        <a [routerLink]="['/coffees', coffee.id]" class="text-dark text-decoration-none">
           {{ coffee.name }}
         </a>
       </mat-card-title>
@@ -38,6 +38,6 @@
   </mat-card>
 </ng-container>
 
-<a mat-fab routerLink="/coffee/add" aria-label="add-new-coffee" class="position-fixed bottom-0 end-0 m-4">
+<a mat-fab routerLink="/coffees/add" aria-label="add-new-coffee" class="position-fixed bottom-0 end-0 m-4">
   <mat-icon>add</mat-icon>
 </a>

@@ -1,7 +1,4 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
@@ -28,7 +25,7 @@
         "source": "/@(ngsw-worker.js|ngsw.json)",
         "headers": [
           {
-            "key": "Cache-Control",
+            "key": "Cache-Control: max-age=31536000",
             "value": "no-cache"
           }
         ]
@@ -38,9 +35,6 @@
   "emulators": {
     "firestore": {
       "port": 8080
-    },
-    "database": {
-      "port": 9000
     },
     "hosting": {
       "port": 5000

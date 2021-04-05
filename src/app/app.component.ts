@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { SwUpdate } from '@angular/service-worker';
+import { interval, Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
@@ -13,16 +14,24 @@ export class AppComponent implements OnInit {
   title = 'My Coffee App';
   // Subscriptions
   routeSubscription: Subscription;
+  isAppOffline: boolean;
 
   routeName: any;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar,
+    private serviceWorkerUpdates: SwUpdate
+  ) {
+    if (serviceWorkerUpdates.isEnabled) {
+      interval(6 * 60 * 60).subscribe(() => serviceWorkerUpdates.checkForUpdate()
+        .then(() => console.log('checking for updates')));
+    }
+  }
 
   public ngOnInit(): void {
+    this.checkNetworkConnection();
     this.getRouteName();
     this.inviteUserToInstallApp();
   }
@@ -40,6 +49,20 @@ export class AppComponent implements OnInit {
       mergeMap(route => route.data),
       map(data => data.hasOwnProperty('name') ? data.name : null),
     );
+  }
+
+  public checkForUpdates(): void {
+    this.serviceWorkerUpdates.available.subscribe(event => this.promptServiceWorkerUpdate());
+  }
+
+  private promptServiceWorkerUpdate(): void {
+    const snackBar = this.snackBar.open('There is an update available', 'Install Now', { duration: 4000 });
+
+    snackBar.onAction().subscribe(() => {
+      console.log('Updating to new version.');
+      this.serviceWorkerUpdates.activateUpdate().then(() => document.location.reload());
+    });
+
   }
 
   private inviteUserToInstallApp(): void {
@@ -68,6 +91,10 @@ export class AppComponent implements OnInit {
         });
       }
     }
+  }
+
+  private checkNetworkConnection(): void {
+    this.isAppOffline = navigator.onLine ? false : true;
   }
 
 }
