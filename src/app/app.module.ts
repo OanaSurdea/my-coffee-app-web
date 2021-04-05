@@ -13,7 +13,6 @@ import { environment } from '../environments/environment';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-// import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
@@ -28,14 +27,18 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MaterialUiModule,
     CoffeeModule,
 
-    // Pwa
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-
     // Firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule, // firestore
+    AngularFirestoreModule,
     // AngularFireAuthModule, // auth
     // AngularFireStorageModule // storage
+
+    // Pwa
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }), // firestore
   ],
   declarations: [
     AppComponent,
