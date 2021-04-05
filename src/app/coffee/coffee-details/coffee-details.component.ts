@@ -66,6 +66,8 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   public onCoffeeFormSubmit(coffeeModel: any): void {
     this.requestGeolocation();
 
+    this.coffeeModel.id = this.coffeeRouteId;
+
     this.coffeeDataService.saveCoffeeEntry(coffeeModel, success => {
       if(success) {
         this.router.navigateByUrl('/');

@@ -1,7 +1,8 @@
+import { environment } from './../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { SwUpdate } from '@angular/service-worker';
+import { SwPush, SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { interval, Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
@@ -22,10 +23,11 @@ export class AppComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private serviceWorkerUpdates: SwUpdate
+    private swUpdates: SwUpdate,
+    private swPush: SwPush,
   ) {
-    if (serviceWorkerUpdates.isEnabled) {
-      interval(6 * 60 * 60).subscribe(() => serviceWorkerUpdates.checkForUpdate()
+    if (this.swUpdates.isEnabled) {
+      interval(6 * 60 * 60).subscribe(() => swUpdates.checkForUpdate()
         .then(() => console.log('checking for updates')));
     }
   }
@@ -36,7 +38,7 @@ export class AppComponent implements OnInit {
     this.inviteUserToInstallApp();
   }
 
-  public getRouteName(): void {
+  private getRouteName(): void {
     this.routeName = this.router.events.pipe(
       filter(e => e instanceof NavigationEnd),
       map(() => this.activatedRoute),
@@ -51,18 +53,28 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public checkForUpdates(): void {
-    this.serviceWorkerUpdates.available.subscribe(event => this.promptServiceWorkerUpdate());
+  public subscribeForPushNotifications(): void {
+    Notification.requestPermission(permission => {
+      if (permission === 'granted') {
+        this.swPush.requestSubscription({ serverPublicKey: environment.serverPublicKey })
+        .then(res => console.log(res));
+      }
+    });
   }
 
-  private promptServiceWorkerUpdate(): void {
-    const snackBar = this.snackBar.open('There is an update available', 'Install Now', { duration: 4000 });
+  public checkForUpdates(): void {
+    this.swUpdates.available.subscribe((event: UpdateAvailableEvent) => this.promptServiceWorkerUpdate(event));
+  }
 
-    snackBar.onAction().subscribe(() => {
-      console.log('Updating to new version.');
-      this.serviceWorkerUpdates.activateUpdate().then(() => document.location.reload());
-    });
+  private promptServiceWorkerUpdate(event: UpdateAvailableEvent): void {
+    if (event.current.appData !== event.available.appData) {
+      const snackBar = this.snackBar.open('There is an update available', 'Install Now', { duration: 4000 });
 
+      snackBar.onAction().subscribe(() => {
+        console.log('Updating to new version.');
+        this.swUpdates.activateUpdate().then(() => document.location.reload());
+      });
+    }
   }
 
   private inviteUserToInstallApp(): void {

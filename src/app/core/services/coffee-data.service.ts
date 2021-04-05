@@ -50,11 +50,11 @@ export class CoffeeDataService {
     //   );
     // }
     if (coffee.id) {
-      this.firestoreService.update(coffee.id, coffee).then(
+      this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Update Coffee Error: ${error}`); }
-      );
-    } else {
+        );
+      } else {
       this.firestoreService.add('coffees', coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Save Coffee Error: ${error}`); }
