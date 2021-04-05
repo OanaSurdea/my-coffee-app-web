@@ -39,7 +39,7 @@ export const coffeeFormFieldConfig: FormlyFieldConfig[] = [
     fieldGroupClassName: 'card d-grid grid-auto-column gap-4 pt-2 px-3 mb-4',
     fieldGroup: [
       {
-        key: 'cafe',
+        key: 'cafeName',
         type: 'input',
         templateOptions: {
           label: 'Cafe name',

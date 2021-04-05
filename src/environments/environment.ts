@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://localhost:4000',
+  useEmulators : false,
   firebaseConfig: {
     apiKey: 'AIzaSyDisiIP5zGlj9sM3sBV22NVGRzYUIByo6c',
-    authDomain: 'localhost:4200',
+    authDomain: 'my-coffee-app-2.firebaseapp.com',
     projectId: 'my-coffee-app-2',
     storageBucket: 'my-coffee-app-2.appspot.com',
     messagingSenderId: '924425636227',

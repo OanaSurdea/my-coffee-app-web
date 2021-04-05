@@ -1,13 +1,16 @@
+import { CafeLocation } from './../models/cafe-location.model';
 import { CoffeeTypeEnum } from '../enums/coffee-type.enum';
-import { ICafeLocation } from './cafe-location.interface';
 import { ITasteRating } from './taste-rating.interface';
 
 export interface ICoffee {
+  id?: string;
   name: string;
-  cafe: string;
-  type?: CoffeeTypeEnum;
-  cafeLocation: ICafeLocation;
+  cafeName: string;
+  cafeLocation: CafeLocation;
+  type: CoffeeTypeEnum;
   rating: number;
   tasteRating: ITasteRating;
   notes?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

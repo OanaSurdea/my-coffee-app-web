@@ -1,8 +1,8 @@
 export enum CoffeeTypeEnum {
-  Espresso,
-  Ristretto,
-  Americano,
-  Cappucino,
-  Frappe,
-  Other
+  Espresso = 'espresso',
+  Ristretto = 'ristretto',
+  Americano = 'americano',
+  Cappuccino = 'cappuccino',
+  Frappe = 'frappe',
+  Other = 'other'
 }

@@ -1,13 +1,11 @@
 import { CoffeeDataService } from './../../core/services/coffee-data.service';
 import { GeolocationService } from './../../core/services/geolocation.service';
-import { CoffeeTypeFormOptions } from './../../core/maps/coffee-type.map';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Coffee } from 'src/app/core/models/coffee.model';
-import { CoffeeTypeEnum } from 'src/app/core/enums/coffee-type.enum';
 import { coffeeFormFieldConfig } from './coffee-details-form';
 
 @Component({
@@ -34,8 +32,8 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscribeToRoute();
-    this.requestGeolocation();
     this.populateFormFields();
+    this.requestGeolocation();
   }
 
   public subscribeToRoute(): void {
@@ -48,11 +46,11 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   }
 
   public populateFormFields(): void {
-    this.coffeeDataService.getCoffee(this.coffeeRouteId, (coffee: Coffee) => {
-      if(coffee) {
-        this.coffeeModel = coffee;
+    this.coffeeDataService.getCoffee(this.coffeeRouteId).subscribe(
+      (coffee: Coffee) => {
+        if (coffee) { this.coffeeModel = coffee; }
       }
-    });
+    );
   }
 
   public requestGeolocation(): void {

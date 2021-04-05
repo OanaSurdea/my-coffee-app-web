@@ -1,12 +1,12 @@
-<ng-container *ngFor="let coffee of coffeeList; let i = index">
+<ng-container *ngFor="let coffee of coffeeList | async; let i = index">
   <mat-card matBadge="1" matBadgeSize="large" class="my-3 mx-3">
     <mat-card-header cla>
       <mat-card-title class="mb-3">
-        <a [routerLink]="['/coffee', (i+1)]" class="text-dark text-decoration-none">
+        <a [routerLink]="['/coffee', coffee.id]" class="text-dark text-decoration-none">
           {{ coffee.name }}
         </a>
       </mat-card-title>
-      <mat-card-subtitle>Place: {{ coffee.cafe }}</mat-card-subtitle>
+      <mat-card-subtitle>Place: {{ coffee.cafeName }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-actions>
@@ -22,7 +22,7 @@
         mat-stroked-button
         color="primary"
         aria-label="Example icon button with a list icon"
-        (click)="viewCoffeeDetails(coffee._id)"
+        (click)="viewCoffeeDetails(coffee.id)"
       >Details<mat-icon>list</mat-icon>
       </button>
 

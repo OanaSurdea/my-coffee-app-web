@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CoffeeDataService } from './../../core/services/coffee-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Coffee } from 'src/app/core/models/coffee.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'mca-coffee-list',
@@ -10,7 +11,7 @@ import { Coffee } from 'src/app/core/models/coffee.model';
   styleUrls: ['./coffee-list.component.scss']
 })
 export class CoffeeListComponent implements OnInit {
-  public coffeeList: Coffee[];
+  public coffeeList: Observable<Coffee[]>;
 
   constructor(
     private coffeeDataService: CoffeeDataService,
@@ -23,7 +24,7 @@ export class CoffeeListComponent implements OnInit {
   }
 
   public populateCoffeeList(): void {
-    this.coffeeDataService.getCoffeeList((list: Coffee[]) => this.coffeeList = list);
+    this.coffeeList = this.coffeeDataService.getCoffeeList();
   }
 
   public viewCoffeeDetails(id: string): void {
@@ -36,7 +37,7 @@ export class CoffeeListComponent implements OnInit {
   }
 
   public shareCoffeeRating(coffee: Coffee): void {
-    const shareCoffeeText = `I had this coffee at ${coffee.cafe} and for me it's a ${coffee.rating}.`;
+    const shareCoffeeText = `I had this coffee at ${coffee.cafeName} and for me it's a ${coffee.rating}.`;
 
     if ('share' in navigator) {
       navigator.share({
