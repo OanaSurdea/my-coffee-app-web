@@ -35,9 +35,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
     // Pwa
     ServiceWorkerModule.register('ngsw-worker.js', {
+      scope: '/',
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerImmediately'
     }), // firestore
   ],
   declarations: [

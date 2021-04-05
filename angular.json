@@ -24,16 +24,13 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/pwa",
-              "src/pwa/splash/*.png",
+              "src/assets",
               "src/assets/icons",
               "src/assets/media",
-              "src/assets",
               "src/favicon.ico",
               "src/ngsw-config.js",
-              "src/site.webmanifest",
-              "src/manifest.webmanifest",
               "src/manifest.json",
+              "src/site.webmanifest",
               "src/manifest.webmanifest"
             ],
             "stylePreprocessorOptions": {
@@ -62,6 +59,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
               "budgets": [
                 {
                   "type": "initial",
@@ -73,9 +72,7 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              ]
             }
           }
         },
@@ -105,16 +102,13 @@
             "karmaConfig": "karma.conf.js",
             "codeCoverage": true,
             "assets": [
-              "src/pwa",
-              "src/pwa/splash/*.png",
+              "src/assets",
               "src/assets/icons",
               "src/assets/media",
-              "src/assets",
               "src/favicon.ico",
               "src/ngsw-config.js",
-              "src/site.webmanifest",
-              "src/manifest.webmanifest",
               "src/manifest.json",
+              "src/site.webmanifest",
               "src/manifest.webmanifest"
             ],
             "stylePreprocessorOptions": {

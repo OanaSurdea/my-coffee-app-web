@@ -52,13 +52,13 @@ export class CoffeeDataService {
     if (coffee.id) {
       this.firestoreService.update(coffee.id, coffee).then(
         () => onSuccess(true),
-        (error) => console.log('Update Coffee Error: ', error)
-      )
+        (error) => { throw new Error(`Update Coffee Error: ${error}`); }
+      );
     } else {
       this.firestoreService.add('coffees', coffee).then(
         () => onSuccess(true),
-        (error) => console.log('Save Coffee Error: ', error)
-      )
+        (error) => { throw new Error(`Save Coffee Error: ${error}`); }
+      );
     }
   }
 

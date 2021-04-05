@@ -45,8 +45,9 @@ export class CoffeeListComponent implements OnInit {
           text: shareCoffeeText,
           url: window.location.href
         })
-        .then(() => console.log('Coffee shared'))
-        .catch((error) => console.log('Coffee share error', error));
+        // tslint:disable-next-line: no-console
+        .then(() => console.info('Coffee shared'))
+        .catch((error) => { throw new Error(`Coffee share Error: ${error}`); });
     } else {
       const shareCoffeeURL = `whatsapp://send?text=${encodeURIComponent(shareCoffeeText)}`;
       location.href = shareCoffeeURL;

@@ -1,10 +1,12 @@
 {
   "name": "my-coffee-app",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "ng build --prod && lite-server --baseDir dist/my-coffee-app",
     "build": "ng build",
+    "deploy": "ng build --prod && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,6 +23,7 @@
     "@angular/material": "11.2.5",
     "@angular/platform-browser": "~11.2.5",
     "@angular/platform-browser-dynamic": "~11.2.5",
+    "@angular/pwa": "^0.1102.7",
     "@angular/router": "~11.2.5",
     "@angular/service-worker": "^11.2.5",
     "@ngx-formly/core": "^5.0.0",
@@ -53,6 +56,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lite-server": "^2.6.1",
     "open": "^7.0.3",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",

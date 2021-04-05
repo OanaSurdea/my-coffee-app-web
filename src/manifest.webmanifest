@@ -1,11 +1,13 @@
 {
-  "name": "my-coffee-app",
-  "short_name": "my-coffee-app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "My Coffee App",
+  "short_name": "MyCoffeeApp",
+  "description": "The best app for coffee lovers",
+  "theme_color":"#754c29",
+  "background_color":"#dfc8af",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
