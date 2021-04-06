@@ -1,0 +1,7 @@
+@import 'mca-theme-variables';
+
+mat-card,
+.mat-card {
+  border: 1px solid $card-border !important;
+  background-color: $card-background;
+}

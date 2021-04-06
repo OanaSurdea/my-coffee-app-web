@@ -89,11 +89,18 @@ export const coffeeFormFieldConfig: FormlyFieldConfig[] = [
       {
         key: 'hasTasteRating',
         type: 'toggle',
+        className: 'mt-2',
         templateOptions: {
-          label: 'Show Taste Rating',
+          label: 'Show Advanced Taste Rating',
           required: false,
         }
       },
+    ]
+  },
+  {
+    fieldGroupClassName: 'card d-grid grid-auto-column gap-4 pt-3 px-3 mb-3',
+    hideExpression: (model) => !model.hasTasteRating,
+    fieldGroup: [
       {
         key: 'tasteRating.aroma',
         type: 'slider',

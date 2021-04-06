@@ -1,5 +1,6 @@
 @import "~material-theme-creator/ngx-mtc";
 @import '~@angular/material/theming';
+@import 'mca-theme-variables';
 @include mat-core();
 @include ngx-mtc-init();
 
@@ -17,9 +18,9 @@ $warn-map: ngx-mtc-create-theme-map('warn');
   @include ngx-mtc-theme-base(); // Creates base colors
 
   // Creates theme colors
-  @include ngx-mtc-create-variables-from-color('primary', #754C29, 100%);
-  @include ngx-mtc-create-variables-from-color('accent', #e5b78f, 100%);
-  @include ngx-mtc-create-variables-from-color('warn', #db6a06, 100%);
+  @include ngx-mtc-create-variables-from-color('primary', $primary, 100%);
+  @include ngx-mtc-create-variables-from-color('accent', $accent, 100%);
+  @include ngx-mtc-create-variables-from-color('warn', $warn, 100%);
 }
 
 
