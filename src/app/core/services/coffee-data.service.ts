@@ -49,7 +49,7 @@ export class CoffeeDataService {
     //     (error) => console.log('Save Coffee Error: ', error)
     //   );
     // }
-    if (coffee.id) {
+    if (coffee.id && coffee.id.length > 4) {
       this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Update Coffee Error: ${error}`); }

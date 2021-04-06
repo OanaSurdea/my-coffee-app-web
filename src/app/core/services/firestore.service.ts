@@ -95,6 +95,7 @@ export class FirestoreService {
 
   add<T>(ref: CollectionPredicate<T>, data): Promise<firebase.default.firestore.DocumentReference> {
     const timestamp = this.timestamp;
+    delete data.id;
     return this.col(ref).add({
       ...JSON.parse(JSON.stringify(data)),
       updatedAt: timestamp,
