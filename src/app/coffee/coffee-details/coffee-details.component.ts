@@ -7,6 +7,8 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Coffee } from 'src/app/core/models/coffee.model';
 import { coffeeFormFieldConfig } from './coffee-details-form';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'mca-coffee-details',
@@ -16,6 +18,8 @@ import { coffeeFormFieldConfig } from './coffee-details-form';
 export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   // Subscriptions
   routeSubscription: Subscription;
+  coffeeDataSubscription: Subscription;
+  dialogSubscription: Subscription;
   coffeeRouteId: string;
 
   // Formly
@@ -28,6 +32,8 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private coffeeDataService: CoffeeDataService,
     private geolocationService: GeolocationService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { }
 
   public ngOnInit(): void {
@@ -45,7 +51,7 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   }
 
   public populateFormFields(): void {
-    this.coffeeDataService.getCoffee(this.coffeeRouteId).subscribe(
+    this.coffeeDataSubscription = this.coffeeDataService.getCoffee(this.coffeeRouteId).subscribe(
       (coffee: Coffee) => {
         if (coffee) { this.coffeeModel = coffee; }
       }
@@ -75,7 +81,27 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public deleteCoffeeEntry(templateRef): void {
+    const dialog = this.dialog.open(templateRef);
+
+    this.dialogSubscription = dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.coffeeDataService.deleteCoffeeEntry(this.coffeeRouteId, (ress) => result = ress).then(
+          () => {
+            this.snackBar.open('Coffee deleted succesfully.', 'Close', { duration: 650 });
+            this.router.navigateByUrl('/coffees');
+          },
+          (error) => {
+            this.snackBar.open('Error. Coffee could not be deleted.', 'Close', { duration: 650 });
+          }
+        );
+      }
+    });
+  }
+
   public ngOnDestroy(): void {
-    this.routeSubscription.unsubscribe();
+    this.routeSubscription?.unsubscribe();
+    this.coffeeDataSubscription?.unsubscribe();
+    this.dialogSubscription?.unsubscribe();
   }
 }

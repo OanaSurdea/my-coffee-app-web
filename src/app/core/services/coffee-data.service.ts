@@ -37,7 +37,7 @@ export class CoffeeDataService {
     return this.firestoreService.doc$(`coffees/${id}`);
   }
 
-  saveCoffeeEntry(coffee: Coffee, onSuccess: any): void {
+  saveCoffeeEntry(coffee: Coffee, onSuccess: any): Promise<void> {
     // if (coffee.id) {
     //   this.http.put(`${this.endpointBase}/coffees/${coffee.id}`, coffee).subscribe(
     //     () => onSuccess(true),
@@ -50,16 +50,23 @@ export class CoffeeDataService {
     //   );
     // }
     if (coffee.id && coffee.id.length > 4) {
-      this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
+      return this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Update Coffee Error: ${error}`); }
         );
       } else {
-      this.firestoreService.add('coffees', coffee).then(
+      return this.firestoreService.add('coffees', coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Save Coffee Error: ${error}`); }
       );
     }
+  }
+
+  deleteCoffeeEntry(id: string, onSuccess: any): Promise<void> {
+    return this.firestoreService.delete(`coffees/${id}`).then(
+      () => onSuccess(true),
+      (error) => { throw new Error(`Save Coffee Error: ${error}`); }
+    );
   }
 
 }
