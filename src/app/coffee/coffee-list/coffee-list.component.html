@@ -1,13 +1,27 @@
 <div>
+  <div class="m-3">
+    <mat-button-toggle-group name="sortBySelectedOption" [(ngModel)]="sortBy" aria-label="Sort by">
+      <mat-button-toggle *ngFor="let option of sortByOptions | keyvalue"
+        [value]="option.value" (click)="populateCoffeeList()">{{ option.key }}</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
   <ng-container *ngFor="let coffee of coffeeList | async; let i = index">
     <mat-card matBadge="1" matBadgeSize="large" class="my-3 mx-3 shadow">
-      <mat-card-header cla>
+      <mat-card-header>
         <mat-card-title class="mb-3">
-          <a [routerLink]="['/coffees', coffee.id]" class="text-dark text-decoration-none">
+          <a
+            [routerLink]="['/coffees', coffee.id]"
+            class="text-dark text-decoration-none">
             {{ coffee.name }}
           </a>
         </mat-card-title>
-        <mat-card-subtitle>Place: {{ coffee.cafeName }}</mat-card-subtitle>
+
+        <mat-card-subtitle>
+          <span>Place: {{ coffee.cafeName }}</span>
+          <br>
+          <span>Rating: {{ coffee.rating }}</span>
+        </mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-actions>

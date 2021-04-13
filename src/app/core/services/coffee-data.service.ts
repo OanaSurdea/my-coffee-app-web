@@ -14,41 +14,24 @@ import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 export class CoffeeDataService {
 
   constructor(
-    private http: HttpClient,
-    private db: AngularFirestore,
     private firestoreService: FirestoreService,
   ) { }
 
   public endpointBase = environment.apiEndpoint;
 
   getCoffeeList(): Observable<Coffee[]> {
-    // this.http.get(`${this.endpointBase}/coffees`).subscribe(
-    //   (coffeeList: Coffee[]) => onSuccess(coffeeList),
-    //   (error) => console.log('Get Coffee List Error: ', error)
-    // );
     return this.firestoreService.colWithIds$('coffees');
   }
 
+  getOrderedCoffeeList(fieldName: string, direction: 'asc' | 'desc'): Observable<Coffee[]> {
+    return this.firestoreService.colWithIdsOrderBy$('coffees', fieldName, direction);
+  }
+
   getCoffee(id: string): Observable<Coffee> {
-    // this.http.get(`${this.endpointBase}/coffees/${id}`).subscribe(
-    //   (coffee: Coffee) => onSuccess(coffee),
-    //   (error) => console.log('Get Coffee Error: ', error)
-    // );
     return this.firestoreService.doc$(`coffees/${id}`);
   }
 
   saveCoffeeEntry(coffee: Coffee, onSuccess: any): Promise<void> {
-    // if (coffee.id) {
-    //   this.http.put(`${this.endpointBase}/coffees/${coffee.id}`, coffee).subscribe(
-    //     () => onSuccess(true),
-    //     (error) => console.log('Update Coffee Error: ', error)
-    //   );
-    // } else {
-    //   this.http.post(`${this.endpointBase}/coffees`, coffee).subscribe(
-    //     () => onSuccess(true),
-    //     (error) => console.log('Save Coffee Error: ', error)
-    //   );
-    // }
     if (coffee.id && coffee.id.length > 4) {
       return this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
         () => onSuccess(true),

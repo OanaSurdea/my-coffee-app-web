@@ -64,6 +64,19 @@ export class FirestoreService {
     }));
   }
 
+  // Get Collection with Ids included
+  colWithIdsOrderBy$<T>(path: string, fieldName: string, direction: 'asc' | 'desc'): Observable<T[]> {
+    const colRef = this.aFirestore.collection(path, ref => ref.orderBy(fieldName, direction));
+
+    return colRef.snapshotChanges().pipe(map(actions => {
+      return actions.map((a: any) => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
+  }
+
   /*
    * WRITE DATA
    */

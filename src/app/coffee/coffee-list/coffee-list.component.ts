@@ -1,3 +1,7 @@
+import { CoffeeTypeEnum } from './../../core/enums/coffee-type.enum';
+import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
+import { CoffeeSortTypeMap } from './../../core/maps/coffee-sort-type.map';
+import { CoffeeSortTypeEnum } from './../../core/enums/coffee-sort-type.enum';
 import { GeolocationService } from './../../core/services/geolocation.service';
 import { Router } from '@angular/router';
 import { CoffeeDataService } from './../../core/services/coffee-data.service';
@@ -11,7 +15,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./coffee-list.component.scss']
 })
 export class CoffeeListComponent implements OnInit {
+  // List
   public coffeeList: Observable<Coffee[]>;
+
+  // Sorting
+  sortBy: CoffeeSortTypeEnum = CoffeeSortTypeEnum.DateCreated;
+  sortByOptions: any = CoffeeSortTypeEnum;
+  coffeeSortTypeMap: Map<CoffeeSortTypeEnum, SortDirectionEnum> = CoffeeSortTypeMap;
 
   constructor(
     private coffeeDataService: CoffeeDataService,
@@ -24,7 +34,8 @@ export class CoffeeListComponent implements OnInit {
   }
 
   public populateCoffeeList(): void {
-    this.coffeeList = this.coffeeDataService.getCoffeeList();
+    const direction = this._getSortDirectionBasedOn(this.sortBy);
+    this.coffeeList = this.coffeeDataService.getOrderedCoffeeList(this.sortBy, direction);
   }
 
   public viewCoffeeDetails(id: string): void {
@@ -52,5 +63,9 @@ export class CoffeeListComponent implements OnInit {
       const shareCoffeeURL = `whatsapp://send?text=${encodeURIComponent(shareCoffeeText)}`;
       location.href = shareCoffeeURL;
     }
+  }
+
+  private _getSortDirectionBasedOn(key: CoffeeSortTypeEnum): SortDirectionEnum {
+    return this.coffeeSortTypeMap.get(key);
   }
 }
