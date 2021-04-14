@@ -1,31 +1,34 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { FormlyPluginModule } from '../core/modules/formly-plugin.module';
 import { MaterialUiModule } from '../core/modules/material-ui.module';
+import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
+import { CoffeeListComponent } from './coffee-list/coffee-list.component';
 import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
-import { CoffeeListComponent } from './coffee-list/coffee-list.component';
-import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
-import { FormlyPluginModule } from '../core/modules/formly-plugin.module';
-
+import { coffeeReducer } from './state/coffee.reducer';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    MaterialUiModule,
+    CoffeeRoutingModule,
+    MaterialUiModule,
+
+    FormlyPluginModule,
+
+    StoreModule.forFeature('coffees', coffeeReducer),
+  ],
   declarations: [
     CoffeeComponent,
     CoffeeListComponent,
     CoffeeDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialUiModule,
-    CoffeeRoutingModule,
-
-    FormlyPluginModule,
-  ],
   exports: [
     MaterialUiModule,
     FormlyPluginModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CoffeeModule { }

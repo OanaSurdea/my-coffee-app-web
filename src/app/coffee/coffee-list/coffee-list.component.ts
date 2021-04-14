@@ -1,13 +1,16 @@
-import { CoffeeTypeEnum } from './../../core/enums/coffee-type.enum';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
+import { Coffee } from 'src/app/core/models/coffee.model';
+import { IAppState } from 'src/app/core/state/app-state.interface';
+import { sortByDateCreated, sortByRating } from '../state/coffee.actions';
+import { ICoffeeState } from '../state/coffee.reducer';
+import { CoffeeSortTypeEnum } from './../../core/enums/coffee-sort-type.enum';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 import { CoffeeSortTypeMap } from './../../core/maps/coffee-sort-type.map';
-import { CoffeeSortTypeEnum } from './../../core/enums/coffee-sort-type.enum';
-import { GeolocationService } from './../../core/services/geolocation.service';
-import { Router } from '@angular/router';
 import { CoffeeDataService } from './../../core/services/coffee-data.service';
-import { Component, OnInit } from '@angular/core';
-import { Coffee } from 'src/app/core/models/coffee.model';
-import { Observable } from 'rxjs';
+import { GeolocationService } from './../../core/services/geolocation.service';
 
 @Component({
   selector: 'mca-coffee-list',
@@ -16,26 +19,61 @@ import { Observable } from 'rxjs';
 })
 export class CoffeeListComponent implements OnInit {
   // List
-  public coffeeList: Observable<Coffee[]>;
+  public coffeeList: BehaviorSubject<Coffee[]> = new BehaviorSubject([]);
 
   // Sorting
-  sortBy: CoffeeSortTypeEnum = CoffeeSortTypeEnum.DateCreated;
-  sortByOptions: any = CoffeeSortTypeEnum;
+  sortType: CoffeeSortTypeEnum = CoffeeSortTypeEnum.DateCreated;
+  sortTypeOptions: any = CoffeeSortTypeEnum;
   coffeeSortTypeMap: Map<CoffeeSortTypeEnum, SortDirectionEnum> = CoffeeSortTypeMap;
 
   constructor(
-    private coffeeDataService: CoffeeDataService,
     private router: Router,
+    private store: Store<IAppState>,
+    private coffeeDataService: CoffeeDataService,
     private geolocationService: GeolocationService,
   ) { }
 
   ngOnInit(): void {
-    this.populateCoffeeList();
+    this.renderCoffeeList();
   }
 
-  public populateCoffeeList(): void {
-    const direction = this._getSortDirectionBasedOn(this.sortBy);
-    this.coffeeList = this.coffeeDataService.getOrderedCoffeeList(this.sortBy, direction);
+  public renderCoffeeList(): void {
+    this._dispatchSortingActionsBasedOnSelectedSortType();
+    this._getCoffeeListData();
+  }
+
+  /*
+   * This function gets a list of coffees based on,
+   * the selected sortType and it's matching sort direction,
+   */
+  private _getCoffeeListData(): void {
+    this.coffeeDataService
+      .getOrderedCoffeeList(this._gettSortingTypeFromStore(), this._getSortingDirectionForSelectedSortType())
+      .subscribe((coffees: Coffee[]) => this.coffeeList.next(coffees));
+  }
+
+  private _gettSortingTypeFromStore(): CoffeeSortTypeEnum {
+    this.store.select('coffees').toPromise()
+      .then((state: ICoffeeState) => this.sortType = state.coffeeListSortingOrder)
+      .catch((error) => console.log('Could not retrieve <coffeeListSortingOrder> from store', error));
+
+    return this.sortType;
+  }
+
+  private _getSortingDirectionForSelectedSortType(): SortDirectionEnum {
+    return this.coffeeSortTypeMap.get(this.sortType);
+  }
+
+  private _dispatchSortingActionsBasedOnSelectedSortType(): void {
+    switch (this.sortType) {
+      case CoffeeSortTypeEnum.DateCreated:
+        this.store.dispatch(sortByDateCreated());
+        break;
+
+      case CoffeeSortTypeEnum.Rating:
+        this.store.dispatch(sortByRating());
+        break;
+    }
   }
 
   public viewCoffeeDetails(id: string): void {
@@ -52,20 +90,15 @@ export class CoffeeListComponent implements OnInit {
 
     if ('share' in navigator) {
       navigator.share({
-          title: coffee.name,
-          text: shareCoffeeText,
-          url: window.location.href
-        })
-        // tslint:disable-next-line: no-console
-        .then(() => console.info('Coffee shared'))
+        title: coffee.name,
+        text: shareCoffeeText,
+        url: window.location.href
+      })
+        .then(() => console.log('Coffee shared'))
         .catch((error) => { throw new Error(`Coffee share Error: ${error}`); });
     } else {
       const shareCoffeeURL = `whatsapp://send?text=${encodeURIComponent(shareCoffeeText)}`;
       location.href = shareCoffeeURL;
     }
-  }
-
-  private _getSortDirectionBasedOn(key: CoffeeSortTypeEnum): SortDirectionEnum {
-    return this.coffeeSortTypeMap.get(key);
   }
 }

@@ -1,18 +1,20 @@
-import { CoffeeModule } from './coffee/coffee.module';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MaterialUiModule } from './core/modules/material-ui.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+// NgRx
+import { StoreModule } from '@ngrx/store';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CoffeeModule } from './coffee/coffee.module';
+
+
+
 
 @NgModule({
   imports: [
@@ -23,7 +25,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
     // App
     AppRoutingModule,
-    MaterialUiModule,
     CoffeeModule,
 
     // Firebase
@@ -37,7 +38,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
       scope: '/',
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
-    }), // firestore
+    }),
+
+    // NgRx
+    StoreModule.forRoot({}, {}),
   ],
   declarations: [
     AppComponent,

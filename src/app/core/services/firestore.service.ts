@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection,
-  DocumentChangeAction,
   Action,
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+  DocumentChangeAction,
   DocumentSnapshotDoesNotExist,
-  DocumentSnapshotExists,
+  DocumentSnapshotExists
 } from '@angular/fire/firestore';
-import { Observable, from } from 'rxjs';
-import { map, tap, take, switchMap, mergeMap, expand, takeWhile } from 'rxjs/operators';
-
 import * as firebase from 'firebase/app';
+import { from, Observable } from 'rxjs';
+import { expand, map, mergeMap, take, takeWhile, tap } from 'rxjs/operators';
 
 type CollectionPredicate<T> = string | AngularFirestoreCollection<T>;
 type DocPredicate<T> = string | AngularFirestoreDocument<T>;

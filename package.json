@@ -26,6 +26,7 @@
     "@angular/pwa": "^0.1102.7",
     "@angular/router": "~11.2.5",
     "@angular/service-worker": "^11.2.5",
+    "@ngrx/store": "^11.1.0",
     "@ngx-formly/core": "^5.0.0",
     "@ngx-formly/material": "^5.0.0",
     "@ngx-formly/schematics": "^5.10.15",

@@ -1,8 +1,8 @@
 <div>
   <div class="m-3">
-    <mat-button-toggle-group name="sortBySelectedOption" [(ngModel)]="sortBy" aria-label="Sort by">
-      <mat-button-toggle *ngFor="let option of sortByOptions | keyvalue"
-        [value]="option.value" (click)="populateCoffeeList()">{{ option.key }}</mat-button-toggle>
+    <mat-button-toggle-group name="sortBySelectedOption" [(ngModel)]="sortType" aria-label="Sort by">
+      <mat-button-toggle *ngFor="let option of sortTypeOptions | keyvalue"
+        [value]="option.value" (click)="renderCoffeeList()">{{ option.key }}</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
 
@@ -24,21 +24,20 @@
         </mat-card-subtitle>
       </mat-card-header>
 
+
       <mat-card-actions>
         <button
           mat-stroked-button
           color="accent"
           aria-label="Example icon button with map icon"
-          (click)="openMaps(coffee)"
-        >Map<mat-icon>map</mat-icon>
+          (click)="openMaps(coffee)">Map<mat-icon>map</mat-icon>
         </button>
 
         <button
           mat-stroked-button
           color="accent"
           aria-label="Example icon button with a list icon"
-          (click)="viewCoffeeDetails(coffee.id)"
-        >Details<mat-icon>list</mat-icon>
+          (click)="viewCoffeeDetails(coffee.id)">Details<mat-icon>list</mat-icon>
         </button>
 
         <button
@@ -46,17 +45,17 @@
           color="accent"
           aria-label="Example icon button with a share icon"
           class="mx-0"
-          (click)="shareCoffeeRating(coffee)"
-        >Share<mat-icon>share</mat-icon>
+          (click)="shareCoffeeRating(coffee)">Share<mat-icon>share</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>
   </ng-container>
 
   <a mat-fab
-     color="primary"
-     routerLink="/coffees/add"
-     aria-label="add-new-coffee"
-     class="position-fixed bottom-0 end-0 m-4"
-  ><mat-icon>add</mat-icon></a>
+    color="primary"
+    routerLink="/coffees/add"
+    aria-label="add-new-coffee"
+    class="position-fixed bottom-0 end-0 m-4">
+    <mat-icon>add</mat-icon>
+  </a>
 </div>
