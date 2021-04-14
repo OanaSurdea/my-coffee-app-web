@@ -1,14 +1,14 @@
-import { CoffeeDataService } from './../../core/services/coffee-data.service';
-import { GeolocationService } from './../../core/services/geolocation.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Coffee } from 'src/app/core/models/coffee.model';
+import { CoffeeDataService } from './../../core/services/coffee-data.service';
+import { GeolocationService } from './../../core/services/geolocation.service';
 import { coffeeFormFieldConfig } from './coffee-details-form';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'mca-coffee-details',
@@ -75,7 +75,7 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     this.coffeeModel.id = this.coffeeRouteId;
 
     this.coffeeDataService.saveCoffeeEntry(coffeeModel, success => {
-      if(success) {
+      if (success) {
         this.router.navigateByUrl('/');
       }
     });

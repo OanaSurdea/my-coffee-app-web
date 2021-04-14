@@ -1,10 +1,10 @@
-import { environment } from './../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SwPush, SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { interval, Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'mca-root',
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
     Notification.requestPermission(permission => {
       if (permission === 'granted') {
         this.swPush.requestSubscription({ serverPublicKey: environment.serverPublicKey })
-        .then(res => console.log(res));
+          .then(res => console.log(res));
       }
     });
   }
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
     // Check if in the browser
     if ((navigator as any).standalone == false) {
       this.snackBar.open('You can add this PWA to your Home Screen just like a regular app.', null, { duration: 3000 });
-    // Check if it's not IOS
+      // Check if it's not IOS
     } else if ((navigator as any).standalone == undefined) {
       // Check if in the browser
       if (window.matchMedia('display-mode: browser').matches) {

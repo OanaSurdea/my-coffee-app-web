@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://localhost:4000',
-  useEmulators : false,
+  useEmulators: false,
   firebaseConfig: {
     apiKey: 'AIzaSyDisiIP5zGlj9sM3sBV22NVGRzYUIByo6c',
     authDomain: 'my-coffee-app-2.firebaseapp.com',

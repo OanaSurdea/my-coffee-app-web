@@ -1,12 +1,8 @@
-import { FirestoreService } from './firestore.service';
-import { environment } from './../../../environments/environment.prod';
-import { Coffee } from '../models/coffee.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Cafe } from '../models/cafe';
 import { Observable } from 'rxjs';
-import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
+import { Coffee } from '../models/coffee.model';
+import { environment } from './../../../environments/environment.prod';
+import { FirestoreService } from './firestore.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +32,8 @@ export class CoffeeDataService {
       return this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Update Coffee Error: ${error}`); }
-        );
-      } else {
+      );
+    } else {
       return this.firestoreService.add('coffees', coffee).then(
         () => onSuccess(true),
         (error) => { throw new Error(`Save Coffee Error: ${error}`); }

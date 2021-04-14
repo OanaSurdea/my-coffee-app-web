@@ -1,6 +1,5 @@
-import { CafeLocation } from 'src/app/core/models/cafe-location.model';
 import { TestBed } from '@angular/core/testing';
-
+import { CafeLocation } from 'src/app/core/models/cafe-location.model';
 import { GeolocationService } from './geolocation.service';
 
 describe('GeolocationService', () => {
@@ -14,7 +13,6 @@ describe('GeolocationService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
 
   describe('requestLocation(onSuccess, onError)', () => {
     it('should call requestLocation()', () => {
@@ -35,14 +33,14 @@ describe('GeolocationService', () => {
       let position: any;
 
       spyOn(navigator.geolocation, 'getCurrentPosition').and.callFake((onSuccess, onError) => {
-          position = { coords: { latitude: 32.8569, longitude: -96.9628 } };
+        position = { coords: { latitude: 32.8569, longitude: -96.9628 } };
 
-          if (position.coords) {
-            onSuccess(position);
-          } else {
-            onError(position);
-          }
+        if (position.coords) {
+          onSuccess(position);
+        } else {
+          onError(position);
         }
+      }
       );
 
       service.requestLocation(spySuccess, spyError);
@@ -58,14 +56,14 @@ describe('GeolocationService', () => {
       let position: any;
 
       spyOn(navigator.geolocation, 'getCurrentPosition').and.callFake((onSuccess, onError) => {
-          position = { };
+        position = {};
 
-          if (position.coords) {
-            onSuccess(position);
-          } else {
-            onError(position);
-          }
+        if (position.coords) {
+          onSuccess(position);
+        } else {
+          onError(position);
         }
+      }
       );
 
       service.requestLocation(spySuccess, spyError);
@@ -91,7 +89,7 @@ describe('GeolocationService', () => {
     });
 
     it('should return null URL if no coordinates/address&city are provided as parameter', () => {
-      const emptyObject = { } as CafeLocation;
+      const emptyObject = {} as CafeLocation;
       const url = service.getUnformattedMapUrlFrom(emptyObject);
 
       expect(url).toBe(null);
@@ -132,7 +130,7 @@ describe('GeolocationService', () => {
     });
 
     it('should return null URL if no coordinates/address&city are provided as parameter', () => {
-      const emptyObject = { } as CafeLocation;
+      const emptyObject = {} as CafeLocation;
       const url = service.getUnformattedMapUrlFrom(emptyObject);
 
       expect(url).toBe(null);

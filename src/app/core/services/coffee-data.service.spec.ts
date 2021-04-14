@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { CoffeeDataService } from './coffee-data.service';
 
 describe('CoffeeDataService', () => {

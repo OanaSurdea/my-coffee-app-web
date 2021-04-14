@@ -1,26 +1,25 @@
 @import 'mca-theme-variables';
 
 header {
-  background: $secondary;
+	background: $secondary;
 
-  h1 {
-    margin: 0;
-    padding: 28px 8px;
-    font-size: 20px;
-  }
+	h1 {
+		margin: 0;
+		padding: 28px 8px;
+		font-size: 20px;
+	}
 }
 
 .page {
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+	min-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
-
 .text-white-70 {
-  color: $secondary-text;
+	color: $secondary-text;
 }
 
 .grayscale {
-  filter: grayscale(1);
+	filter: grayscale(1);
 }

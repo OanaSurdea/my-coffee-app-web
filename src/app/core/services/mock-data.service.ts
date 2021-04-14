@@ -1,8 +1,8 @@
-import { TasteRating } from '../models/taste-rating.model';
-import { CafeLocation } from 'src/app/core/models/cafe-location.model';
-import { Coffee } from '../models/coffee.model';
 import { Injectable } from '@angular/core';
+import { CafeLocation } from 'src/app/core/models/cafe-location.model';
 import { CoffeeTypeEnum } from '../enums/coffee-type.enum';
+import { Coffee } from '../models/coffee.model';
+import { TasteRating } from '../models/taste-rating.model';
 
 @Injectable({
   providedIn: 'root'

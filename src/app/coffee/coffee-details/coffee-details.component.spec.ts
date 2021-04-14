@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormlyPluginModule } from 'src/app/core/modules/formly-plugin.module';
 import { MaterialUiModule } from 'src/app/core/modules/material-ui.module';
-
 import { CoffeeDetailsComponent } from './coffee-details.component';
 
 describe('CoffeeDetailsComponent', () => {
@@ -18,9 +17,9 @@ describe('CoffeeDetailsComponent', () => {
         MaterialUiModule,
         FormlyPluginModule,
       ],
-      declarations: [ CoffeeDetailsComponent ],
+      declarations: [CoffeeDetailsComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
