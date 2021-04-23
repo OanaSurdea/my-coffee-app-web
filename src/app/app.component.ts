@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SwPush, SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
@@ -11,12 +11,15 @@ import { environment } from './../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'My Coffee App';
   // Subscriptions
-  routeSubscription: Subscription;
-  isAppOffline: boolean;
+  swCheckForUpdateSubscription: Subscription;
+  swUpdatesSubscription: Subscription;
+  swPromptUpdateSubscription: Subscription;
+  swPromptInstallSubscription: Subscription;
 
+  isAppOffline: boolean;
   routeName: any;
 
   constructor(
@@ -27,7 +30,7 @@ export class AppComponent implements OnInit {
     private swPush: SwPush,
   ) {
     if (this.swUpdates.isEnabled) {
-      interval(6 * 60 * 60).subscribe(() => swUpdates.checkForUpdate()
+      this.swCheckForUpdateSubscription = interval(6 * 60 * 60).subscribe(() => swUpdates.checkForUpdate()
         .then(() => console.log('checking for updates')));
     }
   }
@@ -63,16 +66,18 @@ export class AppComponent implements OnInit {
   }
 
   public checkForUpdates(): void {
-    this.swUpdates.available.subscribe((event: UpdateAvailableEvent) => this.promptServiceWorkerUpdate(event));
+    this.swUpdatesSubscription = this.swUpdates.available
+      .subscribe((event: UpdateAvailableEvent) => this.promptServiceWorkerUpdate(event));
   }
 
   private promptServiceWorkerUpdate(event: UpdateAvailableEvent): void {
     if (event.current.appData !== event.available.appData) {
       const snackBar = this.snackBar.open('There is an update available', 'Install Now', { duration: 4000 });
 
-      snackBar.onAction().subscribe(() => {
+      this.swPromptUpdateSubscription = snackBar.onAction().subscribe(() => {
         console.log('Updating to new version.');
-        this.swUpdates.activateUpdate().then(() => document.location.reload());
+        this.swUpdates.activateUpdate()
+          .then(() => document.location.reload());
       });
     }
   }
@@ -90,16 +95,17 @@ export class AppComponent implements OnInit {
 
           const snackBarInstance = this.snackBar.open('Do you want install this App?', 'Install', { duration: 3000 });
 
-          snackBarInstance.onAction().subscribe(() => {
-            (event as any).prompt();
-            (event as any).userChoice.then(result => {
-              if (result.outcome == 'dismissed') {
-                // TODO: Track no installation
-              } else {
-                // TODO: Track installation
-              }
+          this.swPromptInstallSubscription = snackBarInstance
+            .onAction().subscribe(() => {
+              (event as any).prompt();
+              (event as any).userChoice.then(result => {
+                if (result.outcome == 'dismissed') {
+                  // TODO: Track no installation
+                } else {
+                  // TODO: Track installation
+                }
+              });
             });
-          });
         });
       }
     }
@@ -107,6 +113,13 @@ export class AppComponent implements OnInit {
 
   private checkNetworkConnection(): void {
     this.isAppOffline = navigator.onLine ? false : true;
+  }
+
+  ngOnDestroy(): void {
+    this.swCheckForUpdateSubscription?.unsubscribe();
+    this.swUpdatesSubscription?.unsubscribe();
+    this.swPromptUpdateSubscription?.unsubscribe();
+    this.swPromptInstallSubscription?.unsubscribe();
   }
 
 }
