@@ -1,4 +1,4 @@
-import { ITasteRating } from '../interfaces/taste-rating.interface';
+import { ITasteRating } from '../../coffee/interfaces/taste-rating.interface';
 
 export class TasteRating implements ITasteRating {
   aroma: number;

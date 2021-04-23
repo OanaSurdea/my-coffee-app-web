@@ -1,5 +1,5 @@
 import { CoffeeTypeEnum } from 'src/app/coffee/enums/coffee-type.enum';
-import { CafeLocation } from './../models/cafe-location.model';
+import { CafeLocation } from '../../core/models/cafe-location.model';
 import { ITasteRating } from './taste-rating.interface';
 
 export interface ICoffee {
