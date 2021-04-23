@@ -12,7 +12,6 @@ import { CoffeeDataService } from './../../core/services/coffee-data.service';
 @Injectable()
 export class CoffeeEffects {
 
-
   constructor(
     private actions: Actions,
     private store: Store<ICoffeeState>,
@@ -29,7 +28,7 @@ export class CoffeeEffects {
           .pipe(
             map((coffees$: ICoffee[]) => CoffeeActions.loadCoffeesSuccess({ coffees$ })),
             catchError((coffeesLoadError: string) => of(CoffeeActions.loadCoffeesFailure({ coffeesLoadError })))
-          )
+          );
       })
     );
   });
