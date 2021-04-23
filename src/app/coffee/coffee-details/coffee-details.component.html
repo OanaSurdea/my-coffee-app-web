@@ -15,13 +15,13 @@
         <button mat-stroked-button type="button" routerLink="/coffees">Cancel</button>
       </div>
       <button mat-stroked-button type="button" color="warn"
-        (click)="deleteCoffeeEntry(deleteCoffeeConfirmation)">Delete</button>
+        (click)="deleteOne(deleteCoffeeConfirmationRef)">Delete</button>
     </mat-card-actions>
   </mat-card>
 </form>
 
 
-<ng-template #deleteCoffeeConfirmation>
+<ng-template #deleteCoffeeConfirmationRef>
   <h2>Are you sure?</h2>
   <p>This will permanently delete the coffee entry.</p>
 

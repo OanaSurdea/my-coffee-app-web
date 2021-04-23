@@ -11,7 +11,7 @@ export class MockCofeeDataService {
 
   constructor() { }
 
-  getCoffeeList(onSuccess: any): void {
+  getAll(onSuccess: any): void {
     // TODO: Change it with a real Web Service
 
     const coffeeList: Coffee[] = [
@@ -38,7 +38,7 @@ export class MockCofeeDataService {
     onSuccess(coffeeList);
   }
 
-  saveCoffeeEntry(coffee: Coffee, onSuccess: any): void {
+  saveOne(coffee: Coffee, onSuccess: any): void {
     // TODO: Change it with a real Web Service
 
     onSuccess(true);

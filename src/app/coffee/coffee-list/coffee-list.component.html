@@ -1,12 +1,41 @@
 <div>
   <div class="m-3">
-    <mat-button-toggle-group name="sortBySelectedOption" [(ngModel)]="sortType" aria-label="Sort by">
-      <mat-button-toggle *ngFor="let option of sortTypeOptions | keyvalue"
-        [value]="option.value" (click)="renderCoffeeList()">{{ option.key }}</mat-button-toggle>
+    <!-- Sort By -->
+    <mat-button-toggle-group
+      name="selectedSortByOption"
+      [(ngModel)]="selectedSortByOption"
+      aria-label="Sort by">
+
+      <mat-button-toggle
+        *ngFor="let option of sortByOptions | keyvalue"
+        [value]="option.value"
+        (click)="renderCoffeeList()">
+        {{ option.key }}
+      </mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+    <span>&nbsp;</span>
+
+    <!-- Sort Direction -->
+    <mat-button-toggle-group
+      name="selectedSortDirectionOption"
+      [(ngModel)]="selectedSortDirectionOption"
+      aria-label="Sort direction">
+
+      <mat-button-toggle
+        *ngFor="let option of sortDirectionOptions | keyvalue"
+        [value]="option.value"
+        (click)="renderCoffeeList()">
+        <mat-icon>
+          {{ option.value === 'asc' ? 'arrow_upward' : 'arrow_downward' }}
+        </mat-icon>
+      </mat-button-toggle>
+
     </mat-button-toggle-group>
   </div>
 
-  <ng-container *ngFor="let coffee of coffeeList | async; let i = index">
+  <ng-container *ngFor="let coffee of coffees$ | async; let i = index">
     <mat-card matBadge="1" matBadgeSize="large" class="my-3 mx-3 shadow">
       <mat-card-header>
         <mat-card-title class="mb-3">
@@ -21,6 +50,8 @@
           <span>Place: {{ coffee.cafeName }}</span>
           <br>
           <span>Rating: {{ coffee.rating }}</span>
+          <br>
+          <span>Created: {{ coffee.createdAt.toDate()| date: 'd MMMM y' }}</span>
         </mat-card-subtitle>
       </mat-card-header>
 

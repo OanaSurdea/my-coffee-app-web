@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FormlyPluginModule } from '../core/modules/formly-plugin.module';
 import { MaterialUiModule } from '../core/modules/material-ui.module';
@@ -7,6 +8,7 @@ import { CoffeeDetailsComponent } from './coffee-details/coffee-details.componen
 import { CoffeeListComponent } from './coffee-list/coffee-list.component';
 import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
+import { CoffeeEffects } from './state/coffee.effects';
 import { coffeeReducer } from './state/coffee.reducer';
 
 @NgModule({
@@ -18,6 +20,7 @@ import { coffeeReducer } from './state/coffee.reducer';
 
     FormlyPluginModule,
 
+    EffectsModule.forFeature([CoffeeEffects]),
     StoreModule.forFeature('coffees', coffeeReducer),
   ],
   declarations: [

@@ -51,7 +51,7 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   }
 
   public populateFormFields(): void {
-    this.coffeeDataSubscription = this.coffeeDataService.getCoffee(this.coffeeRouteId).subscribe(
+    this.coffeeDataSubscription = this.coffeeDataService.getOne(this.coffeeRouteId).subscribe(
       (coffee: Coffee) => {
         if (coffee) { this.coffeeModel = coffee; }
       }
@@ -74,19 +74,19 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
 
     this.coffeeModel.id = this.coffeeRouteId;
 
-    this.coffeeDataService.saveCoffeeEntry(coffeeModel, success => {
+    this.coffeeDataService.saveOne(coffeeModel, success => {
       if (success) {
         this.router.navigateByUrl('/');
       }
     });
   }
 
-  public deleteCoffeeEntry(templateRef): void {
+  public deleteOne(templateRef): void {
     const dialog = this.dialog.open(templateRef);
 
     this.dialogSubscription = dialog.afterClosed().subscribe((result) => {
       if (result) {
-        this.coffeeDataService.deleteCoffeeEntry(this.coffeeRouteId, (ress) => result = ress).then(
+        this.coffeeDataService.deleteOne(this.coffeeRouteId, (ress) => result = ress).then(
           () => {
             this.snackBar.open('Coffee deleted succesfully.', 'Close', { duration: 650 });
             this.router.navigateByUrl('/coffees');

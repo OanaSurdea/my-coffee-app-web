@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
 import { Coffee } from '../models/coffee.model';
 import { environment } from './../../../environments/environment.prod';
 import { FirestoreService } from './firestore.service';
@@ -15,19 +16,19 @@ export class CoffeeDataService {
 
   public endpointBase = environment.apiEndpoint;
 
-  getCoffeeList(): Observable<Coffee[]> {
+  getAll(): Observable<Coffee[]> {
     return this.firestoreService.colWithIds$('coffees');
   }
 
-  getOrderedCoffeeList(fieldName: string, direction: 'asc' | 'desc'): Observable<Coffee[]> {
+  getAllSorted(fieldName: CoffeeSortByEnum, direction: 'asc' | 'desc'): Observable<Coffee[]> {
     return this.firestoreService.colWithIdsOrderBy$('coffees', fieldName, direction);
   }
 
-  getCoffee(id: string): Observable<Coffee> {
+  getOne(id: string): Observable<Coffee> {
     return this.firestoreService.doc$(`coffees/${id}`);
   }
 
-  saveCoffeeEntry(coffee: Coffee, onSuccess: any): Promise<void> {
+  saveOne(coffee: Coffee, onSuccess: any): Promise<void> {
     if (coffee.id && coffee.id.length > 4) {
       return this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
         () => onSuccess(true),
@@ -41,7 +42,7 @@ export class CoffeeDataService {
     }
   }
 
-  deleteCoffeeEntry(id: string, onSuccess: any): Promise<void> {
+  deleteOne(id: string, onSuccess: any): Promise<void> {
     return this.firestoreService.delete(`coffees/${id}`).then(
       () => onSuccess(true),
       (error) => { throw new Error(`Save Coffee Error: ${error}`); }

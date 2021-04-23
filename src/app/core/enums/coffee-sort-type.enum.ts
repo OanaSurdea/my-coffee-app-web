@@ -1,4 +1,4 @@
-export enum CoffeeSortTypeEnum {
+export enum CoffeeSortByEnum {
   DateCreated = 'createdAt',
   Rating = 'rating',
 }

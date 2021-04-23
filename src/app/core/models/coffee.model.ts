@@ -12,8 +12,8 @@ export class Coffee implements ICoffee {
   public rating: number;
   public tasteRating: TasteRating;
   public notes?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: firebase.default.firestore.Timestamp;
+  updatedAt?: firebase.default.firestore.Timestamp;
 
   constructor(
     name = '',

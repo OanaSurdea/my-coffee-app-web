@@ -11,6 +11,6 @@ export interface ICoffee {
   rating: number;
   tasteRating: ITasteRating;
   notes?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: firebase.default.firestore.Timestamp;
+  updatedAt?: firebase.default.firestore.Timestamp;
 }
