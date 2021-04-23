@@ -14,7 +14,7 @@ a.mat-fab {
 
 	&--gridView {
 		display: grid;
-		grid-template-areas: "column column";
+		grid-template-areas: "column column column";
 		gap: 10px;
 		grid-auto-rows: 1fr;
 	}

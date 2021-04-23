@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -37,10 +38,12 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private store: Store<IAppState>,
+    private breakpointObserver: BreakpointObserver,
     private geolocationService: GeolocationService,
   ) { }
 
   ngOnInit(): void {
+    this._initLayout();
     this.renderCoffeeList();
   }
 
@@ -48,6 +51,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
     this._setSelectedSortByOption();
     this._setSelectedSortDirectionOption();
     this._setSelectedLayoutOption();
+
     this._populateCoffeeList();
   }
 
@@ -62,6 +66,22 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
       .select(CoffeeSelectors.getCoffees)
       .pipe(take(2))
       .subscribe((coffees: ICoffee[]) => this.coffees$.next(coffees));
+  }
+
+  private _initLayout(): void {
+    this.breakpointObserver.observe([
+      '(max-width: 768px)'
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.selectedLayoutOption = ListLayoutEnum.List;
+      } else {
+        this.selectedLayoutOption = ListLayoutEnum.Grid;
+      }
+
+      this.store.dispatch(CoffeeActions.selectLayoutOption(
+        { selectedLayoutOption: this.selectedLayoutOption }
+      ));
+    });
   }
 
   private _setSelectedSortByOption(): void {
