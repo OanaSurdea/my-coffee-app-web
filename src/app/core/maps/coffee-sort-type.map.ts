@@ -1,8 +1,8 @@
 import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
-import { CoffeeSortDirectionEnum } from '../enums/sort-direction.enum';
+import { SortDirectionEnum } from '../enums/sort-direction.enum';
 
-export const CoffeeSortTypeMap: Map<CoffeeSortByEnum, CoffeeSortDirectionEnum> = new Map([
-  [CoffeeSortByEnum.DateCreated, CoffeeSortDirectionEnum.Descending],
-  [CoffeeSortByEnum.DateCreated, CoffeeSortDirectionEnum.Ascending],
-  [CoffeeSortByEnum.Rating, CoffeeSortDirectionEnum.Descending],
+export const CoffeeSortTypeMap: Map<CoffeeSortByEnum, SortDirectionEnum> = new Map([
+  [CoffeeSortByEnum.DateCreated, SortDirectionEnum.Descending],
+  [CoffeeSortByEnum.DateCreated, SortDirectionEnum.Ascending],
+  [CoffeeSortByEnum.Rating, SortDirectionEnum.Descending],
 ]);

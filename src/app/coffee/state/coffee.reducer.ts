@@ -1,13 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { CoffeeSortByEnum } from 'src/app/core/enums/coffee-sort-type.enum';
-import { CoffeeSortDirectionEnum } from 'src/app/core/enums/sort-direction.enum';
+import { SortDirectionEnum } from 'src/app/core/enums/sort-direction.enum';
 import { ICoffeeState } from './coffee-state.interface';
 import * as CoffeeActions from './coffee.actions';
 
 // Initial State
 export const initialCoffeeState: ICoffeeState = {
   selectedSortByOption: CoffeeSortByEnum.DateCreated,
-  selectedSortDirectionOption: CoffeeSortDirectionEnum.Ascending,
+  selectedSortDirectionOption: SortDirectionEnum.Ascending,
   areCoffeesLoading: false,
   coffees$: [],
   coffeesLoadError: null,

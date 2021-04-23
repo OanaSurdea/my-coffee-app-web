@@ -8,7 +8,7 @@ import { IAppState } from 'src/app/core/state/app-state.interface';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
 import { CoffeeSortByEnum } from './../../core/enums/coffee-sort-type.enum';
-import { CoffeeSortDirectionEnum } from './../../core/enums/sort-direction.enum';
+import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 import { GeolocationService } from './../../core/services/geolocation.service';
 
 @Component({
@@ -27,8 +27,11 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   sortByOptions: any = CoffeeSortByEnum;
   selectedSortByOption: CoffeeSortByEnum = CoffeeSortByEnum.DateCreated;
 
-  sortDirectionOptions: any = CoffeeSortDirectionEnum;
-  selectedSortDirectionOption: CoffeeSortDirectionEnum = CoffeeSortDirectionEnum.Ascending;
+  sortDirectionOptions: any = SortDirectionEnum;
+  selectedSortDirectionOption: SortDirectionEnum = SortDirectionEnum.Ascending;
+
+  // List Layout
+  // layoutOptions: any =
 
   constructor(
     private router: Router,
