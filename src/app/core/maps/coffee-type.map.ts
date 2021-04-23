@@ -1,4 +1,4 @@
-import { CoffeeTypeEnum } from '../enums/coffee-type.enum';
+import { CoffeeTypeEnum } from 'src/app/coffee/enums/coffee-type.enum';
 import { IFormOption } from '../interfaces/form-option.interface';
 
 export const CoffeeTypeMap: Map<CoffeeTypeEnum, string> = new Map([

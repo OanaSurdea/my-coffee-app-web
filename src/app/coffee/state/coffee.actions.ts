@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { CoffeeSortByEnum } from 'src/app/core/enums/coffee-sort-type.enum';
 import { Coffee } from 'src/app/core/models/coffee.model';
+import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 
 

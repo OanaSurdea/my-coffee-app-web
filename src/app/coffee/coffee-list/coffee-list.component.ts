@@ -5,9 +5,9 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Coffee } from 'src/app/core/models/coffee.model';
 import { IAppState } from 'src/app/core/state/app-state.interface';
+import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
-import { CoffeeSortByEnum } from './../../core/enums/coffee-sort-type.enum';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 import { GeolocationService } from './../../core/services/geolocation.service';
 

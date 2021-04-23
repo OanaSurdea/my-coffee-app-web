@@ -1,6 +1,6 @@
-import { CoffeeSortByEnum } from 'src/app/core/enums/coffee-sort-type.enum';
 import { Coffee } from 'src/app/core/models/coffee.model';
 import { IAppState } from 'src/app/core/state/app-state.interface';
+import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 
 export interface ICoffeeState {
