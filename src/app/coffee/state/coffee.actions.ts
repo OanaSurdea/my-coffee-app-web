@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { SortDirectionEnum } from 'src/app/core/enums';
+import { ListLayoutEnum, SortDirectionEnum } from '../../core/enums';
 import { CoffeeSortByEnum } from '../enums';
 import { ICoffee } from '../interfaces';
 
@@ -11,6 +11,11 @@ export const selectSortByOption = createAction(
 export const selectSortDirectionOption = createAction(
   '[Coffee List] Change list sort direction option',
   props<{ selectedSortDirectionOption: SortDirectionEnum }>()
+);
+
+export const selectLayoutOption = createAction(
+  '[Coffee List] Change list layout option',
+  props<{ selectedLayoutOption: ListLayoutEnum }>()
 );
 
 export const loadCoffees = createAction(

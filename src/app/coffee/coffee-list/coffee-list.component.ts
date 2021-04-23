@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { SortDirectionEnum } from 'src/app/core/enums';
-import { GeolocationService } from 'src/app/core/services';
-import { IAppState } from 'src/app/core/state';
+import { ListLayoutEnum, SortDirectionEnum } from '../../core/enums';
+import { GeolocationService } from '../../core/services';
+import { IAppState } from '../../core/state';
 import { CoffeeSortByEnum } from '../enums';
 import { ICoffee } from '../interfaces';
 import * as CoffeeActions from '../state/coffee.actions';
@@ -31,7 +31,8 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   selectedSortDirectionOption: SortDirectionEnum = SortDirectionEnum.Ascending;
 
   // List Layout
-  // layoutOptions: any =
+  layoutOptions: any = ListLayoutEnum;
+  selectedLayoutOption: ListLayoutEnum = ListLayoutEnum.List;
 
   constructor(
     private router: Router,
@@ -46,6 +47,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   public renderCoffeeList(): void {
     this._setSelectedSortByOption();
     this._setSelectedSortDirectionOption();
+    this._setSelectedLayoutOption();
     this._populateCoffeeList();
   }
 
@@ -71,6 +73,12 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   private _setSelectedSortDirectionOption(): void {
     this.store.dispatch(CoffeeActions.selectSortDirectionOption(
       { selectedSortDirectionOption: this.selectedSortDirectionOption }
+    ));
+  }
+
+  private _setSelectedLayoutOption(): void {
+    this.store.dispatch(CoffeeActions.selectLayoutOption(
+      { selectedLayoutOption: this.selectedLayoutOption }
     ));
   }
 

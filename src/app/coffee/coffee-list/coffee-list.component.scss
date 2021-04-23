@@ -3,3 +3,19 @@
 a.mat-fab {
 	color: #c89851;
 }
+
+.coffeeList {
+	&--listView {
+		display: grid;
+		grid-template-areas: "row" "row";
+		gap: 10px;
+		grid-auto-rows: 1fr;
+	}
+
+	&--gridView {
+		display: grid;
+		grid-template-areas: "column column";
+		gap: 10px;
+		grid-auto-rows: 1fr;
+	}
+}

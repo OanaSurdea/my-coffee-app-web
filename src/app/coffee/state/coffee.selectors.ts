@@ -12,6 +12,10 @@ export const getCoffeesSortDirectionOption = createSelector(
   getCoffeeFeatureState, (state: ICoffeeState) => state.selectedSortDirectionOption
 );
 
+export const getCoffeesLayoutOption = createSelector(
+  getCoffeeFeatureState, (state: ICoffeeState) => state.selectedLayoutOption
+);
+
 export const getCoffeesSortingOptions = createSelector(
   getCoffeeFeatureState, (state: ICoffeeState) => ({
     selectedSortByOption: state.selectedSortByOption,
