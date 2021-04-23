@@ -1,6 +1,6 @@
-import { CoffeeTypeEnum } from 'src/app/coffee/enums/coffee-type.enum';
-import { ICoffee } from '../../coffee/interfaces/coffee.interface';
-import { CafeLocation } from './cafe-location.model';
+import { CafeLocation } from 'src/app/core/models/cafe-location.model';
+import { CoffeeTypeEnum } from '../enums/coffee-type.enum';
+import { ICoffee } from '../interfaces/coffee.interface';
 import { TasteRating } from './taste-rating.model';
 
 export class Coffee implements ICoffee {

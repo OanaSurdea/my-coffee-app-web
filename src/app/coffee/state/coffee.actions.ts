@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Coffee } from 'src/app/core/models/coffee.model';
 import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
+import { ICoffee } from '../interfaces/coffee.interface';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 
 
@@ -20,7 +20,7 @@ export const loadCoffees = createAction(
 
 export const loadCoffeesSuccess = createAction(
   '[Coffee List] Load Success',
-  props<{ coffees$: Coffee[] }>()
+  props<{ coffees$: ICoffee[] }>()
 );
 
 export const loadCoffeesFailure = createAction(

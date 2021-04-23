@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { ICoffeeState } from 'src/app/coffee/state/coffee-state.interface';
-import { Coffee } from 'src/app/core/models/coffee.model';
+import { ICoffee } from '../interfaces/coffee.interface';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
 import { CoffeeDataService } from './../../core/services/coffee-data.service';
@@ -27,7 +27,7 @@ export class CoffeeEffects {
         return this.coffeeService
           .getAllSorted(sortingOptions.selectedSortByOption, sortingOptions.selectedSortDirectionOption)
           .pipe(
-            map((coffees$: Coffee[]) => CoffeeActions.loadCoffeesSuccess({ coffees$ })),
+            map((coffees$: ICoffee[]) => CoffeeActions.loadCoffeesSuccess({ coffees$ })),
             catchError((coffeesLoadError: string) => of(CoffeeActions.loadCoffeesFailure({ coffeesLoadError })))
           )
       })

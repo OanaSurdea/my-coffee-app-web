@@ -1,13 +1,13 @@
-import { Coffee } from 'src/app/core/models/coffee.model';
 import { IAppState } from 'src/app/core/state/app-state.interface';
 import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
+import { ICoffee } from '../interfaces/coffee.interface';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
 
 export interface ICoffeeState {
   selectedSortByOption: CoffeeSortByEnum;
   selectedSortDirectionOption: SortDirectionEnum;
   areCoffeesLoading: boolean;
-  coffees$: Coffee[];
+  coffees$: ICoffee[];
   coffeesLoadError: string;
 }
 

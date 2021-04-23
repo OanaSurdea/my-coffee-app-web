@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Coffee } from 'src/app/core/models/coffee.model';
 import { IAppState } from 'src/app/core/state/app-state.interface';
 import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
+import { ICoffee } from '../interfaces/coffee.interface';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
 import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
@@ -21,7 +21,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   getCoffeesFromStoreSubscription: Subscription;
 
   // List
-  public coffees$: BehaviorSubject<Coffee[]> = new BehaviorSubject([]);
+  public coffees$: BehaviorSubject<ICoffee[]> = new BehaviorSubject([]);
 
   // Sorting
   sortByOptions: any = CoffeeSortByEnum;
@@ -59,7 +59,7 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
     this.getCoffeesFromStoreSubscription = this.store
       .select(CoffeeSelectors.getCoffees)
       .pipe(take(2))
-      .subscribe((coffees: Coffee[]) => this.coffees$.next(coffees));
+      .subscribe((coffees: ICoffee[]) => this.coffees$.next(coffees));
   }
 
   private _setSelectedSortByOption(): void {
@@ -78,12 +78,12 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
     this.router.navigate(['coffees', id]);
   }
 
-  public openMaps(coffee: Coffee): void {
+  public openMaps(coffee: ICoffee): void {
     const mapURL = this.geolocationService.getFormattedMapUrlFrom(coffee.cafeLocation);
     location.href = mapURL;
   }
 
-  public shareCoffeeRating(coffee: Coffee): void {
+  public shareCoffeeRating(coffee: ICoffee): void {
     const shareCoffeeText = `I had this coffee at ${coffee.cafeName} and for me it's a ${coffee.rating}.`;
 
     if ('share' in navigator) {

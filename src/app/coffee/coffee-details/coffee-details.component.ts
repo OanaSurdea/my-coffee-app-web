@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { Coffee } from 'src/app/core/models/coffee.model';
+import { Coffee } from 'src/app/coffee/models/coffee.model';
 import { CoffeeDataService } from './../../core/services/coffee-data.service';
 import { GeolocationService } from './../../core/services/geolocation.service';
 import { coffeeFormFieldConfig } from './coffee-details-form';
