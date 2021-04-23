@@ -3,11 +3,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
-import { ICoffeeState } from 'src/app/coffee/state/coffee-state.interface';
-import { ICoffee } from '../interfaces/coffee.interface';
+import { CoffeeDataService } from 'src/app/core/services';
+import { ICoffeeState } from '.';
+import { ICoffee } from '../interfaces';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
-import { CoffeeDataService } from './../../core/services/coffee-data.service';
 
 @Injectable()
 export class CoffeeEffects {

@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ICoffeeState } from './coffee-state.interface';
+import { ICoffeeState } from '.';
+
 
 export const getCoffeeFeatureState = createFeatureSelector<ICoffeeState>('coffees');
 

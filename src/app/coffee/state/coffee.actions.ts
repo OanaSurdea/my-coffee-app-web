@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
-import { ICoffee } from '../interfaces/coffee.interface';
-import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
-
+import { SortDirectionEnum } from 'src/app/core/enums';
+import { CoffeeSortByEnum } from '../enums';
+import { ICoffee } from '../interfaces';
 
 export const selectSortByOption = createAction(
   '[Coffee List] Change list sort by option',

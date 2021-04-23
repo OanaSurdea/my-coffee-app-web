@@ -1,8 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { SortDirectionEnum } from 'src/app/core/enums/sort-direction.enum';
-import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
-import { ICoffeeState } from './coffee-state.interface';
-import * as CoffeeActions from './coffee.actions';
+import { SortDirectionEnum } from 'src/app/core/enums';
+import { ICoffeeState } from '.';
+import { CoffeeSortByEnum } from '../enums';
+import * as CoffeeActions from '../state/coffee.actions';
 
 // Initial State
 export const initialCoffeeState: ICoffeeState = {

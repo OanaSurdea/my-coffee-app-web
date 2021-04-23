@@ -4,10 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { Coffee } from 'src/app/coffee/models/coffee.model';
-import { CoffeeDataService } from './../../core/services/coffee-data.service';
-import { GeolocationService } from './../../core/services/geolocation.service';
+import { Subscription } from 'rxjs';
+import { CoffeeDataService, GeolocationService } from 'src/app/core/services';
+import { Coffee } from '../models';
 import { coffeeFormFieldConfig } from './coffee-details-form';
 
 @Component({

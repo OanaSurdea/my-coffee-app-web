@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { IAppState } from 'src/app/core/state/app-state.interface';
-import { CoffeeSortByEnum } from '../enums/coffee-sort-type.enum';
-import { ICoffee } from '../interfaces/coffee.interface';
+import { SortDirectionEnum } from 'src/app/core/enums';
+import { GeolocationService } from 'src/app/core/services';
+import { IAppState } from 'src/app/core/state';
+import { CoffeeSortByEnum } from '../enums';
+import { ICoffee } from '../interfaces';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
-import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
-import { GeolocationService } from './../../core/services/geolocation.service';
 
 @Component({
   selector: 'mca-coffee-list',
