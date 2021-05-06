@@ -15,7 +15,7 @@ export class CoffeeListFiltersComponent implements OnInit, OnChanges {
   @Input() filters: CoffeeListFilters;
   @Input() listLayout: ListLayoutEnum;
 
-  showMore: boolean = false;
+  showFilters: boolean = false;
 
   // Sorting
   sortByOptions: KeyValue<any, CoffeeSortByEnum>[] = this.enumToKeyValue(CoffeeSortByEnum);
@@ -45,16 +45,21 @@ export class CoffeeListFiltersComponent implements OnInit, OnChanges {
     }
   }
 
-  public toggleShowMore(): void {
-    this.showMore = !this.showMore;
+  public toggleShowFilters(): void {
+    this.showFilters = !this.showFilters;
   }
 
   public onSortBy(sortByOption: CoffeeSortByEnum): void {
+    console.log(sortByOption);
+
     this.filters.sortBy = sortByOption;
     this.filtersUpdate.emit(this.filters);
   }
 
   public onSortDirection(sortDirectionOption: SortDirectionEnum): void {
+    console.log(sortDirectionOption);
+
+
     this.filters.sortDirection = sortDirectionOption;
     this.filtersUpdate.emit(this.filters);
   }

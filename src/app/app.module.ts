@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoffeeModule } from './coffee/coffee.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { CoffeeModule } from './coffee/coffee.module';
   ],
   declarations: [
     AppComponent,
+    NavbarComponent,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

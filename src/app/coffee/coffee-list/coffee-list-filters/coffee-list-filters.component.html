@@ -1,20 +1,14 @@
 <div class="text-right">
-  <!-- SHOW MORE -->
-  <mat-button-toggle-group
+  <!-- SHOW FILTERS -->
+  <mat-button-toggle
     class="mb-3"
-    name="selectedSortByOption"
-    [(ngModel)]="filters.sortBy"
-    aria-label="Sort by">
+    aria-label="Show filters"
+    color="accent"
+    (click)="toggleShowFilters()">
+    <mat-icon>filter_alt</mat-icon>
+  </mat-button-toggle>
 
-    <mat-button-toggle
-      [value]="false"
-      (click)="toggleShowMore()">
-      <mat-icon>filter_alt</mat-icon>
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-
-
-  <div class="flex justify-end gap-1 mb-3" *ngIf="showMore">
+  <div class="flex justify-end gap-1 mb-3" *ngIf="showFilters">
     <!-- SORT BY -->
     <mat-button-toggle-group
       name="selectedSortByOption"
@@ -25,7 +19,7 @@
         *ngFor="let option of sortByOptions"
         [value]="option.value"
         (click)="onSortBy(option.value)">
-        {{ option.key }}
+        {{ option.value === 'createdAt' ? '📅' : '⭐' }}
       </mat-button-toggle>
     </mat-button-toggle-group>
 
@@ -47,7 +41,7 @@
 
     <!-- LAYOUT -->
     <mat-button-toggle-group
-      class="sm:hidden xl:block"
+      class="hidden xl:block"
       name="listLayout"
       [(ngModel)]="listLayout"
       aria-label="Layout">

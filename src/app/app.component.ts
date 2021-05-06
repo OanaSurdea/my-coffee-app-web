@@ -14,10 +14,7 @@ import { environment } from './../environments/environment';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Cup Up';
   // Subscriptions
-  swCheckForUpdateSubscription: Subscription;
-  swUpdatesSubscription: Subscription;
-  swPromptUpdateSubscription: Subscription;
-  swPromptInstallSubscription: Subscription;
+  subscriptions: Subscription[] = [];
 
   isAppOffline: boolean;
   routeName: any;
@@ -30,8 +27,13 @@ export class AppComponent implements OnInit, OnDestroy {
     private swPush: SwPush,
   ) {
     if (this.swUpdates.isEnabled) {
-      this.swCheckForUpdateSubscription = interval(6 * 60 * 60).subscribe(() => swUpdates.checkForUpdate()
-        .then(() => console.log('checking for updates')));
+      const swCheckForUpdateSubscription = interval(6 * 60 * 60).subscribe(
+        () => swUpdates
+          .checkForUpdate()
+          .then(() => console.log('checking for updates'))
+      );
+
+      this.subscriptions.push(swCheckForUpdateSubscription);
     }
   }
 
@@ -56,29 +58,40 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  public subscribeForPushNotifications(): void {
-    Notification.requestPermission(permission => {
-      if (permission === 'granted') {
-        this.swPush.requestSubscription({ serverPublicKey: environment.serverPublicKey })
-          .then(res => console.log(res));
-      }
-    });
+  public handlePushNotifications(isSubscribed: boolean): void {
+    if (isSubscribed) {
+      Notification.requestPermission(permission => {
+        if (permission === 'granted') {
+          this.swPush
+            .requestSubscription({ serverPublicKey: environment.serverPublicKey })
+            .then(res => console.log('Push Notifications - Subscribe', res));
+        }
+      });
+    } else {
+      this.swPush
+        .unsubscribe()
+        .then(res => console.log('Push Notifications - Unsubscribe', res));
+    }
   }
 
   public checkForUpdates(): void {
-    this.swUpdatesSubscription = this.swUpdates.available
+    const swUpdatesSubscription = this.swUpdates.available
       .subscribe((event: UpdateAvailableEvent) => this.promptServiceWorkerUpdate(event));
+
+    this.subscriptions.push(swUpdatesSubscription);
   }
 
   private promptServiceWorkerUpdate(event: UpdateAvailableEvent): void {
     if (event.current.appData !== event.available.appData) {
       const snackBar = this.snackBar.open('There is an update available', 'Install Now', { duration: 4000 });
 
-      this.swPromptUpdateSubscription = snackBar.onAction().subscribe(() => {
+      const swPromptUpdateSubscription = snackBar.onAction().subscribe(() => {
         console.log('Updating to new version.');
         this.swUpdates.activateUpdate()
           .then(() => document.location.reload());
       });
+
+      this.subscriptions.push(swPromptUpdateSubscription);
     }
   }
 
@@ -95,7 +108,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
           const snackBarInstance = this.snackBar.open('Do you want install this App?', 'Install', { duration: 3000 });
 
-          this.swPromptInstallSubscription = snackBarInstance
+          const swPromptInstallSubscription = snackBarInstance
             .onAction().subscribe(() => {
               (event as any).prompt();
               (event as any).userChoice.then(result => {
@@ -106,6 +119,8 @@ export class AppComponent implements OnInit, OnDestroy {
                 }
               });
             });
+
+          this.subscriptions.push(swPromptInstallSubscription);
         });
       }
     }
@@ -116,10 +131,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.swCheckForUpdateSubscription?.unsubscribe();
-    this.swUpdatesSubscription?.unsubscribe();
-    this.swPromptUpdateSubscription?.unsubscribe();
-    this.swPromptInstallSubscription?.unsubscribe();
+    this.subscriptions.forEach((s: Subscription) => s?.unsubscribe());
   }
 
 }

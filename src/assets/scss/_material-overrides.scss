@@ -1,7 +1,65 @@
 @import 'mca-theme-variables';
 
-mat-card,
-.mat-card {
-	border: 1px solid $grey-200 !important;
-	// background-color: $card-background;
+// mat-button,
+// mat-button-toggle,
+// mat-card,
+// .mat-button,
+// .mat-button-toggle,
+// .mat-card {
+// 	border: $border-radius !important;
+// 	border: 1px solid $warn-200 !important;
+// }
+
+// .mat-button-toggle-standalone,
+// .mat-button-toggle-group {
+// 	border-radius: $border-radius !important;
+// 	border-color: $warn-200 !important;
+// }
+
+// .mat-button-toggle-appearance-standard {
+// 	background-color: $warn-100 !important;
+// }
+
+// .mat-button-toggle-checked {
+// 	background-color: $warn-200 !important;
+// }
+
+.mat-button-toggle {
+	$this: &;
+
+	&-standalone {
+		border-radius: $border-radius;
+	}
+
+	&-group {
+		&:first-child > button:focus {
+			border-start-start-radius: $border-radius;
+			border-end-start-radius: $border-radius;
+		}
+
+		&:last-child > button:focus {
+			border-start-end-radius: $border-radius;
+			border-end-end-radius: $border-radius;
+		}
+	}
+
+	button:focus {
+		outline: none;
+		box-shadow: 0px 0px 1px 1px inset $warn-300;
+	}
+
+	&-appearance-standard {
+		background-color: $warn-100 !important;
+	}
+
+	&-checked {
+		background-color: $warn-200 !important;
+	}
+
+	&-ripple {
+	}
+
+	&-standalone button:focus {
+		outline: none;
+	}
 }
