@@ -1,13 +1,15 @@
-<div [class.grayscale]="isAppOffline">
-  <mca-navbar
-    [title]="title">
-  </mca-navbar>
+<tui-root>
+  <div [class.grayscale]="isAppOffline">
+    <mca-navbar
+      [title]="title">
+    </mca-navbar>
 
-  <header class="px-3">
-    <h1 class="text-white-70">{{ routeName | async }}</h1>
-  </header>
+    <header class="px-3">
+      <h1 class="text-white-70">{{ routeName | async }}</h1>
+    </header>
 
-  <div class="page">
-    <router-outlet></router-outlet>
+    <div class="page">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
+</tui-root>
