@@ -13,4 +13,5 @@ export interface ICoffee {
   notes?: string;
   createdAt?: firebase.default.firestore.Timestamp;
   updatedAt?: firebase.default.firestore.Timestamp;
+  imageUrl?: string;
 }

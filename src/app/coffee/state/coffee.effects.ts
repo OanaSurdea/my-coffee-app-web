@@ -21,10 +21,10 @@ export class CoffeeEffects {
   public loadCoffees$ = createEffect(() => {
     return this.actions.pipe(
       ofType(CoffeeActions.loadCoffees),
-      withLatestFrom(this.store.select(CoffeeSelectors.getCoffeesSortingOptions)),
-      mergeMap(([action, sortingOptions]) => {
+      withLatestFrom(this.store.select(CoffeeSelectors.getCoffeeFilters)),
+      mergeMap(([action, filters]) => {
         return this.coffeeService
-          .getAllSorted(sortingOptions.selectedSortByOption, sortingOptions.selectedSortDirectionOption)
+          .getAllSorted(filters)
           .pipe(
             map((coffees$: ICoffee[]) => CoffeeActions.loadCoffeesSuccess({ coffees$ })),
             catchError((coffeesLoadError: string) => of(CoffeeActions.loadCoffeesFailure({ coffeesLoadError })))

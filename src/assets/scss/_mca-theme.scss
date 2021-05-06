@@ -11,18 +11,16 @@ $primary-map: ngx-mtc-create-theme-map('primary');
 $accent-map: ngx-mtc-create-theme-map('accent');
 $warn-map: ngx-mtc-create-theme-map('warn');
 
-
 // Setup
 :root {
-  --is-dark-theme: 0; // Is dark theme? 1 or 0;
-  @include ngx-mtc-theme-base(); // Creates base colors
+	--is-dark-theme: 0; // Is dark theme? 1 or 0;
+	@include ngx-mtc-theme-base(); // Creates base colors
 
-  // Creates theme colors
-  @include ngx-mtc-create-variables-from-color('primary', $primary, 100%);
-  @include ngx-mtc-create-variables-from-color('accent', $accent, 100%);
-  @include ngx-mtc-create-variables-from-color('warn', $warn, 100%);
+	// Creates theme colors
+	@include ngx-mtc-create-variables-from-color('primary', $primary-600, 100%);
+	@include ngx-mtc-create-variables-from-color('accent', $accent-600, 100%);
+	@include ngx-mtc-create-variables-from-color('warn', $warn-600, 100%);
 }
-
 
 // Creation
 @include angular-material-theme(

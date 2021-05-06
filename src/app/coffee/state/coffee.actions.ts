@@ -1,21 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { ListLayoutEnum, SortDirectionEnum } from '../../core/enums';
-import { CoffeeSortByEnum } from '../enums';
+import { ListLayoutEnum } from '../../core/enums';
 import { ICoffee } from '../interfaces';
+import { CoffeeListFilters } from './../models/coffee-list-filters';
 
-export const selectSortByOption = createAction(
-  '[Coffee List] Change list sort by option',
-  props<{ selectedSortByOption: CoffeeSortByEnum }>()
-);
-
-export const selectSortDirectionOption = createAction(
-  '[Coffee List] Change list sort direction option',
-  props<{ selectedSortDirectionOption: SortDirectionEnum }>()
-);
-
-export const selectLayoutOption = createAction(
+export const changeListLayout = createAction(
   '[Coffee List] Change list layout option',
-  props<{ selectedLayoutOption: ListLayoutEnum }>()
+  props<{ listLayout: ListLayoutEnum }>()
+);
+
+export const filterCoffees = createAction(
+  '[Coffee List] Change filters',
+  props<{ filters: CoffeeListFilters }>()
 );
 
 export const loadCoffees = createAction(

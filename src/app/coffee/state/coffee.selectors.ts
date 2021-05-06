@@ -4,23 +4,12 @@ import { ICoffeeState } from '.';
 
 export const getCoffeeFeatureState = createFeatureSelector<ICoffeeState>('coffees');
 
-export const getCoffeesSortByOption = createSelector(
-  getCoffeeFeatureState, (state: ICoffeeState) => state.selectedSortByOption
+export const getCoffeesListLayout = createSelector(
+  getCoffeeFeatureState, (state: ICoffeeState) => state.listLayout
 );
 
-export const getCoffeesSortDirectionOption = createSelector(
-  getCoffeeFeatureState, (state: ICoffeeState) => state.selectedSortDirectionOption
-);
-
-export const getCoffeesLayoutOption = createSelector(
-  getCoffeeFeatureState, (state: ICoffeeState) => state.selectedLayoutOption
-);
-
-export const getCoffeesSortingOptions = createSelector(
-  getCoffeeFeatureState, (state: ICoffeeState) => ({
-    selectedSortByOption: state.selectedSortByOption,
-    selectedSortDirectionOption: state.selectedSortDirectionOption
-  })
+export const getCoffeeFilters = createSelector(
+  getCoffeeFeatureState, (state: ICoffeeState) => state.filters
 );
 
 export const getCoffees = createSelector(

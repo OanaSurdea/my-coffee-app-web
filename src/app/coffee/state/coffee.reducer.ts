@@ -3,12 +3,16 @@ import { ICoffeeState } from '.';
 import { CoffeeSortByEnum } from '../enums';
 import * as CoffeeActions from '../state/coffee.actions';
 import { ListLayoutEnum, SortDirectionEnum } from './../../core/enums';
+import { CoffeeListFilters } from './../models/coffee-list-filters';
 
 // Initial State
 export const initialCoffeeState: ICoffeeState = {
-  selectedSortByOption: CoffeeSortByEnum.DateCreated,
-  selectedSortDirectionOption: SortDirectionEnum.Ascending,
-  selectedLayoutOption: ListLayoutEnum.List,
+  listLayout: ListLayoutEnum.Grid,
+  filters: new CoffeeListFilters(
+    CoffeeSortByEnum.DateCreated,
+    SortDirectionEnum.Descending,
+  ),
+
   areCoffeesLoading: false,
   coffees$: [],
   coffeesLoadError: null,
@@ -20,9 +24,8 @@ const reducer = createReducer<ICoffeeState>(
 
   on(
     // Add simple Actions here
-    CoffeeActions.selectSortByOption,
-    CoffeeActions.selectSortDirectionOption,
-    CoffeeActions.selectLayoutOption,
+    CoffeeActions.changeListLayout,
+    CoffeeActions.filterCoffees,
 
     CoffeeActions.loadCoffees,
     CoffeeActions.loadCoffeesFailure,

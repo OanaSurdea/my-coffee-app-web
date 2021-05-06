@@ -1,12 +1,11 @@
 import { IAppState } from 'src/app/core/state';
-import { CoffeeSortByEnum } from '../enums';
 import { ICoffee } from '../interfaces';
-import { ListLayoutEnum, SortDirectionEnum } from './../../core/enums';
+import { ICoffeeListFilters } from '../interfaces/coffee-list-filters.interface';
+import { ListLayoutEnum } from './../../core/enums';
 
 export interface ICoffeeState {
-  selectedSortByOption: CoffeeSortByEnum;
-  selectedSortDirectionOption: SortDirectionEnum;
-  selectedLayoutOption: ListLayoutEnum;
+  filters: ICoffeeListFilters;
+  listLayout: ListLayoutEnum;
 
   areCoffeesLoading: boolean;
   coffees$: ICoffee[];

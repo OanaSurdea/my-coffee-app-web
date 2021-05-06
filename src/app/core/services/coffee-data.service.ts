@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CoffeeSortByEnum } from 'src/app/coffee/enums/coffee-sort-type.enum';
 import { Coffee } from '../../coffee/models/coffee.model';
 import { environment } from './../../../environments/environment.prod';
+import { CoffeeListFilters } from './../../coffee/models/coffee-list-filters';
 import { FirestoreService } from './firestore.service';
 
 @Injectable({
@@ -20,8 +20,8 @@ export class CoffeeDataService {
     return this.firestoreService.colWithIds$('coffees');
   }
 
-  getAllSorted(fieldName: CoffeeSortByEnum, direction: 'asc' | 'desc'): Observable<Coffee[]> {
-    return this.firestoreService.colWithIdsOrderBy$('coffees', fieldName, direction);
+  getAllSorted(filters: CoffeeListFilters): Observable<Coffee[]> {
+    return this.firestoreService.colWithIdsOrderBy$('coffees', filters.sortBy, filters.sortDirection);
   }
 
   getOne(id: string): Observable<Coffee> {

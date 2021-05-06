@@ -1,21 +1,33 @@
 @import "mca-theme-variables";
 
+:host,
+:host > div {
+	min-height: inherit;
+}
+
 a.mat-fab {
 	color: #c89851;
+	position: fixed;
+	right: 25px;
+	bottom: 20px;
 }
 
 .coffeeList {
+	display: grid;
+	gap: 20px;
+
 	&--listView {
-		display: grid;
-		grid-template-areas: "row" "row";
-		gap: 10px;
-		grid-auto-rows: 1fr;
+		@apply lg:grid-cols-2 xl:grid-cols-3;
 	}
 
 	&--gridView {
-		display: grid;
-		grid-template-areas: "column column column";
-		gap: 10px;
-		grid-auto-rows: 1fr;
+		@apply md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 	}
+}
+
+/*@apply bg-white text-blue-400 rounded-full;*/
+.active {
+	background: white;
+	border-radius: 9999px;
+	color: #63b3ed;
 }

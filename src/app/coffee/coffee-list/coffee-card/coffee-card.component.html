@@ -1,0 +1,58 @@
+<div class="card" [class.card--vertical-cols]="listLayout === 'grid' ? true : false">
+  <div class="card__media">
+    <div class="card__img"
+      style.background-image="url({{ coffee.imageUrl }})">
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="card__content">
+    <!-- Title -->
+    <div class="card__header">
+      <h2 class="card__title">{{ coffee.name }}</h2>
+      <small>{{ coffee.rating | starRating }}</small>
+    </div>
+
+    <!-- Content -->
+    <div class="card__body">
+      <p class="card__text">
+        {{ coffee.notes || 'No notes yet...' }}
+      </p>
+
+      <ng-container *ngIf="coffee.cafeLocation">
+        <small class="card__text card__text--muted">
+          <span>{{ coffee.cafeLocation.address }}</span>
+          <span>{{ coffee.cafeLocation.city ? ',' : ' ' }}</span>
+          <span>{{ coffee.cafeLocation.city }}</span>
+        </small>
+      </ng-container>
+    </div>
+
+    <!-- Actions -->
+    <div class="card__footer">
+      <div class="flex items-center gap-x-1">
+        <button
+          class="btn btn--secondary btn--icon"
+          (click)="viewOnMap(coffee)">
+          <mat-icon>map</mat-icon>
+        </button>
+
+        <button
+          class="btn btn--secondary btn--icon"
+          (click)="shareCoffee(coffee)">
+          <mat-icon>share</mat-icon>
+        </button>
+
+        <small class="card__text card__text--date">
+          <span>{{ coffee.createdAt.toDate() | timeAgo }}</span>
+        </small>
+      </div>
+
+      <button class="btn btn--primary"
+        (click)="viewCoffeeDetails(coffee.id)">
+        Details
+      </button>
+
+    </div>
+  </div>
+</div>

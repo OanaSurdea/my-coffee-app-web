@@ -12,7 +12,7 @@ import { environment } from './../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'My Coffee App';
+  title = 'Cup Up';
   // Subscriptions
   swCheckForUpdateSubscription: Subscription;
   swUpdatesSubscription: Subscription;

@@ -1,0 +1,65 @@
+<div class="text-right">
+  <!-- SHOW MORE -->
+  <mat-button-toggle-group
+    class="mb-3"
+    name="selectedSortByOption"
+    [(ngModel)]="filters.sortBy"
+    aria-label="Sort by">
+
+    <mat-button-toggle
+      [value]="false"
+      (click)="toggleShowMore()">
+      <mat-icon>filter_alt</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+
+  <div class="flex justify-end gap-1 mb-3" *ngIf="showMore">
+    <!-- SORT BY -->
+    <mat-button-toggle-group
+      name="selectedSortByOption"
+      [(ngModel)]="filters.sortBy"
+      aria-label="Sort by">
+
+      <mat-button-toggle
+        *ngFor="let option of sortByOptions"
+        [value]="option.value"
+        (click)="onSortBy(option.value)">
+        {{ option.key }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <!-- SORT DIRECTION -->
+    <mat-button-toggle-group
+      name="selectedSortDirectionOption"
+      [(ngModel)]="filters.sortDirection"
+      aria-label="Sort direction">
+
+      <mat-button-toggle
+        *ngFor="let option of sortDirectionOptions"
+        [value]="option.value"
+        (click)="onSortDirection(option.value)">
+        <mat-icon>
+          {{ option.value === 'asc' ? 'arrow_upward' : 'arrow_downward' }}
+        </mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <!-- LAYOUT -->
+    <mat-button-toggle-group
+      class="sm:hidden xl:block"
+      name="listLayout"
+      [(ngModel)]="listLayout"
+      aria-label="Layout">
+
+      <mat-button-toggle
+        *ngFor="let option of layoutOptions"
+        [value]="option.value"
+        (click)="onLayout(option.value)">
+        <mat-icon>
+          {{ option.value === 'list' ? 'view_list' : 'view_comfy' }}
+        </mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

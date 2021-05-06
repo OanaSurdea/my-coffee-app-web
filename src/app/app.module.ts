@@ -44,7 +44,9 @@ import { CoffeeModule } from './coffee/coffee.module';
       name: 'My Coffee App DevTools',
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+
+    // Pipes
   ],
   declarations: [
     AppComponent,

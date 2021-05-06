@@ -12,8 +12,9 @@ export class Coffee implements ICoffee {
   public rating: number;
   public tasteRating: TasteRating;
   public notes?: string;
-  createdAt?: firebase.default.firestore.Timestamp;
-  updatedAt?: firebase.default.firestore.Timestamp;
+  public createdAt?: firebase.default.firestore.Timestamp;
+  public updatedAt?: firebase.default.firestore.Timestamp;
+  public imageUrl?: string;
 
   constructor(
     name = '',
@@ -22,7 +23,8 @@ export class Coffee implements ICoffee {
     cafeLocation = new CafeLocation(),
     rating = 1,
     tasteRating = new TasteRating(),
-    notes = ''
+    notes = '',
+    imageUrl = ''
   ) {
     this.name = name;
     this.type = type;
@@ -31,5 +33,6 @@ export class Coffee implements ICoffee {
     this.rating = rating;
     this.tasteRating = tasteRating;
     this.notes = notes;
+    this.imageUrl = imageUrl;
   }
 }

@@ -1,17 +1,60 @@
+/* ------------------------- */
+/* - MCA Theme - Variables - */
+/* ------------------------- */
+
 /* ------------------------------------------------------------ */
-/* - MCA Theme - Variables
+/* - Colors
 /* ------------------------------------------------------------ */
-$primary: #462a28;
-$primary-text: #dfc8af;
+$primary-600: #4a3749;
+$primary-500: #594058;
+$primary-400: #70556e;
+$primary-300: #826881;
+$primary-200: #978a96;
+$primary-100: #ede8e8;
 
-$secondary: #6b3f3f;
-$secondary-text: #d4beaf;
+$accent-600: #6b3f6b;
+$accent-500: #804d80;
+$accent-400: #996599;
+$accent-300: #b594b3;
+$accent-200: #dfcede;
+$accent-100: #f5f0f4;
 
-$accent: #996a24;
+$grey-600: #0d0a0c;
+$grey-500: #383338;
+$grey-400: #4a444a;
+$grey-300: #635d63;
+$grey-200: #dbdbdb;
+$grey-100: #f0f0f0;
 
-$warn: #db6a06;
+$warn-600: #e66117;
+$warn-500: #ed7532;
+$warn-400: #ff8e2e;
+$warn-300: #ffb06d;
+$warn-200: #ffd0a7;
+$warn-100: #fff3e9;
 
+$success-600: #3da168;
+$success-500: #4aba7a;
+$success-400: #5ccc8c;
+$success-300: #82cca2;
+$success-200: #b4e0c6;
+$success-100: #e6fff0;
+
+$danger-600: #bf402c;
+$danger-500: #d1513d;
+$danger-400: #eb7b73;
+$danger-300: #f59893;
+$danger-200: #f7c8c1;
+$danger-100: #fff0ed;
+/* ------------------------------------------------------------ */
+
+/* --------------------- */
+/* - Shared Components - */
+/* --------------------- */
+
+/* ------------------------------------------------------------ */
+/* - Card
+/* ------------------------------------------------------------ */
 $app-background: #f4eee6;
 $card-background: #fbfaf9;
-$card-border: #bbb3aa;
 /* ------------------------------------------------------------ */
