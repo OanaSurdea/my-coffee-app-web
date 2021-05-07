@@ -1,12 +1,15 @@
 @import 'mca-theme-variables';
 
-header {
-	// background: $primary-100;
+.header {
+	margin: $spacing-300;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	align-items: center;
+	justify-content: space-between;
 
-	h1 {
-		margin: 0;
-		padding: 28px 8px;
-		font-size: 20px;
+	&__title {
+		font-size: $heading-400;
+		font-weight: 600 !important;
 	}
 }
 
@@ -14,13 +17,17 @@ header {
 	min-height: calc(100vh - 182px);
 	overflow-x: hidden;
 	overflow-y: auto;
-	margin: 2rem;
-}
-
-.text-white-70 {
-	// color: $secondary-text;
+	margin: $spacing-300 1.3rem $spacing-300 $spacing-300;
 }
 
 .grayscale {
 	filter: grayscale(1);
+}
+
+::ng-deep mca-root {
+	display: block;
+	max-width: 600px;
+	max-height: 2000px;
+	overflow-y: auto;
+	@apply shadow;
 }

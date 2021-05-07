@@ -1,6 +1,5 @@
 import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ListLayoutEnum, SortDirectionEnum } from 'src/app/core/enums';
 import { CoffeeSortByEnum } from '../../enums';
 import { CoffeeListFilters } from '../../models/coffee-list-filters';
@@ -16,31 +15,30 @@ export class CoffeeListFiltersComponent implements OnInit, OnChanges {
   @Input() filters: CoffeeListFilters;
   @Input() listLayout: ListLayoutEnum;
 
-  showFilters: boolean = false;
+  public showFilters: boolean = false;
+
+  // Search/filter
+  public search = '';
 
   // Sorting
-  sortByOptions: KeyValue<any, CoffeeSortByEnum>[] = this.enumToKeyValue(CoffeeSortByEnum);
+  public sortByOptions: KeyValue<any, CoffeeSortByEnum>[] = this._enumToKeyValue(CoffeeSortByEnum);
 
   // Direction
-  sortDirectionOptions: KeyValue<any, SortDirectionEnum>[] = this.enumToKeyValue(SortDirectionEnum);
+  public sortDirectionOptions: KeyValue<any, SortDirectionEnum>[] = this._enumToKeyValue(SortDirectionEnum);
 
   // Layout
-  layoutOptions: KeyValue<any, ListLayoutEnum>[] = this.enumToKeyValue(ListLayoutEnum);
+  public layoutOptions: KeyValue<any, ListLayoutEnum>[] = this._enumToKeyValue(ListLayoutEnum);
 
+  @Output() searchUpdate: EventEmitter<string> = new EventEmitter();
   @Output() filtersUpdate: EventEmitter<CoffeeListFilters> = new EventEmitter();
   @Output() layoutUpdate: EventEmitter<ListLayoutEnum> = new EventEmitter();
 
-  sortByForm: FormGroup;
-
   constructor() { }
 
-  ngOnInit(): void {
-    this.sortByForm = new FormGroup({
-      sortBy: new FormControl(this.filters.sortBy)
-    });
+  public ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     // Listen to changes for the @Inputs to prevent
     // children directly changing the state of the parent
     if (changes.filters) {
@@ -49,6 +47,11 @@ export class CoffeeListFiltersComponent implements OnInit, OnChanges {
     if (changes.listLayout) {
       this.listLayout = changes.listLayout.currentValue;
     }
+  }
+
+  public onSearch(): void {
+    this.filters.search = this.search;
+    this.filtersUpdate.emit(this.filters);
   }
 
   public toggleShowFilters(): void {
@@ -75,7 +78,7 @@ export class CoffeeListFiltersComponent implements OnInit, OnChanges {
     this.layoutUpdate.emit(this.listLayout);
   }
 
-  enumToKeyValue(enumerable: any): KeyValue<any, any>[] {
+  private _enumToKeyValue(enumerable: any): KeyValue<any, any>[] {
     return Object.keys(enumerable).map(el =>
       ({ key: el, value: enumerable[el] })
     );

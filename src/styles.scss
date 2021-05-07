@@ -44,3 +44,35 @@ body {
 	vertical-align: middle;
 	letter-spacing: 0.5px;
 }
+
+// Headings
+h1,
+.h1 {
+	font-weight: 700;
+	font-size: $heading-600;
+}
+h2,
+.h2 {
+	font-weight: 700;
+	font-size: $heading-500;
+}
+h3,
+.h3 {
+	font-weight: 700;
+	font-size: $heading-400;
+}
+h4,
+.h4 {
+	font-weight: 700;
+	font-size: $heading-300;
+}
+h5,
+.h5 {
+	font-weight: 700;
+	font-size: $heading-200;
+}
+h6,
+.h6 {
+	font-weight: 700;
+	font-size: $heading-100;
+}

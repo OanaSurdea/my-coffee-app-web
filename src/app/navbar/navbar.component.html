@@ -1,19 +1,19 @@
-<mat-toolbar color="primary" class="flex justify-between sticky-top mat-elevation-z2 px-4">
+<mat-toolbar color="primary" class="nav flex justify-between sticky-top px-4">
   <a
     routerLink="/"
-    class="flex gap-2 text-white text-decoration-none">
+    class="logo">
     <img
       src="/assets/media/mca-logo.svg"
       height="28"
       width="28"
-      class="mb-2"
+      class="logo__img"
       alt="Coffee cup logo">
-    <span class="logo-font">{{ title }}</span>
+    <span class="nav__text">{{ title }}</span>
   </a>
 
   <button
     mat-icon-button
-    class="text-white-70"
+    class="nav__text"
     aria-label="notifications bell"
     (click)="onNotifications()">
     <mat-icon>notifications</mat-icon>

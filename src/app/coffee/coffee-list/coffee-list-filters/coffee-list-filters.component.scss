@@ -1,0 +1,16 @@
+@import '../../../../assets/scss/mca-theme-variables';
+
+.listFilterArea {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: $spacing-100;
+	margin-bottom: $spacing-400;
+
+	&__advancedFilters {
+		display: flex;
+		justify-content: flex-end;
+		gap: $spacing-100;
+		margin-top: calc(#{$negative-spacing-400} + #{$spacing-200});
+		margin-bottom: $spacing-400;
+	}
+}

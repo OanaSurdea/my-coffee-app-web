@@ -9,6 +9,7 @@ import { CoffeeListFilters } from '../models/coffee-list-filters';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
 import { ListLayoutEnum } from './../../core/enums/list-layout.enum';
+import { Coffee } from './../models/coffee.model';
 
 @Component({
   selector: 'mca-coffee-list',
@@ -35,7 +36,6 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._populateCoffeeList();
-
   }
 
   /*
@@ -62,6 +62,24 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
 
     this._populateCoffeeList();
   }
+
+  public readonly matcher = (coffee: Coffee, search: string) => {
+    search = search.toLowerCase();
+
+    const result = (
+      (coffee.type.toLowerCase().includes(search)) ||
+      (coffee.name.toLowerCase().includes(search)) ||
+      (coffee.cafeName.toLowerCase().includes(search)) ||
+      (coffee.cafeLocation.address.toLowerCase().includes(search)) ||
+      (coffee.cafeLocation.city.toLowerCase().includes(search)) ||
+      (coffee.createdAt.toDate().toString().toLowerCase().includes(search)) ||
+      (coffee.rating.toString().toLowerCase().includes(search)) ||
+      (coffee.notes.toLowerCase().includes(search))
+    );
+
+    return result;
+  };
+
 
   public updateListLayout(event: ListLayoutEnum): void {
     this.listLayout = event;

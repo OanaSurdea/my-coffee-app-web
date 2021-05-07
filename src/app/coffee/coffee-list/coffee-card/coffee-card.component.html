@@ -3,23 +3,40 @@
     <div class="card__img"
       style.background-image="url({{ coffee.imageUrl }})">
     </div>
+
+    <div class="mediaIcons">
+      <button
+        tuiIconButton
+        type="button"
+        size="s"
+        class="mediaIcons__icon"
+        icon="tuiIconPin"
+        appearance="secondary"
+        (click)="viewOnMap(coffee)"></button>
+
+      <button
+        tuiIconButton
+        type="button"
+        size="s"
+        class="mediaIcons__icon"
+        icon="tuiIconSubitem"
+        appearance="secondary"
+        (click)="shareCoffee(coffee)"></button>
+    </div>
   </div>
 
   <!-- Card -->
   <div class="card__content">
     <!-- Title -->
-    <div class="card__header">
-      <h2 class="card__title">{{ coffee.name }}</h2>
-      <small>{{ coffee.rating | starRating }}</small>
-    </div>
+    <a class="card__header" (click)="viewCoffeeDetails(coffee.id)">
+      <h6 class="card__title">{{ coffee.name }}</h6>
+    </a>
 
     <!-- Content -->
     <div class="card__body">
-      <p class="card__text">
-        {{ coffee.notes || 'No notes yet...' }}
-      </p>
+      <p class="card__category">{{ coffee.type | titlecase }}</p>
 
-      <ng-container *ngIf="coffee.cafeLocation">
+      <ng-container *ngIf="listLayout === 'list' && coffee.cafeLocation">
         <small class="card__text card__text--muted">
           <span>{{ coffee.cafeLocation.address }}</span>
           <span>{{ coffee.cafeLocation.city ? ',' : ' ' }}</span>
@@ -30,28 +47,19 @@
 
     <!-- Actions -->
     <div class="card__footer">
-      <div class="flex items-center gap-x-1">
-        <button
-          class="btn btn--secondary btn--icon"
-          (click)="viewOnMap(coffee)">
-          <mat-icon>map</mat-icon>
-        </button>
-
-        <button
-          class="btn btn--secondary btn--icon"
-          (click)="shareCoffee(coffee)">
-          <mat-icon>share</mat-icon>
-        </button>
-
-        <small class="card__text card__text--date">
-          <span>{{ coffee.createdAt.toDate() | timeAgo }}</span>
-        </small>
-      </div>
-
-      <button class="btn btn--primary"
-        (click)="viewCoffeeDetails(coffee.id)">
-        Details
+      <button
+        tuiButton
+        type="button"
+        size="s"
+        class="card__rating"
+        icon="tuiIconStar"
+        appearance="flat">
+        <span>{{ coffee.rating | number: '1.1-1' }}</span>
       </button>
+
+      <small class="card__text card__text--date">
+        {{ coffee.createdAt.toDate() | timeAgo }}
+      </small>
 
     </div>
   </div>

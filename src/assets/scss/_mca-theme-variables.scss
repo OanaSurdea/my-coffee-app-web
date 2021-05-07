@@ -5,7 +5,41 @@
 /* ------------------------------------------------------------ */
 /* - Global values
 /* ------------------------------------------------------------ */
+// Border
 $border-radius: 16px;
+
+// Padding
+$spacing-50: 0.15rem;
+$spacing-100: 0.3rem;
+$spacing-200: 0.9rem;
+$spacing-300: 1.25rem;
+$spacing-400: 2.5rem;
+$spacing-500: 3rem;
+$spacing-600: 3.5rem;
+
+$negative-spacing-50: -0.15rem;
+$negative-spacing-100: -0.3rem;
+$negative-spacing-200: -0.9rem;
+$negative-spacing-300: -1.25rem;
+$negative-spacing-400: -2.5rem;
+$negative-spacing-500: -3rem;
+$negative-spacing-600: -3.5rem;
+
+// Titles
+$heading-100: 0.9rem;
+$heading-200: 1rem;
+$heading-300: 1.1rem;
+$heading-400: 1.2rem;
+$heading-500: 1.3rem;
+$heading-600: 1.4rem;
+
+// Text
+$text-100: 0.75rem;
+$text-200: .85rem;
+$text-300: 1rem;
+$text-400: 1.15rem;
+$text-500: 1.3rem;
+$text-600: 1.5rem;
 /* ------------------------------------------------------------ */
 
 /* ------------------------------------------------------------ */
@@ -62,4 +96,5 @@ $danger-100: #fff0ed;
 /* - Card
 /* ------------------------------------------------------------ */
 $card-background: #fbfaf9;
+
 /* ------------------------------------------------------------ */

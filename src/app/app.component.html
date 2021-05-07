@@ -5,8 +5,23 @@
       [title]="title">
     </mca-navbar>
 
-    <header class="px-3">
-      <h1 class="text-white-70">{{ routeName | async }}</h1>
+    <header class="header">
+      <a
+        tuiIconButton
+        type="button"
+        size="m"
+        icon="tuiIconArrowLeftLarge"
+        appearance="flat-dark"
+        routerLink="/"></a>
+
+      <h1 class="header__title">{{ routeName | async }}</h1>
+
+      <button
+        tuiIconButton
+        type="button"
+        size="m"
+        icon="tuiIconMoreVertLarge"
+        appearance="flat-dark"></button>
     </header>
 
     <div class="page">

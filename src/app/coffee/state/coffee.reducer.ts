@@ -9,6 +9,7 @@ import { CoffeeListFilters } from './../models/coffee-list-filters';
 export const initialCoffeeState: ICoffeeState = {
   listLayout: ListLayoutEnum.Grid,
   filters: new CoffeeListFilters(
+    '',
     CoffeeSortByEnum.DateCreated,
     SortDirectionEnum.Descending,
   ),

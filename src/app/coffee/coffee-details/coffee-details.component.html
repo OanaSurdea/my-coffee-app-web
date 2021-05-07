@@ -1,7 +1,7 @@
 <form [formGroup]="coffeeForm" (ngSubmit)="onCoffeeFormSubmit(coffeeModel)">
   <mat-card class="p-4 m-3 overflow-hidden shadow">
     <mat-card-header>
-      <mat-card-title>{{ 'Add a new Coffee' }}</mat-card-title>
+      <h2 mat-card-title>{{ coffeeModel.id ? 'Edit Coffee' : 'Add a new Coffee' }}</h2>
       <mat-card-subtitle>{{ 'Please fill out the form with the coffee details.' }}</mat-card-subtitle>
     </mat-card-header>
 

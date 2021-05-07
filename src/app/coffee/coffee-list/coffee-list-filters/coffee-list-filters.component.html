@@ -1,22 +1,31 @@
 <div class="text-right">
   <!-- SHOW FILTERS -->
 
-  <button
-    tuiIconButton
-    type="button"
-    class="tui-space_bottom-3"
-    icon="tuiIconFilter"
-    appearance="flat"
-    (click)="toggleShowFilters()"></button>
+  <div class="listFilterArea">
+    <tui-input
+      class="b-form"
+      tuiHintContent="Type 5 letters or more"
+      [tuiTextfieldCleaner]="true"
+      [(ngModel)]="search"
+      icon="tuiIconSearch"
+      (ngModelChange)="onSearch()">
+      Search...
+    </tui-input>
 
-  <div class="flex justify-end gap-1 mb-3">
+    <button
+      tuiIconButton
+      type="button"
+      icon="tuiIconFilter"
+      appearance="secondary"
+      (click)="toggleShowFilters()"></button>
+  </div>
 
+  <div class="listFilterArea__advancedFilters" *ngIf="showFilters">
     <!-- SORT BY -->
     <div
       tuiGroup
       class="group"
-      [collapsed]="true"
-      *ngIf="showFilters">
+      [collapsed]="true">
 
       <button
         tuiIconButton
@@ -25,7 +34,7 @@
         class="tui-group__auto-width-item"
         *ngFor="let option of sortByOptions"
         [icon]="option.value === 'createdAt' ? 'tuiIconCalendar' : 'tuiIconStar'"
-        [appearance]="filters.sortBy === option.value ? 'outline-active' : 'outline'"
+        [appearance]="filters.sortBy === option.value ? 'secondary-active' : 'secondary'"
         title="Sort by {{ option.value === 'createdAt' ? 'date created' : 'rating' }}"
         (click)="onSortBy(option.value)">
       </button>
@@ -36,8 +45,7 @@
     <div
       tuiGroup
       class="group"
-      [collapsed]="true"
-      *ngIf="showFilters">
+      [collapsed]="true">
 
       <button
         tuiIconButton
@@ -46,7 +54,7 @@
         class="tui-group__auto-width-item"
         *ngFor="let option of sortDirectionOptions"
         [icon]="option.value === 'asc' ? 'tuiIconArrowUp' : 'tuiIconArrowDown'"
-        [appearance]="filters.sortDirection === option.value ? 'outline-active' : 'outline'"
+        [appearance]="filters.sortDirection === option.value ? 'secondary-active' : 'secondary'"
         title="Sort in {{ option.value === 'asc' ? 'ascending' : 'descending' }} order"
         (click)="onSortDirection(option.value)">
       </button>
@@ -57,8 +65,7 @@
     <div
       tuiGroup
       class="group"
-      [collapsed]="true"
-      *ngIf="showFilters">
+      [collapsed]="true">
 
       <button
         tuiIconButton
@@ -67,7 +74,7 @@
         class="tui-group__auto-width-item"
         *ngFor="let option of layoutOptions"
         [icon]="option.value === 'list' ? 'tuiIconViewListLarge' : 'tuiIconStructureLarge'"
-        [appearance]="listLayout === option.value ? 'outline-active' : 'outline'"
+        [appearance]="listLayout === option.value ? 'secondary-active' : 'secondary'"
         title="Change layout to a {{ option.value === 'list' ? 'list' : 'grid' }} type view"
         (click)="onLayout(option.value)">
       </button>

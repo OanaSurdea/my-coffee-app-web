@@ -1,20 +1,41 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TuiButtonModule, TuiDialogModule, TuiGroupModule, TuiNotificationsModule, TuiRootModule, TuiSvgModule } from '@taiga-ui/core';
-import { TuiActionModule, TuiMarkerIconModule } from '@taiga-ui/kit';
+import { TuiFilterPipeModule } from '@taiga-ui/cdk/pipes';
+import {
+  TuiButtonModule,
+  TuiDialogModule,
+  TuiGroupModule,
+  TuiHintModule,
+  TuiLinkModule,
+  TuiNotificationsModule,
+  TuiRootModule,
+  TuiSvgModule
+} from '@taiga-ui/core';
+import {
+  TuiActionModule,
+  TuiInputModule,
+  TuiIslandModule,
+  TuiMarkerIconModule
+} from '@taiga-ui/kit';
 
 @NgModule({
+
   imports: [
     CommonModule,
     TuiRootModule,
 
     // Components
-    TuiButtonModule,
-    TuiGroupModule,
-    TuiNotificationsModule,
-    TuiDialogModule,
     TuiActionModule,
+    TuiButtonModule,
+    TuiDialogModule,
+    TuiGroupModule,
+    TuiHintModule,
+    TuiInputModule,
+    TuiIslandModule,
+    TuiLinkModule,
     TuiMarkerIconModule,
+    TuiFilterPipeModule,
+    TuiNotificationsModule,
 
     // Icons
     TuiSvgModule
@@ -24,12 +45,17 @@ import { TuiActionModule, TuiMarkerIconModule } from '@taiga-ui/kit';
     TuiRootModule,
 
     // Components
-    TuiButtonModule,
-    TuiGroupModule,
-    TuiNotificationsModule,
-    TuiDialogModule,
     TuiActionModule,
+    TuiButtonModule,
+    TuiDialogModule,
+    TuiGroupModule,
+    TuiHintModule,
+    TuiInputModule,
+    TuiIslandModule,
+    TuiLinkModule,
     TuiMarkerIconModule,
+    TuiFilterPipeModule,
+    TuiNotificationsModule,
 
     // Icons
     TuiSvgModule

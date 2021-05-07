@@ -39,9 +39,41 @@ button._focused {
 	outline: none;
 }
 
+tui-wrapper[data-appearance='secondary'] {
+	// color: var(--tui-text-02);
+}
+
 // This goes into global, unencapsulated styles
-tui-wrapper[data-appearance='outline-active'] {
-	background: #f7f8f9;
-	// color: var(--tui-link-active);
-	border: 1px solid #d7d7d7;
+tui-wrapper[data-appearance='secondary-active'] {
+	color: var(--tui-link-hover);
+	background-color: var(--tui-secondary-hover);
+	// border: 1px solid var(--tui-base-04);
+
+	&[data-state='pressed'] {
+		// background-color: var(--tui-secondary);
+	}
+
+	&[data-state='disabled'] {
+		// background-color: #eaecee;
+		// color: var(--tui-secondary-03);
+	}
+}
+
+tui-wrapper[data-appearance='flat-dark'] {
+	color: $grey-600;
+
+	&[data-state='hovered'] {
+		color: $grey-500;
+		background-color: $grey-100;
+	}
+
+	&[data-state='pressed'] {
+		color: $grey-500;
+		background-color: $grey-200;
+	}
+
+	&[data-state='disabled'] {
+		color: $grey-400;
+		background-color: $grey-100;
+	}
 }

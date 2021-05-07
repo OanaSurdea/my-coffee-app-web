@@ -14,14 +14,19 @@ a.mat-fab {
 
 .coffeeList {
 	display: grid;
-	gap: 20px;
+
+	gap: $spacing-300;
+	flex-wrap: wrap;
 
 	&--listView {
-		@apply lg:grid-cols-2 xl:grid-cols-3;
+		// @apply grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10;
+		flex-direction: column;
+		// grid-template-columns: repeat(auto-fill, 150px);
 	}
 
 	&--gridView {
-		@apply md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+		grid-template-columns: repeat(auto-fill, 150px);
+		// @apply grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10;
 	}
 }
 

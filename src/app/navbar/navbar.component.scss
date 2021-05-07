@@ -1,0 +1,14 @@
+@import '../../assets/scss/mca-theme-variables';
+
+.logo {
+	display: flex;
+	gap: $spacing-200;
+	text-decoration: text-decoration-none;
+}
+
+.nav {
+	&__text {
+		font-weight: 700;
+		color: $warn-200;
+	}
+}

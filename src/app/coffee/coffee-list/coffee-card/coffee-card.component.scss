@@ -1,44 +1,45 @@
+@import '../../../../assets/scss/mca-theme-variables';
+@import '~@taiga-ui/core/styles/taiga-ui-local';
+
 :host {
 	display: inherit;
 }
 
 .card {
 	$this: &;
-	@apply bg-white flex justify-between shadow-sm rounded-lg;
+	@apply bg-white flex rounded-lg;
 
 	// Modifiers
 	&--vertical-cols {
 		@apply flex-col;
 
-		#{$this}__img {
-			@apply rounded-b-none;
-		}
-
 		#{$this}__content {
+			margin-top: $spacing-100;
 			@apply w-full h-full;
 		}
 	}
 
 	&:not(.card--vertical-cols) {
+		@apply flex-row;
+
 		#{$this}__media {
 			@apply sm:w-1/4;
 		}
 
-		#{$this}__img {
-			@apply rounded-r-none;
-		}
-
 		#{$this}__content {
+			margin-left: $spacing-200;
 			@apply sm:w-3/4;
 		}
 	}
 
 	// Children
 	&__media {
-		min-height: 200px;
-		min-width: 100px;
-		max-height: 300px;
-		height: 100%;
+		min-width: 150px;
+		max-width: 150px;
+
+		min-height: 165px;
+		max-height: 165px;
+		position: relative;
 	}
 
 	&__img {
@@ -48,23 +49,36 @@
 	}
 
 	&__content {
-		@apply py-3 px-4 max-w-xl lg:max-w-5xl grid;
-		grid-template-rows: auto 1fr auto;
+		display: grid;
+		// @apply pt-3 max-w-xl lg:max-w-5xl grid;
+		grid-template-rows: auto auto 1fr;
+		align-items: baseline;
 	}
 
 	// Grandchildren
 	// Header
 	&__header {
-		@apply mb-2;
+		margin-bottom: $spacing-100;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 
 	&__title {
-		@apply text-xl text-gray-800 font-bold;
+		font-size: $heading-100;
+		@apply text-gray-800 font-bold;
+	}
+
+	&__category {
+		color: $accent-500;
+		font-size: $text-100;
+		font-weight: 500;
 	}
 
 	// Main content
 	&__body {
-		@apply mb-2;
+		margin-bottom: $spacing-50;
 	}
 
 	&__text {
@@ -74,12 +88,35 @@
 			@apply text-gray-500;
 		}
 		&--date {
-			@apply text-gray-400 my-2 mx-1;
+			@apply text-gray-500 mb-0;
+			line-height: 1rem;
 		}
 	}
 
 	// Footer
 	&__footer {
-		@apply flex justify-between items-center;
+		display: flex;
+		align-items: center;
+
+		.card__rating {
+			margin-left: -6px !important;
+		}
+	}
+}
+
+.mediaIcons {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	gap: 4px;
+	display: flex;
+
+	&__icon {
+		box-shadow: 4px 4px 20px -5px $accent-500;
+		opacity: 0.85;
+
+		&:hover {
+			opacity: 1;
+		}
 	}
 }
