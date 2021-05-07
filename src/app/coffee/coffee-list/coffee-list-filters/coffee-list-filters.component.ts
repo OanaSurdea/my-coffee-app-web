@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ListLayoutEnum, SortDirectionEnum } from 'src/app/core/enums';
 import { CoffeeSortByEnum } from '../../enums';
 import { CoffeeListFilters } from '../../models/coffee-list-filters';
@@ -29,9 +30,14 @@ export class CoffeeListFiltersComponent implements OnInit, OnChanges {
   @Output() filtersUpdate: EventEmitter<CoffeeListFilters> = new EventEmitter();
   @Output() layoutUpdate: EventEmitter<ListLayoutEnum> = new EventEmitter();
 
+  sortByForm: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.sortByForm = new FormGroup({
+      sortBy: new FormControl(this.filters.sortBy)
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

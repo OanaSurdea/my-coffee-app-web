@@ -1,0 +1,47 @@
+@import 'mca-theme-variables';
+@import '~@taiga-ui/core/styles/taiga-ui-local';
+
+// Colors
+:root {
+	// Primary
+	--tui-text-01: #{$grey-600};
+	--tui-text-02: #{$grey-300};
+	--tui-text-03: #{$grey-200};
+
+	// Link
+	--tui-link: #{$accent-500};
+	--tui-link-hover: #{$accent-500};
+	--tui-link-active: #{$accent-600};
+
+	// Primary
+	--tui-primary: #{$primary-500};
+	--tui-primary-hover: #{$primary-400};
+	--tui-primary-active: #{$primary-600};
+
+	// Secondary/Accent
+	--tui-secondary: #{$accent-100};
+	--tui-secondary-hover: #{$accent-200};
+	--tui-secondary-active: #{$accent-300};
+
+	// Positive
+	--tui-positive: #{$success-100};
+	--tui-positive-hover: #{$success-200};
+	--tui-positive-active: #{$success-300};
+
+	// Negative
+	--tui-negative: #{$danger-100};
+	--tui-negative-hover: #{$danger-200};
+	--tui-negative-active: #{$danger-300};
+}
+
+// Components
+button._focused {
+	outline: none;
+}
+
+// This goes into global, unencapsulated styles
+tui-wrapper[data-appearance='outline-active'] {
+	background: #f7f8f9;
+	// color: var(--tui-link-active);
+	border: 1px solid #d7d7d7;
+}

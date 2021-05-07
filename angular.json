@@ -28,7 +28,7 @@
               {
                 "glob": "**/*",
                 "input": "node_modules/@taiga-ui/icons/src",
-                "output": "assets/icons/taiga-ui"
+                "output": "assets/taiga-ui/icons"
               },
               "src/assets/icons",
               "src/assets/media",
@@ -113,7 +113,7 @@
               {
                 "glob": "**/*",
                 "input": "node_modules/@taiga-ui/icons/src",
-                "output": "assets/icons/taiga-ui"
+                "output": "assets/taiga-ui/icons"
               },
               "src/assets/icons",
               "src/assets/media",

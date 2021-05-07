@@ -25,7 +25,7 @@ import { coffeeReducer } from './state/coffee.reducer';
 
     EffectsModule.forFeature([CoffeeEffects]),
     StoreModule.forFeature('coffees', coffeeReducer),
-    CoreModule
+    CoreModule,
   ],
   declarations: [
     CoffeeComponent,

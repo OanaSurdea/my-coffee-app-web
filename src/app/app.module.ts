@@ -8,11 +8,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TuiRootModule } from '@taiga-ui/core';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoffeeModule } from './coffee/coffee.module';
+import { TaigaUiModule } from './core/modules/taiga-ui/taiga-ui.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
 
     // UI
-    TuiRootModule,
+    TaigaUiModule,
 
     // App
     AppRoutingModule,
@@ -50,6 +50,7 @@ import { NavbarComponent } from './navbar/navbar.component';
       maxAge: 25,
       logOnly: environment.production
     }),
+    TaigaUiModule,
 
     // Pipes
   ],

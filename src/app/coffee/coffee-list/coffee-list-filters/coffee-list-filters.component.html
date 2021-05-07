@@ -1,59 +1,76 @@
 <div class="text-right">
   <!-- SHOW FILTERS -->
-  <mat-button-toggle
-    class="mb-3"
-    aria-label="Show filters"
-    color="accent"
-    (click)="toggleShowFilters()">
-    <mat-icon>filter_alt</mat-icon>
-  </mat-button-toggle>
 
-  <div class="flex justify-end gap-1 mb-3" *ngIf="showFilters">
+  <button
+    tuiIconButton
+    type="button"
+    class="tui-space_bottom-3"
+    icon="tuiIconFilter"
+    appearance="flat"
+    (click)="toggleShowFilters()"></button>
+
+  <div class="flex justify-end gap-1 mb-3">
+
     <!-- SORT BY -->
-    <mat-button-toggle-group
-      name="selectedSortByOption"
-      [(ngModel)]="filters.sortBy"
-      aria-label="Sort by">
+    <div
+      tuiGroup
+      class="group"
+      [collapsed]="true"
+      *ngIf="showFilters">
 
-      <mat-button-toggle
+      <button
+        tuiIconButton
+        size="m"
+        type="button"
+        class="tui-group__auto-width-item"
         *ngFor="let option of sortByOptions"
-        [value]="option.value"
+        [icon]="option.value === 'createdAt' ? 'tuiIconCalendar' : 'tuiIconStar'"
+        [appearance]="filters.sortBy === option.value ? 'outline-active' : 'outline'"
+        title="Sort by {{ option.value === 'createdAt' ? 'date created' : 'rating' }}"
         (click)="onSortBy(option.value)">
-        {{ option.value === 'createdAt' ? '📅' : '⭐' }}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+      </button>
+    </div>
+
 
     <!-- SORT DIRECTION -->
-    <mat-button-toggle-group
-      name="selectedSortDirectionOption"
-      [(ngModel)]="filters.sortDirection"
-      aria-label="Sort direction">
+    <div
+      tuiGroup
+      class="group"
+      [collapsed]="true"
+      *ngIf="showFilters">
 
-      <mat-button-toggle
+      <button
+        tuiIconButton
+        size="m"
+        type="button"
+        class="tui-group__auto-width-item"
         *ngFor="let option of sortDirectionOptions"
-        [value]="option.value"
+        [icon]="option.value === 'asc' ? 'tuiIconArrowUp' : 'tuiIconArrowDown'"
+        [appearance]="filters.sortDirection === option.value ? 'outline-active' : 'outline'"
+        title="Sort in {{ option.value === 'asc' ? 'ascending' : 'descending' }} order"
         (click)="onSortDirection(option.value)">
-        <mat-icon>
-          {{ option.value === 'asc' ? 'arrow_upward' : 'arrow_downward' }}
-        </mat-icon>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+      </button>
+    </div>
+
 
     <!-- LAYOUT -->
-    <mat-button-toggle-group
-      class="hidden xl:block"
-      name="listLayout"
-      [(ngModel)]="listLayout"
-      aria-label="Layout">
+    <div
+      tuiGroup
+      class="group"
+      [collapsed]="true"
+      *ngIf="showFilters">
 
-      <mat-button-toggle
+      <button
+        tuiIconButton
+        size="m"
+        type="button"
+        class="tui-group__auto-width-item"
         *ngFor="let option of layoutOptions"
-        [value]="option.value"
+        [icon]="option.value === 'list' ? 'tuiIconViewListLarge' : 'tuiIconStructureLarge'"
+        [appearance]="listLayout === option.value ? 'outline-active' : 'outline'"
+        title="Change layout to a {{ option.value === 'list' ? 'list' : 'grid' }} type view"
         (click)="onLayout(option.value)">
-        <mat-icon>
-          {{ option.value === 'list' ? 'view_list' : 'view_comfy' }}
-        </mat-icon>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+      </button>
+    </div>
   </div>
 </div>
