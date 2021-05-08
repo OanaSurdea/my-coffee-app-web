@@ -13,9 +13,12 @@
 	&--vertical-cols {
 		@apply flex-col;
 
+		#{$this}__media {
+			min-height: 165px;
+		}
+
 		#{$this}__content {
 			margin-top: $spacing-100;
-			@apply w-full h-full;
 		}
 	}
 
@@ -23,22 +26,17 @@
 		@apply flex-row;
 
 		#{$this}__media {
-			@apply sm:w-1/4;
+			min-width: 125px;
+			min-height: 145px;
 		}
 
 		#{$this}__content {
 			margin-left: $spacing-200;
-			@apply sm:w-3/4;
 		}
 	}
 
 	// Children
 	&__media {
-		min-width: 150px;
-		max-width: 150px;
-
-		min-height: 165px;
-		max-height: 165px;
 		position: relative;
 	}
 
@@ -50,7 +48,6 @@
 
 	&__content {
 		display: grid;
-		// @apply pt-3 max-w-xl lg:max-w-5xl grid;
 		grid-template-rows: auto auto 1fr;
 		align-items: baseline;
 	}
