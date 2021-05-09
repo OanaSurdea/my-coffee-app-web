@@ -8,7 +8,7 @@ export const coffeeRoutes: Routes = [
   // Routes
   { path: '', data: { name: 'List coffees' }, component: CoffeeListComponent },
   { path: 'add', data: { name: 'Add coffee' }, component: CoffeeDetailsComponent },
-  { path: ':id', data: { name: 'View coffee' }, component: CoffeeDetailsComponent },
+  { path: ':id', data: { name: 'View/Edit coffee' }, component: CoffeeDetailsComponent },
 
   // Redirects
   { path: '', component: CoffeeComponent },

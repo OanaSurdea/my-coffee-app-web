@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Subscription } from 'rxjs';
 import { CoffeeDataService, GeolocationService } from 'src/app/core/services';
 import { Coffee } from '../models';
-import { coffeeFormFieldConfig } from './coffee-details-form';
 
 @Component({
   selector: 'mca-coffee-details',
@@ -16,19 +14,16 @@ import { coffeeFormFieldConfig } from './coffee-details-form';
 })
 export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   // Subscriptions
-  routeSubscription: Subscription;
-  coffeeDataSubscription: Subscription;
-  dialogSubscription: Subscription;
+  subscriptions: Subscription[] = [];
   coffeeRouteId: string;
 
   // Formly
-  coffeeModel = new Coffee();
-  coffeeForm: FormGroup = new FormGroup({});
-  coffeeFormFields: FormlyFieldConfig[] = coffeeFormFieldConfig;
+  coffee = new Coffee();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private fb: FormBuilder,
     private coffeeDataService: CoffeeDataService,
     private geolocationService: GeolocationService,
     private dialog: MatDialog,
@@ -37,70 +32,72 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscribeToRoute();
-    this.populateFormFields();
+    this.getCoffeeData();
   }
 
   public subscribeToRoute(): void {
-    this.routeSubscription = this.route.paramMap.subscribe({
+    const routeSubscription = this.route.paramMap.subscribe({
       next: (params) => {
         this.coffeeRouteId = params.get('id');
       },
       error: (error) => console.error(error)
     });
+
+    this.subscriptions.push(routeSubscription);
   }
 
-  public populateFormFields(): void {
-    this.coffeeDataSubscription = this.coffeeDataService.getOne(this.coffeeRouteId).subscribe(
-      (coffee: Coffee) => {
-        if (coffee) { this.coffeeModel = coffee; }
-      }
-    );
+
+
+  public getCoffeeData(): void {
+    const coffeeDataSubscription = this.coffeeDataService
+      .getOne(this.coffeeRouteId)
+      .subscribe((coffee: Coffee) => {
+        if (coffee) {
+          this.coffee = coffee;
+        }
+      });
+
+    this.subscriptions.push(coffeeDataSubscription);
   }
+
+
 
   public requestGeolocation(): void {
-    const getLocation = (location) => {
-      this.coffeeModel.cafeLocation.latitude = location?.latitude;
-      this.coffeeModel.cafeLocation.longitude = location?.longitude;
-    };
+    // const getLocation = (location) => {
+    //   this.coffee.cafeLocation.latitude = location?.latitude;
+    //   this.coffee.cafeLocation.longitude = location?.longitude;
+    // };
 
-    const logError = (error) => console.error('Location Error: ', error);
+    // const logError = (error) => console.error('Location Error: ', error);
 
-    this.geolocationService.requestLocation(getLocation, logError);
-  }
-
-  public onCoffeeFormSubmit(coffeeModel: any): void {
-    this.requestGeolocation();
-
-    this.coffeeModel.id = this.coffeeRouteId;
-
-    this.coffeeDataService.saveOne(coffeeModel, success => {
-      if (success) {
-        this.router.navigateByUrl('/');
-      }
-    });
+    // this.geolocationService.requestLocation(getLocation, logError);
   }
 
   public deleteOne(templateRef): void {
-    const dialog = this.dialog.open(templateRef);
+    // const dialog = this.dialog.open(templateRef);
 
-    this.dialogSubscription = dialog.afterClosed().subscribe((result) => {
-      if (result) {
-        this.coffeeDataService.deleteOne(this.coffeeRouteId, (ress) => result = ress).then(
-          () => {
-            this.snackBar.open('Coffee deleted succesfully.', 'Close', { duration: 650 });
-            this.router.navigateByUrl('/coffees');
-          },
-          (error) => {
-            this.snackBar.open('Error. Coffee could not be deleted.', 'Close', { duration: 650 });
-          }
-        );
-      }
-    });
+    // const dialogSubscription = dialog
+    //   .afterClosed()
+    //   .subscribe((result) => {
+    //     if (result) {
+    //       this.coffeeDataService
+    //         .deleteOne(this.coffeeRouteId, (ress) => result = ress)
+    //         .then(
+    //           () => {
+    //             this.snackBar.open('Coffee deleted succesfully.', 'Close', { duration: 650 });
+    //             this.router.navigateByUrl('/coffees');
+    //           },
+    //           (error) => {
+    //             this.snackBar.open('Error. Coffee could not be deleted.', 'Close', { duration: 650 });
+    //           }
+    //         );
+    //     }
+    //   });
+
+    // this.subscriptions.push(dialogSubscription);
   }
 
   public ngOnDestroy(): void {
-    this.routeSubscription?.unsubscribe();
-    this.coffeeDataSubscription?.unsubscribe();
-    this.dialogSubscription?.unsubscribe();
+    this.subscriptions.forEach((s: Subscription) => s?.unsubscribe());
   }
 }

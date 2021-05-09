@@ -1,0 +1,18 @@
+<p [ngStyle]="{'color': mainForm.valid ? 'green' : 'red'}">
+  Form is {{ mainForm.valid ? 'Valid' : 'Invalid' }}
+</p>
+
+<pre>
+{{ mainForm.value | json }}
+</pre>
+
+<form [formGroup]="mainForm" (ngSubmit)="submitForm(coffee)">
+  <!-- About Section -->
+  <mca-coffee-details-about-form
+    [form]="aboutForm"
+    [coffeeTypeOptions]="coffeeTypeOptions">
+  </mca-coffee-details-about-form>
+
+  <button>Sign Up</button>
+  <button type="button" (click)="resetForm()">Reset</button>
+</form>

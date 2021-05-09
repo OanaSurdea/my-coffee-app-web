@@ -1,0 +1,64 @@
+<div
+  class="tui-form"
+  [formGroup]="form">
+
+  <div class="tui-form__image">
+    <tui-badged-content
+      class="tui-space_right-5"
+      contentTop="tuiIconSettings"
+      colorTop="var(--tui-accent)"
+      size="xxl"
+      [rounded]="true">
+      <tui-avatar
+        class="tui-space_top-1"
+        [avatarUrl]="form.get('imageUrl').value"
+        text="coffeeModel.name"
+        size="xxl"
+        contentBottom="tuiIconSettings"
+        [rounded]="true"></tui-avatar>
+    </tui-badged-content>
+  </div>
+
+  <!-- Header -->
+  <h3 class="tui-form__header tui-form__header_margin-top_none">
+    About
+  </h3>
+  <p>{{ 'Please fill in the input fields with the details about the coffee.' }}</p>
+
+  <!-- Name -->
+  <div class="tui-form__row">
+    <tui-input
+      tuiTextfieldExampleText="Matcha Latte"
+      formControlName="name"
+      tuiHintContent="It will be used as name of the coffee">
+      <span>Coffee name</span>
+      <span class="tui-required"></span>
+    </tui-input>
+
+    <tui-field-error formControlName="name"></tui-field-error>
+  </div>
+
+  <!-- Type -->
+  <div class="tui-form__row">
+    <tui-select #selectType class="b-form" formControlName="type">
+      Select type
+      <tui-data-list *tuiDataList>
+        <tui-opt-group label="Coffee types">
+          <button *ngFor="let type of coffeeTypeOptions" tuiOption [value]="type.value">
+            {{ type.label }}
+          </button>
+        </tui-opt-group>
+      </tui-data-list>
+    </tui-select>
+  </div>
+
+  <!-- Notes -->
+  <div class="tui-form__row">
+    <tui-text-area
+      class="field-large"
+      formControlName="notes">
+      Type a text
+    </tui-text-area>
+  </div>
+
+</div>

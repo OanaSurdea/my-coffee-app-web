@@ -23,27 +23,29 @@
 	--tui-secondary-hover: #{$accent-200};
 	--tui-secondary-active: #{$accent-300};
 
+	// Accent/Secondary
+	--tui-accent: #{$accent-500};
+	--tui-accent-hover: #{$accent-400};
+	--tui-accent-active: #{$accent-600};
+
 	// Positive
-	--tui-positive: #{$success-100};
-	--tui-positive-hover: #{$success-200};
-	--tui-positive-active: #{$success-300};
+	--tui-positive: #{$success-500};
+	--tui-positive-hover: #{$success-400};
+	--tui-positive-active: #{$success-600};
 
 	// Negative
-	--tui-negative: #{$danger-100};
-	--tui-negative-hover: #{$danger-200};
-	--tui-negative-active: #{$danger-300};
+	--tui-negative: #{$danger-500};
+	--tui-negative-hover: #{$danger-400};
+	--tui-negative-active: #{$danger-600};
 }
 
 // Components
+
+// Buttons
 button._focused {
 	outline: none;
 }
 
-tui-wrapper[data-appearance='secondary'] {
-	// color: var(--tui-text-02);
-}
-
-// This goes into global, unencapsulated styles
 tui-wrapper[data-appearance='secondary-active'] {
 	color: var(--tui-link-hover);
 	background-color: var(--tui-secondary-hover);
@@ -76,4 +78,11 @@ tui-wrapper[data-appearance='flat-dark'] {
 		color: $grey-400;
 		background-color: $grey-100;
 	}
+}
+
+// Form
+.tui-form__image {
+	width: fit-content;
+	padding: 0 0 $spacing-200 0;
+	margin: 0 auto;
 }

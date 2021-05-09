@@ -3,19 +3,25 @@ import { NgModule } from '@angular/core';
 import { TuiFilterPipeModule } from '@taiga-ui/cdk/pipes';
 import {
   TuiButtonModule,
-  TuiDialogModule,
+  TuiDataListModule,
+  TuiErrorModule,
   TuiGroupModule,
   TuiHintModule,
-  TuiLinkModule,
-  TuiNotificationsModule,
+
   TuiRootModule,
   TuiSvgModule
 } from '@taiga-ui/core';
 import {
-  TuiActionModule,
+  TuiAvatarModule,
+  TuiBadgedContentModule,
+
+  TuiDataListWrapperModule,
+  TuiFieldErrorModule,
   TuiInputModule,
-  TuiIslandModule,
-  TuiMarkerIconModule
+
+
+  TuiSelectModule,
+  TuiTextAreaModule
 } from '@taiga-ui/kit';
 
 @NgModule({
@@ -25,37 +31,48 @@ import {
     TuiRootModule,
 
     // Components
-    TuiActionModule,
+    TuiAvatarModule,
+    TuiBadgedContentModule,
     TuiButtonModule,
-    TuiDialogModule,
     TuiGroupModule,
+
+    // Form
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiErrorModule,
+    TuiFieldErrorModule,
     TuiHintModule,
     TuiInputModule,
-    TuiIslandModule,
-    TuiLinkModule,
-    TuiMarkerIconModule,
+    TuiSelectModule,
+    TuiTextAreaModule,
+
+    // Tools
     TuiFilterPipeModule,
-    TuiNotificationsModule,
 
     // Icons
     TuiSvgModule
-
   ],
   exports: [
     TuiRootModule,
 
     // Components
-    TuiActionModule,
+    TuiAvatarModule,
+    TuiBadgedContentModule,
     TuiButtonModule,
-    TuiDialogModule,
     TuiGroupModule,
+
+    // Form
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiErrorModule,
+    TuiFieldErrorModule,
     TuiHintModule,
     TuiInputModule,
-    TuiIslandModule,
-    TuiLinkModule,
-    TuiMarkerIconModule,
+    TuiSelectModule,
+    TuiTextAreaModule,
+
+    // Tools
     TuiFilterPipeModule,
-    TuiNotificationsModule,
 
     // Icons
     TuiSvgModule

@@ -10,7 +10,7 @@ export const CoffeeTypeMap: Map<CoffeeTypeEnum, string> = new Map([
   [CoffeeTypeEnum.Other, 'Other'],
 ]);
 
-export const CoffeeTypeFormOptions: IFormOption[] = [
+export const CoffeeTypeFormOptions: IFormOption<CoffeeTypeEnum, string>[] = [
   { value: CoffeeTypeEnum.Americano, label: 'Americano' },
   { value: CoffeeTypeEnum.Cappuccino, label: 'Cappuccino' },
   { value: CoffeeTypeEnum.Espresso, label: 'Espresso' },

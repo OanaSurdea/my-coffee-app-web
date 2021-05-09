@@ -1,5 +1,5 @@
-export interface IFormOption {
-  value: any;
-  label: string;
+export interface IFormOption<T, U> {
+  value: T;
+  label: U;
   disabled?: boolean;
 }
