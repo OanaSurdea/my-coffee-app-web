@@ -1,0 +1,56 @@
+<div
+  class="tui-form"
+  [formGroup]="form">
+
+  <!-- Header -->
+  <h3 class="tui-form__header tui-form__header_margin-top_none">
+    Location
+  </h3>
+  <p>{{ 'Please fill in the input fields with the details about the coffee.' }}</p>
+
+  <!-- Cafe Name -->
+  <div class="tui-form__row">
+    <tui-input
+      formControlName="name"
+      tuiTextfieldExampleText="Boba Café"
+      tuiHintContent="Type the name of the café">
+      <span>Café name</span>
+      <span class="tui-required"></span>
+    </tui-input>
+
+    <tui-field-error formControlName="name"></tui-field-error>
+  </div>
+
+  <!-- Cafe Location - Address & City -->
+  <div class="tui-form__row">
+
+
+    <div tuiGroup class="group">
+      <div>
+        <tui-input
+          class="tui-group__inherit-item"
+          formControlName="address"
+          tuiTextfieldExampleText="Jackson Street 32A"
+          tuiTextfieldExampleText="address"
+          tuiHintContent="Type the street and number of the café">
+          Address
+        </tui-input>
+        <tui-field-error formControlName="address"></tui-field-error>
+      </div>
+      <div>
+        <tui-input
+          class="tui-group__inherit-item"
+          formControlName="city"
+          tuiTextfieldExampleText="Cafe city"
+          tuiHintContent="Type the name of the city">
+          City
+        </tui-input>
+        <tui-field-error formControlName="city"></tui-field-error>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Latitude & Longitude -->
+
+</div>

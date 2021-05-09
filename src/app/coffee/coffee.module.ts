@@ -15,6 +15,7 @@ import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
 import { CoffeeEffects } from './state/coffee.effects';
 import { coffeeReducer } from './state/coffee.reducer';
+import { CoffeeDetailsLocationFormComponent } from './coffee-details/coffee-details-form/coffee-details-location-form/coffee-details-location-form.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { coffeeReducer } from './state/coffee.reducer';
     CoffeeCardComponent,
     CoffeeListFiltersComponent,
     CoffeeDetailsAboutFormComponent,
-    CoffeeDetailsFormComponent
+    CoffeeDetailsFormComponent,
+    CoffeeDetailsLocationFormComponent
   ],
   exports: [
     // FormsModule,

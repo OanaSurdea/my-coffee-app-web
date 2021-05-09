@@ -15,6 +15,7 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
 
   // About-coffee form
   aboutForm: FormGroup;
+  locationForm: FormGroup;
   coffeeTypeOptions: IFormOption<CoffeeTypeEnum, string>[] = CoffeeTypeFormOptions;
 
   @Input() coffee: Coffee;
@@ -28,9 +29,10 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.populateAboutForm(this.coffee);
+    this.populateMainForm(this.coffee);
   }
 
+  //#region initForms
   private initAboutForm(): void {
     this.aboutForm = this.fb.group({
       name: [null, Validators.required],
@@ -40,16 +42,29 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
     });
   }
 
-  private initMainForm(): void {
-    this.initAboutForm();
-
-    this.mainForm = this.fb.group({
-      about: this.aboutForm,
-      cafeLocation: [],
-      ratings: [],
+  private initLocationForm(): void {
+    this.locationForm = this.fb.group({
+      name: [null, Validators.required],
+      address: [null, Validators.required],
+      city: [null, Validators.required],
+      latitude: [null],
+      longitude: [null],
     });
   }
 
+  private initMainForm(): void {
+    this.initAboutForm();
+    this.initLocationForm();
+
+    this.mainForm = this.fb.group({
+      about: this.aboutForm,
+      location: this.locationForm,
+      ratings: [],
+    });
+  }
+  //#endregion initForms
+
+  //#region populateForms
   private populateAboutForm(coffee: Coffee): void {
     if (this.mainForm) {
       this.mainForm.get('about.name').setValue(coffee.name);
@@ -58,6 +73,23 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
       this.mainForm.get('about.notes').setValue(coffee.notes);
     }
   }
+
+  private populateLocationForm(coffee: Coffee): void {
+    if (this.mainForm) {
+      this.mainForm.get('location.name').setValue(coffee.cafeName);
+      this.mainForm.get('location.address').setValue(coffee.cafeLocation.address);
+      this.mainForm.get('location.city').setValue(coffee.cafeLocation.city);
+      this.mainForm.get('location.latitude').setValue(coffee.cafeLocation.latitude);
+      this.mainForm.get('location.longitude').setValue(coffee.cafeLocation.longitude);
+    }
+  }
+
+  private populateMainForm(coffee: Coffee): void {
+    this.populateAboutForm(coffee);
+    this.populateLocationForm(coffee);
+  }
+  //#endregion populateForms
+
 
   public uploadPicture(): void {
 

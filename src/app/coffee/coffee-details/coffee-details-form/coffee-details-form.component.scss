@@ -1,0 +1,5 @@
+@import '../../../../assets/scss/mca-theme-variables';
+
+:host ::ng-deep .tui-form {
+	margin-bottom: $spacing-400;
+}
