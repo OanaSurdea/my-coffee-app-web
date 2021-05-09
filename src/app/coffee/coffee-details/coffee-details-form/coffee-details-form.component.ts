@@ -15,8 +15,9 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
 
   // About-coffee form
   aboutForm: FormGroup;
-  locationForm: FormGroup;
   coffeeTypeOptions: IFormOption<CoffeeTypeEnum, string>[] = CoffeeTypeFormOptions;
+  locationForm: FormGroup;
+  ratingForm: FormGroup;
 
   @Input() coffee: Coffee;
 
@@ -52,14 +53,27 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
     });
   }
 
+  private initRatingForm(): void {
+    this.ratingForm = this.fb.group({
+      overall: [null, Validators.required],
+      aroma: [null],
+      body: [null],
+      flavor: [null],
+      intensity: [null],
+      sweetness: [null],
+      aftertaste: [null],
+    });
+  }
+
   private initMainForm(): void {
     this.initAboutForm();
     this.initLocationForm();
+    this.initRatingForm();
 
     this.mainForm = this.fb.group({
       about: this.aboutForm,
       location: this.locationForm,
-      ratings: [],
+      rating: this.ratingForm,
     });
   }
   //#endregion initForms
@@ -84,9 +98,22 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
     }
   }
 
+  private populateRatingForm(coffee: Coffee): void {
+    if (this.mainForm) {
+      this.mainForm.get('rating.overall').setValue(coffee.rating);
+      this.mainForm.get('rating.aroma').setValue(coffee.tasteRating.aroma);
+      this.mainForm.get('rating.body').setValue(coffee.tasteRating.body);
+      this.mainForm.get('rating.flavor').setValue(coffee.tasteRating.flavor);
+      this.mainForm.get('rating.intensity').setValue(coffee.tasteRating.intensity);
+      this.mainForm.get('rating.sweetness').setValue(coffee.tasteRating.sweetness);
+      this.mainForm.get('rating.aftertaste').setValue(coffee.tasteRating.aftertaste);
+    }
+  }
+
   private populateMainForm(coffee: Coffee): void {
-    this.populateAboutForm(coffee);
-    this.populateLocationForm(coffee);
+    this.populateAboutForm(this.coffee);
+    this.populateLocationForm(this.coffee);
+    this.populateRatingForm(this.coffee);
   }
   //#endregion populateForms
 
@@ -97,8 +124,6 @@ export class CoffeeDetailsFormComponent implements OnInit, OnChanges {
 
   public submitForm(coffee: Coffee): void {
     alert('Submited: ' + JSON.stringify(coffee));
-
-    // this.requestGeolocation();
 
     // this.coffee.id = this.coffeeRouteId;
 

@@ -1,0 +1,130 @@
+<div
+  class="tui-form"
+  [formGroup]="form">
+
+  <!-- Header -->
+  <h3 class="tui-form__header tui-form__header_margin-top_none">
+    Rating
+  </h3>
+  <p>{{ 'Please rate the overall quality of the coffee and it\'s qualities.' }}</p>
+
+  <!-- Overall Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="overall"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+  <!-- Aroma Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="aroma"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+  <!-- Body Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="body"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+  <!-- Flavor Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="flavor"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+  <!-- Intensity Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="intensity"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+  <!-- Sweetness Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="sweetness"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+  <!-- Aftertaste Rating -->
+  <div class="tui-form__row">
+    <tui-input-slider
+      class="control"
+      formControlName="aftertaste"
+      size="m"
+      minLabel="Very Bad"
+      maxLabel="Superb"
+      [segmentsPluralize]="pluralize"
+      [segments]="5"
+      [min]="0"
+      [max]="5"
+      [steps]="10"
+      [quantum]="0.5">
+    </tui-input-slider>
+  </div>
+
+</div>

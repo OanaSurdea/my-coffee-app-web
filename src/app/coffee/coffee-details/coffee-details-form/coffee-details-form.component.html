@@ -18,6 +18,29 @@
     [form]="locationForm">
   </mca-coffee-details-location-form>
 
-  <button>Sign Up</button>
-  <button type="button" (click)="resetForm()">Reset</button>
+  <!-- Rating Section -->
+  <mca-coffee-details-rating-form
+    [form]="ratingForm">
+  </mca-coffee-details-rating-form>
+
+  <div class="tui-form__buttons">
+    <button
+      tuiButton
+      class="tui-form__button"
+      size="l"
+      type="submit">
+      Submit
+    </button>
+
+    <button
+      tuiButton
+      type="button"
+      class="tui-form__button"
+      appearance="flat"
+      size="l"
+      (click)="resetForm()">
+      Reset
+    </button>
+  </div>
+
 </form>

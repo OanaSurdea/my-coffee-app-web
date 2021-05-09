@@ -7,20 +7,19 @@ import {
   TuiErrorModule,
   TuiGroupModule,
   TuiHintModule,
-
+  TuiPluralizePipeModule,
   TuiRootModule,
   TuiSvgModule
 } from '@taiga-ui/core';
 import {
   TuiAvatarModule,
   TuiBadgedContentModule,
-
   TuiDataListWrapperModule,
   TuiFieldErrorModule,
   TuiInputModule,
-
-
+  TuiInputSliderModule,
   TuiSelectModule,
+  TuiSliderModule,
   TuiTextAreaModule
 } from '@taiga-ui/kit';
 
@@ -43,7 +42,10 @@ import {
     TuiFieldErrorModule,
     TuiHintModule,
     TuiInputModule,
+    TuiInputSliderModule,
+    TuiPluralizePipeModule,
     TuiSelectModule,
+    TuiSliderModule,
     TuiTextAreaModule,
 
     // Tools
@@ -68,7 +70,10 @@ import {
     TuiFieldErrorModule,
     TuiHintModule,
     TuiInputModule,
+    TuiInputSliderModule,
+    TuiPluralizePipeModule,
     TuiSelectModule,
+    TuiSliderModule,
     TuiTextAreaModule,
 
     // Tools
