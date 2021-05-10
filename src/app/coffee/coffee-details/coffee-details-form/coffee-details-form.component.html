@@ -6,7 +6,7 @@
 {{ mainForm.value | json }}
 </pre>
 
-<form [formGroup]="mainForm" (ngSubmit)="submitForm(coffee)">
+<form [formGroup]="mainForm" (ngSubmit)="submitForm()">
   <!-- About Section -->
   <mca-coffee-details-about-form
     [form]="aboutForm"
@@ -15,7 +15,9 @@
 
   <!-- Location Section -->
   <mca-coffee-details-location-form
-    [form]="locationForm">
+    [form]="locationForm"
+    (geolocationGet)="requestGeolocation()"
+    (geolocationReset)="resetGeolocation()">
   </mca-coffee-details-location-form>
 
   <!-- Rating Section -->
@@ -23,24 +25,37 @@
     [form]="ratingForm">
   </mca-coffee-details-rating-form>
 
-  <div class="tui-form__buttons">
-    <button
-      tuiButton
-      class="tui-form__button"
-      size="l"
-      type="submit">
-      Submit
-    </button>
+  <div class="tui-form__buttons tui-row">
+    <div class="tui-col_8">
+      <button
+        tuiButton
+        class="tui-form__button"
+        size="l"
+        type="submit">
+        Submit
+      </button>
+      <button
+        tuiButton
+        type="button"
+        class="tui-form__button"
+        appearance="flat"
+        size="l"
+        (click)="resetForm()">
+        Reset
+      </button>
+    </div>
 
-    <button
-      tuiButton
-      type="button"
-      class="tui-form__button"
-      appearance="flat"
-      size="l"
-      (click)="resetForm()">
-      Reset
-    </button>
+    <div class="tui-col_4">
+      <button
+        tuiButton
+        type="button"
+        class="tui-form__button"
+        appearance="flat-danger"
+        size="l"
+        (click)="resetForm()">
+        Delete
+      </button>
+    </div>
   </div>
 
 </form>

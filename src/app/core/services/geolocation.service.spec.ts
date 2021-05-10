@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CafeLocation } from 'src/app/core/models/cafe-location.model';
+import { Cafe } from 'src/app/core/models/cafe.model';
 import { GeolocationService } from './geolocation.service';
 
 describe('GeolocationService', () => {
@@ -75,21 +75,21 @@ describe('GeolocationService', () => {
 
   describe('getUnformattedMapUrlFrom(location)', () => {
     it('should return coordinates URL if if such are provided as parameter', () => {
-      const coordinates = { latitude: 32.8569, longitude: -96.9628 } as CafeLocation;
+      const coordinates = { latitude: 32.8569, longitude: -96.9628 } as Cafe;
       const url = service.getUnformattedMapUrlFrom(coordinates);
 
       expect(url).toBe('32.8569,-96.9628');
     });
 
     it('should return address & city URL if such are provided as parameter', () => {
-      const addressAndCity = { address: 'Puppet Street', city: 'New York' } as CafeLocation;
+      const addressAndCity = { address: 'Puppet Street', city: 'New York' } as Cafe;
       const url = service.getUnformattedMapUrlFrom(addressAndCity);
 
       expect(url).toBe('Puppet Street, New York');
     });
 
     it('should return null URL if no coordinates/address&city are provided as parameter', () => {
-      const emptyObject = {} as CafeLocation;
+      const emptyObject = {} as Cafe;
       const url = service.getUnformattedMapUrlFrom(emptyObject);
 
       expect(url).toBe(null);
@@ -97,7 +97,7 @@ describe('GeolocationService', () => {
   });
 
   describe('getFormattedMapUrlFrom(location)', () => {
-    const coordinates = { latitude: 32.8569, longitude: -96.9628 } as CafeLocation;
+    const coordinates = { latitude: 32.8569, longitude: -96.9628 } as Cafe;
 
     it('should maps.google URL if userAgent == google', () => {
       Object.defineProperty(window.navigator, 'userAgent', { value: 'Google', configurable: true });
@@ -116,21 +116,21 @@ describe('GeolocationService', () => {
 
   describe('getMapUrlFrom(location)', () => {
     it('should return coordinates URL if if such are provided as parameter', () => {
-      const coordinates = { latitude: 32.8569, longitude: -96.9628 } as CafeLocation;
+      const coordinates = { latitude: 32.8569, longitude: -96.9628 } as Cafe;
       const url = service.getUnformattedMapUrlFrom(coordinates);
 
       expect(url).toBe('32.8569,-96.9628');
     });
 
     it('should return address & city URL if such are provided as parameter', () => {
-      const addressAndCity = { address: 'Puppet Street', city: 'New York' } as CafeLocation;
+      const addressAndCity = { address: 'Puppet Street', city: 'New York' } as Cafe;
       const url = service.getUnformattedMapUrlFrom(addressAndCity);
 
       expect(url).toBe('Puppet Street, New York');
     });
 
     it('should return null URL if no coordinates/address&city are provided as parameter', () => {
-      const emptyObject = {} as CafeLocation;
+      const emptyObject = {} as Cafe;
       const url = service.getUnformattedMapUrlFrom(emptyObject);
 
       expect(url).toBe(null);

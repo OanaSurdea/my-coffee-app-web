@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Coffee } from '../../coffee/models/coffee.model';
+import { Coffee } from '../../coffee/models/coffee';
 import { environment } from './../../../environments/environment.prod';
 import { CoffeeListFilters } from './../../coffee/models/coffee-list-filters';
 import { FirestoreService } from './firestore.service';

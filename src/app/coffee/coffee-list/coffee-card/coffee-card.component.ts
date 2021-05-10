@@ -27,16 +27,16 @@ export class CoffeeCardComponent implements OnInit {
   }
 
   public viewOnMap(coffee: ICoffee): void {
-    const mapURL = this.geolocationService.getFormattedMapUrlFrom(coffee.cafeLocation);
+    const mapURL = this.geolocationService.getFormattedMapUrlFrom(coffee.cafe);
     location.href = mapURL;
   }
 
   public shareCoffee(coffee: Coffee): void {
-    const shareCoffeeText = `I had this coffee at ${coffee.cafeName} and for me it's a ${coffee.rating}.`;
+    const shareCoffeeText = `I had this coffee at ${coffee.cafe.name} and for me it's a ${coffee.tasteRating.overall}.`;
 
     if ('share' in navigator) {
       navigator.share({
-        title: coffee.name,
+        title: coffee.details.name,
         text: shareCoffeeText,
         url: window.location.href
       })

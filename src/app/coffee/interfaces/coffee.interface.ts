@@ -1,17 +1,19 @@
-import { CoffeeTypeEnum } from 'src/app/coffee/enums/coffee-type.enum';
-import { CafeLocation } from '../../core/models/cafe-location.model';
-import { ITasteRating } from './taste-rating.interface';
+import { ICafe } from 'src/app/core/interfaces';
+import { ITasteRating } from '.';
+import { ICoffeeDetails } from './coffee-details.interface';
 
 export interface ICoffee {
-  id?: string;
-  name: string;
-  cafeName: string;
-  cafeLocation: CafeLocation;
-  type: CoffeeTypeEnum;
-  rating: number;
+  // Details
+  details: ICoffeeDetails;
+
+  // Cafe
+  cafe: ICafe;
+
+  // Rating
   tasteRating: ITasteRating;
-  notes?: string;
+
+  // Meta
+  id?: string;
   createdAt?: firebase.default.firestore.Timestamp;
   updatedAt?: firebase.default.firestore.Timestamp;
-  imageUrl?: string;
 }

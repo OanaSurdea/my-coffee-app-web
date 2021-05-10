@@ -5,11 +5,11 @@ import { take } from 'rxjs/operators';
 import { IAppState } from '../../core/state';
 import { ICoffee } from '../interfaces';
 import { ICoffeeListFilters } from '../interfaces/coffee-list-filters.interface';
+import { Coffee } from '../models/coffee';
 import { CoffeeListFilters } from '../models/coffee-list-filters';
 import * as CoffeeActions from '../state/coffee.actions';
 import * as CoffeeSelectors from '../state/coffee.selectors';
 import { ListLayoutEnum } from './../../core/enums/list-layout.enum';
-import { Coffee } from './../models/coffee.model';
 
 @Component({
   selector: 'mca-coffee-list',
@@ -67,14 +67,14 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
     search = search.toLowerCase();
 
     const result = (
-      (coffee.type.toLowerCase().includes(search)) ||
-      (coffee.name.toLowerCase().includes(search)) ||
-      (coffee.cafeName.toLowerCase().includes(search)) ||
-      (coffee.cafeLocation.address.toLowerCase().includes(search)) ||
-      (coffee.cafeLocation.city.toLowerCase().includes(search)) ||
+      (coffee.details.type.toLowerCase().includes(search)) ||
+      (coffee.details.name.toLowerCase().includes(search)) ||
+      (coffee.cafe.name.toLowerCase().includes(search)) ||
+      (coffee.cafe.address.toLowerCase().includes(search)) ||
+      (coffee.cafe.city.toLowerCase().includes(search)) ||
       (coffee.createdAt.toDate().toString().toLowerCase().includes(search)) ||
-      (coffee.rating.toString().toLowerCase().includes(search)) ||
-      (coffee.notes.toLowerCase().includes(search))
+      (coffee.tasteRating.overall.toString().toLowerCase().includes(search)) ||
+      (coffee.details.notes.toLowerCase().includes(search))
     );
 
     return result;

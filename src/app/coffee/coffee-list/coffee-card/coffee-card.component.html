@@ -1,7 +1,7 @@
 <div class="card" [class.card--vertical-cols]="listLayout === 'grid' ? true : false">
   <div class="card__media">
     <div class="card__img"
-      style.background-image="url({{ coffee.imageUrl }})">
+      style.background-image="url({{ coffee.details.imageUrl }})">
     </div>
 
     <div class="mediaIcons">
@@ -29,18 +29,18 @@
   <div class="card__content">
     <!-- Title -->
     <a class="card__header" (click)="viewCoffeeDetails(coffee.id)">
-      <h6 class="card__title">{{ coffee.name }}</h6>
+      <h6 class="card__title">{{ coffee.details.name }}</h6>
     </a>
 
     <!-- Content -->
     <div class="card__body">
-      <p class="card__category">{{ coffee.type | titlecase }}</p>
+      <p class="card__category">{{ coffee.details.type | titlecase }}</p>
 
-      <ng-container *ngIf="listLayout === 'list' && coffee.cafeLocation">
+      <ng-container *ngIf="listLayout === 'list' && coffee.cafe">
         <small class="card__text card__text--muted">
-          <span>{{ coffee.cafeLocation.address }}</span>
-          <span>{{ coffee.cafeLocation.city ? ',' : ' ' }}</span>
-          <span>{{ coffee.cafeLocation.city }}</span>
+          <span>{{ coffee.cafe.address }}</span>
+          <span>{{ coffee.cafe.city ? ',' : ' ' }}</span>
+          <span>{{ coffee.cafe.city }}</span>
         </small>
       </ng-container>
     </div>
@@ -54,7 +54,7 @@
         class="card__rating"
         icon="tuiIconStar"
         appearance="flat">
-        <span>{{ coffee.rating | number: '1.1-1' }}</span>
+        <span>{{ coffee.tasteRating.overall | number: '1.1-1' }}</span>
       </button>
 
       <small class="card__text card__text--date">

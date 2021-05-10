@@ -46,21 +46,13 @@ button._focused {
 	outline: none;
 }
 
+// Button - Secondary active
 tui-wrapper[data-appearance='secondary-active'] {
 	color: var(--tui-link-hover);
 	background-color: var(--tui-secondary-hover);
-	// border: 1px solid var(--tui-base-04);
-
-	&[data-state='pressed'] {
-		// background-color: var(--tui-secondary);
-	}
-
-	&[data-state='disabled'] {
-		// background-color: #eaecee;
-		// color: var(--tui-secondary-03);
-	}
 }
 
+// Button - Flat dark
 tui-wrapper[data-appearance='flat-dark'] {
 	color: $grey-600;
 
@@ -77,6 +69,25 @@ tui-wrapper[data-appearance='flat-dark'] {
 	&[data-state='disabled'] {
 		color: $grey-400;
 		background-color: $grey-100;
+	}
+}
+
+// Button - Flat danger
+tui-wrapper[data-appearance='flat-danger'] {
+	color: $danger-600;
+
+	&[data-state='hovered'] {
+		color: $danger-500;
+		background-color: $danger-100;
+	}
+
+	&[data-state='pressed'] {
+		color: $danger-600;
+		background-color: $danger-200;
+	}
+
+	&[data-state='disabled'] {
+		color: $danger-400;
 	}
 }
 

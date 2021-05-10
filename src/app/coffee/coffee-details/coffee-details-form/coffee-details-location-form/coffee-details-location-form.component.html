@@ -6,7 +6,7 @@
   <h3 class="tui-form__header tui-form__header_margin-top_none">
     Location
   </h3>
-  <p>{{ 'Please fill in the input fields with the details about the coffee.' }}</p>
+  <p>Please fill in the fields with the café's location details.</p>
 
   <!-- Cafe Name -->
   <div class="tui-form__row">
@@ -24,24 +24,23 @@
   <!-- Cafe Location - Address & City -->
   <div class="tui-form__row">
 
-
-    <div tuiGroup class="group">
+    <div tuiGroup class="group" [collapsed]="false">
       <div>
         <tui-input
           class="tui-group__inherit-item"
           formControlName="address"
           tuiTextfieldExampleText="Jackson Street 32A"
-          tuiTextfieldExampleText="address"
           tuiHintContent="Type the street and number of the café">
           Address
         </tui-input>
         <tui-field-error formControlName="address"></tui-field-error>
       </div>
+
       <div>
         <tui-input
           class="tui-group__inherit-item"
           formControlName="city"
-          tuiTextfieldExampleText="Cafe city"
+          tuiTextfieldExampleText="Café city"
           tuiHintContent="Type the name of the city">
           City
         </tui-input>
@@ -52,5 +51,54 @@
   </div>
 
   <!-- Latitude & Longitude -->
+  <div class="tui-form__row">
+    <div tuiGroup class="group my-4" [collapsed]="false">
+      <div>
+        <tui-input
+          class="tui-group__inherit-item"
+          formControlName="latitude"
+          tuiTextfieldSize="l"
+          tuiTextfieldExampleText="Café location latitude"
+          tuiHintContent="Press the 'Use my location' button to auto-fill this input">
+          Latitude <span>(Optional)</span>
+        </tui-input>
+        <tui-field-error formControlName="latitude"></tui-field-error>
+      </div>
+
+      <div>
+        <tui-input
+          class="tui-group__inherit-item"
+          formControlName="longitude"
+          tuiTextfieldSize="l"
+          tuiTextfieldExampleText="Café location longitute"
+          tuiHintContent="Press the 'Use my location' button to auto-fill this input">
+          Longitude <span>(Optional)</span>
+        </tui-input>
+        <tui-field-error formControlName="longitude"></tui-field-error>
+      </div>
+    </div>
+
+    <div tuiGroup class="group my-4" [collapsed]="true">
+      <button
+        tuiButton
+        type="button"
+        size="m"
+        appearance="secondary"
+        (click)="requestGeolocation()">
+        Use my location
+      </button>
+
+      <button
+        tuiIconButton
+        type="button"
+        size="m"
+        class="tui-group__auto-width-item"
+        appearance="secondary"
+        title="Reset"
+        icon="tuiIconCloseLarge"
+        (click)="resetGeolocation()">
+      </button>
+    </div>
+  </div>
 
 </div>

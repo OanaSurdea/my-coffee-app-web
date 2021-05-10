@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CafeLocation } from 'src/app/core/models/cafe-location.model';
+import { Cafe } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +17,29 @@ export class GeolocationService {
     // W3C Geolocation API
     navigator.geolocation.getCurrentPosition(
       position => {
+        console.log('[Request location] Success ', position.coords);
         onSuccess(position.coords);
       },
       error => {
-        console.error(error);
+        console.error('[Request location] Error ', error);
         onError(null);
       }
     );
   }
 
+  public getAdressFromCoords(lat: number, lng: number): void {
+
+
+  }
+
   /*
-   * This function takes a CafeLocation as a parameter
+   * This function takes a Cafe as a parameter
    * Checks if it made of numeric coordinates or address & city
    * Based on which returns a string query formatted for a URL
    * ex: <a href="htpps://maps.google.com/?q=Eiffel+Tower">
    * ex: <a href="htpps://maps.google.com/?q=34.44,56.44">
    */
-  public getUnformattedMapUrlFrom(location: CafeLocation): string {
+  public getUnformattedMapUrlFrom(location: Cafe): string {
     // Check if location is made from name OR coodinates
     if (location.latitude && location.longitude) {
       return `${location.latitude},${location.longitude}`;
@@ -45,14 +51,14 @@ export class GeolocationService {
   }
 
   /*
-   * This function takes a CafeLocation as a parameter,
+   * This function takes a Cafe as a parameter,
    * checks the type of the location,
    * checks the type of browser/platform the app is on
    * returns the correct map URL based on the previous
    * ex: <a href="htpps://maps.google.com/?q=34.44,56.44">
    * ex: <a href="htpps://maps.apple.com/?q=34.44,56.44">
    */
-  getFormattedMapUrlFrom(location: CafeLocation): string {
+  getFormattedMapUrlFrom(location: Cafe): string {
     const query = this.getUnformattedMapUrlFrom(location);
 
     // Check if location is made from name OR coodinates

@@ -48,7 +48,7 @@ export const coffeeFormFieldConfig: FormlyFieldConfig[] = [
         }
       },
       {
-        key: 'cafeLocation.address',
+        key: 'cafe.address',
         type: 'input',
         templateOptions: {
           label: 'Cafe location - Address',
@@ -57,7 +57,7 @@ export const coffeeFormFieldConfig: FormlyFieldConfig[] = [
         }
       },
       {
-        key: 'cafeLocation.city',
+        key: 'cafe.city',
         type: 'input',
         templateOptions: {
           label: 'Cafe location - City',

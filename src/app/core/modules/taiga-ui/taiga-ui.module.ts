@@ -9,7 +9,8 @@ import {
   TuiHintModule,
   TuiPluralizePipeModule,
   TuiRootModule,
-  TuiSvgModule
+  TuiSvgModule,
+  TuiTextfieldControllerModule
 } from '@taiga-ui/core';
 import {
   TuiAvatarModule,
@@ -20,7 +21,8 @@ import {
   TuiInputSliderModule,
   TuiSelectModule,
   TuiSliderModule,
-  TuiTextAreaModule
+  TuiTextAreaModule,
+  TuiToggleModule
 } from '@taiga-ui/kit';
 
 @NgModule({
@@ -47,6 +49,8 @@ import {
     TuiSelectModule,
     TuiSliderModule,
     TuiTextAreaModule,
+    TuiTextfieldControllerModule,
+    TuiToggleModule,
 
     // Tools
     TuiFilterPipeModule,
@@ -75,6 +79,8 @@ import {
     TuiSelectModule,
     TuiSliderModule,
     TuiTextAreaModule,
+    TuiTextfieldControllerModule,
+    TuiToggleModule,
 
     // Tools
     TuiFilterPipeModule,

@@ -1,7 +1,7 @@
 <div class="tui-container">
 
   <!-- Form -->
-  <mca-coffee-details-form [coffee]="coffee"></mca-coffee-details-form>
+  <mca-coffee-details-form [coffee]="coffee" (update)="saveCoffee($event)"></mca-coffee-details-form>
 
   <ng-template #deleteCoffeeConfirmationRef>
     <h2>Are you sure?</h2>

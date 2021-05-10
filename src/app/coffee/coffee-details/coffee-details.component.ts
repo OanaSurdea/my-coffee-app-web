@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CoffeeDataService, GeolocationService } from 'src/app/core/services';
+import { CoffeeDataService } from 'src/app/core/services';
 import { Coffee } from '../models';
 
 @Component({
@@ -25,7 +25,6 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private coffeeDataService: CoffeeDataService,
-    private geolocationService: GeolocationService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) { }
@@ -46,8 +45,6 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(routeSubscription);
   }
 
-
-
   public getCoffeeData(): void {
     const coffeeDataSubscription = this.coffeeDataService
       .getOne(this.coffeeRouteId)
@@ -60,17 +57,15 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(coffeeDataSubscription);
   }
 
+  public saveCoffee(event: Coffee): void {
+    event.id = this.coffeeRouteId;
 
-
-  public requestGeolocation(): void {
-    // const getLocation = (location) => {
-    //   this.coffee.cafeLocation.latitude = location?.latitude;
-    //   this.coffee.cafeLocation.longitude = location?.longitude;
-    // };
-
-    // const logError = (error) => console.error('Location Error: ', error);
-
-    // this.geolocationService.requestLocation(getLocation, logError);
+    this.coffeeDataService.saveOne(event, success => {
+      if (success) {
+        // this.ngOnInit();
+        this.router.navigateByUrl('/coffees');
+      }
+    });
   }
 
   public deleteOne(templateRef): void {
