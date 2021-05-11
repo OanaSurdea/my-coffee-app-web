@@ -55,7 +55,7 @@
 	// Grandchildren
 	// Header
 	&__header {
-		margin-bottom: $spacing-100;
+		margin: $spacing-100 0;
 
 		&:hover {
 			cursor: pointer;
@@ -64,6 +64,7 @@
 
 	&__title {
 		font-size: $heading-100;
+		text-transform: capitalize;
 		@apply text-gray-800 font-bold;
 	}
 

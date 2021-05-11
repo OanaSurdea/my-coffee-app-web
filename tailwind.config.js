@@ -12,16 +12,7 @@ module.exports = {
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        primary: '#462a28',
-        primary_text: '#dfc8af',
-        secondary: '#6b3f3f',
-        secondary_text: '#d4beaf',
-        accent: '#996a24',
-        warn: '#db6a06',
-      },
-    },
+    extend: {},
   },
   variants: {
     extend: {},

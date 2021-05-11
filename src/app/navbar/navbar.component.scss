@@ -7,6 +7,8 @@
 }
 
 .nav {
+	box-shadow: 0 4px 14px rgb(74 55 73 / 12%);
+
 	&__text {
 		font-weight: 700;
 		color: $warn-200;
