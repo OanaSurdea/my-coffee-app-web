@@ -6,7 +6,10 @@
 {{ mainForm.value | json }}
 </pre>
 
-<form [formGroup]="mainForm" (ngSubmit)="submitForm()">
+<form
+  class="tui-form"
+  [formGroup]="mainForm"
+  (ngSubmit)="submitForm()">
   <!-- About Section -->
   <mca-coffee-details-about-form
     [form]="aboutForm"
@@ -25,8 +28,8 @@
     [form]="ratingForm">
   </mca-coffee-details-rating-form>
 
-  <div class="tui-form__buttons tui-row">
-    <div class="tui-col_8">
+  <div class="tui-form__buttons flex justify-between">
+    <div>
       <button
         tuiButton
         class="tui-form__button"
@@ -45,14 +48,14 @@
       </button>
     </div>
 
-    <div class="tui-col_4">
+    <div>
       <button
         tuiButton
         type="button"
         class="tui-form__button"
         appearance="flat-danger"
         size="l"
-        (click)="resetForm()">
+        (click)="deleteCoffee()">
         Delete
       </button>
     </div>

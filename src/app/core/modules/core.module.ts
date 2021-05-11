@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DeleteDialogComponent } from '../components/dialogs/delete-dialog/delete-dialog.component';
 import { TimeAgoPipe } from '../pipes/timeago.pipe';
 import { StarRatingPipe } from './../pipes/star-rating.pipe';
 import { TaigaUiModule } from './taiga-ui/taiga-ui.module';
@@ -12,16 +13,25 @@ import { TaigaUiModule } from './taiga-ui/taiga-ui.module';
     TaigaUiModule
   ],
   declarations: [
+    // Components
+    DeleteDialogComponent,
+
+    // Pipes
     TimeAgoPipe,
-    StarRatingPipe
+    StarRatingPipe,
   ],
   exports: [
+    CommonModule,
+
     // UI
     TaigaUiModule,
 
-    CommonModule,
+    // Components
+    DeleteDialogComponent,
+
+    // Pipes
     TimeAgoPipe,
-    StarRatingPipe
+    StarRatingPipe,
   ]
 })
 export class CoreModule { }

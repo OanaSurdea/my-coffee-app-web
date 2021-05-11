@@ -4,9 +4,12 @@ import { TuiFilterPipeModule } from '@taiga-ui/cdk/pipes';
 import {
   TuiButtonModule,
   TuiDataListModule,
+  TuiDialogModule,
   TuiErrorModule,
   TuiGroupModule,
   TuiHintModule,
+  TuiNotificationModule,
+  TuiNotificationsModule,
   TuiPluralizePipeModule,
   TuiRootModule,
   TuiSvgModule,
@@ -29,7 +32,11 @@ import {
 
   imports: [
     CommonModule,
+
     TuiRootModule,
+    TuiDialogModule,
+    TuiNotificationsModule,
+    TuiNotificationModule,
 
     // Components
     TuiAvatarModule,
@@ -60,6 +67,9 @@ import {
   ],
   exports: [
     TuiRootModule,
+    TuiDialogModule,
+    TuiNotificationsModule,
+    TuiNotificationModule,
 
     // Components
     TuiAvatarModule,

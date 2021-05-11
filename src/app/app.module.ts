@@ -50,7 +50,6 @@ import { NavbarComponent } from './navbar/navbar.component';
       maxAge: 25,
       logOnly: environment.production
     }),
-    TaigaUiModule,
 
     // Pipes
   ],
@@ -60,6 +59,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }

@@ -72,6 +72,43 @@ tui-wrapper[data-appearance='flat-dark'] {
 	}
 }
 
+// Button - Primary danger
+tui-wrapper[data-appearance='primary-danger'] {
+	color: #fff;
+	background-color: $danger-500;
+
+	&[data-state='hovered'] {
+		background-color: $danger-400;
+	}
+
+	&[data-state='pressed'] {
+		background-color: $danger-600;
+	}
+
+	&[data-state='disabled'] {
+		color: $danger-300;
+	}
+}
+
+// Button - Secondary danger
+tui-wrapper[data-appearance='secondary-danger'] {
+	color: $danger-500;
+	background-color: $danger-100;
+
+	&[data-state='hovered'] {
+		background-color: $danger-200;
+	}
+
+	&[data-state='pressed'] {
+		background-color: $danger-300;
+	}
+
+	&[data-state='disabled'] {
+		color: $danger-400;
+		background-color: $danger-100;
+	}
+}
+
 // Button - Flat danger
 tui-wrapper[data-appearance='flat-danger'] {
 	color: $danger-600;

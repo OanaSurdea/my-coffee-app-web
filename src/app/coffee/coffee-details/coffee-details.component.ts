@@ -1,11 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Inject, Injector, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TuiNotification, TuiNotificationsService } from '@taiga-ui/core';
+import { TuiDialogService } from '@taiga-ui/core/components';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { Subscription } from 'rxjs';
 import { CoffeeDataService } from 'src/app/core/services';
 import { Coffee } from '../models';
+import { DeleteDialogComponent } from './../../core/components/dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'mca-coffee-details',
@@ -20,13 +21,18 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   // Formly
   coffee = new Coffee();
 
+  private readonly dialog = this.dialogService.open<boolean>(
+    new PolymorpheusComponent(DeleteDialogComponent, this.injector),
+    { dismissible: true, label: 'Are yout sure?' }
+  );
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
     private coffeeDataService: CoffeeDataService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    @Inject(Injector) private readonly injector: Injector,
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(TuiNotificationsService) private readonly notificationsService: TuiNotificationsService,
   ) { }
 
   public ngOnInit(): void {
@@ -62,34 +68,66 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
 
     this.coffeeDataService.saveOne(event, success => {
       if (success) {
-        // this.ngOnInit();
-        this.router.navigateByUrl('/coffees');
+        const message = this.coffeeRouteId ? 'The coffee was updated' : 'The new coffee was added';
+
+        const notificationSubscription = this.notificationsService.show('Success', {
+          label: message,
+          status: TuiNotification.Success,
+          autoClose: true,
+        }).subscribe({
+          next: (res) => console.log(res),
+          error: (err) => console.log(err),
+          complete: () => this.router.navigateByUrl('/coffees')
+        });
+
+        this.subscriptions.push(notificationSubscription);
       }
     });
+
   }
 
-  public deleteOne(templateRef): void {
-    // const dialog = this.dialog.open(templateRef);
+  public deleteCoffee(): void {
+    const dialogSubscription = this.dialog.subscribe({
+      next: deleteConfirmed => {
+        console.log('Dialog emitted data = ' + deleteConfirmed);
+        if (deleteConfirmed) {
+          this.coffeeDataService
+            .deleteOne(this.coffeeRouteId, () => console.log('Coffee deleted successfully.'))
+            .then(() => {
+              this.notificationsService
+                .show(
+                  'Success', {
+                  label: 'The coffee was deleted',
+                  status: TuiNotification.Success,
+                  autoClose: true,
+                }).subscribe({
+                  next: (res) => console.log(res),
+                  error: (err) => console.log(err),
+                  complete: () => this.router.navigateByUrl('/coffees')
+                });
 
-    // const dialogSubscription = dialog
-    //   .afterClosed()
-    //   .subscribe((result) => {
-    //     if (result) {
-    //       this.coffeeDataService
-    //         .deleteOne(this.coffeeRouteId, (ress) => result = ress)
-    //         .then(
-    //           () => {
-    //             this.snackBar.open('Coffee deleted succesfully.', 'Close', { duration: 650 });
-    //             this.router.navigateByUrl('/coffees');
-    //           },
-    //           (error) => {
-    //             this.snackBar.open('Error. Coffee could not be deleted.', 'Close', { duration: 650 });
-    //           }
-    //         );
-    //     }
-    //   });
+            })
+            .catch((error) => {
+              this.notificationsService.show(
+                'Error',
+                {
+                  label: 'The coffee was not deleted',
+                  status: TuiNotification.Error,
+                  autoClose: true,
+                }).subscribe({
+                  next: (res) => console.log(res),
+                  error: (err) => console.log(err),
+                  complete: () => this.router.navigateByUrl('/coffees')
+                });
+            });
+        }
+      },
+      complete: () => {
+        console.log('Dialog closed');
+      }
+    })
 
-    // this.subscriptions.push(dialogSubscription);
+    this.subscriptions.push(dialogSubscription);
   }
 
   public ngOnDestroy(): void {

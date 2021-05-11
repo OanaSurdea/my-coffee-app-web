@@ -1,0 +1,14 @@
+@import '../../../../../assets/scss/mca-theme-variables';
+
+.dialog {
+	&__text {
+		margin-bottom: $spacing-300;
+	}
+
+	&__buttons {
+		text-align: right;
+	}
+
+	&__button {
+	}
+}

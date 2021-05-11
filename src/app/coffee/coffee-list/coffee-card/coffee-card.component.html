@@ -58,7 +58,7 @@
       </button>
 
       <small class="card__text card__text--date">
-        {{ coffee.createdAt.toDate() | timeAgo }}
+        {{ coffee.createdAt?.toDate() | timeAgo }}
       </small>
 
     </div>

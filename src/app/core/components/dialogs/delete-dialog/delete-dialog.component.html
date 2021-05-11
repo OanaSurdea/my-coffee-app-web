@@ -1,0 +1,26 @@
+<div class="dialog dialog--danger">
+
+  <p class="dialog__text">This action will permanently delete the item.</p>
+
+  <div class="dialog__buttons">
+    <button
+      tuiButton
+      type="button"
+      class="tui-space_right-3"
+      size="l"
+      appearance="secondary-danger"
+      (click)="cancel()">
+      Cancel
+    </button>
+
+    <button
+      tuiButton
+      type="button"
+      size="l"
+      appearance="primary-danger"
+      (click)="ok()">
+      Yes
+    </button>
+  </div>
+
+</div>

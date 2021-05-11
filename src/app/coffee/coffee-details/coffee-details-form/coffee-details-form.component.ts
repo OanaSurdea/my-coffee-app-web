@@ -24,6 +24,7 @@ export class CoffeeDetailsFormComponent implements OnChanges {
 
   @Input() coffee: Coffee;
   @Output() update: EventEmitter<Coffee> = new EventEmitter();
+  @Output() delete: EventEmitter<null> = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
@@ -81,6 +82,10 @@ export class CoffeeDetailsFormComponent implements OnChanges {
   public submitForm(): void {
     const updatedCoffee = Object.assign(this.coffee, this.mainForm.value);
     this.update.emit(updatedCoffee);
+  }
+
+  public deleteCoffee(): void {
+    this.delete.emit();
   }
 
 

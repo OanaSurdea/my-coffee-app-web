@@ -1,15 +1,8 @@
 <div class="tui-container">
 
   <!-- Form -->
-  <mca-coffee-details-form [coffee]="coffee" (update)="saveCoffee($event)"></mca-coffee-details-form>
-
-  <ng-template #deleteCoffeeConfirmationRef>
-    <h2>Are you sure?</h2>
-    <p>This will permanently delete the coffee entry.</p>
-
-    <div mat-dialog-actions align="end">
-      <button mat-stroked-button mat-dialog-close cdkFocusInitial>Cancel</button>
-      <button mat-stroked-button [mat-dialog-close]="true" color="warn">Yes</button>
-    </div>
-  </ng-template>
+  <mca-coffee-details-form
+    [coffee]="coffee"
+    (update)="saveCoffee($event)"
+    (delete)="deleteCoffee()"></mca-coffee-details-form>
 </div>
