@@ -1,12 +1,15 @@
 <div class="card" [class.card--vertical-cols]="listLayout === 'grid' ? true : false">
   <div class="card__media">
-    <tui-avatar
-      class="card__img"
-      [avatarUrl]="coffee.details.imageUrl"
-      text="coffeeModel.name"
-      size="xxl"
-      contentBottom="tuiIconSettings"
-      [rounded]="false"></tui-avatar>
+
+    <a (click)="viewCoffeeDetails(coffee.id)">
+      <tui-avatar
+        class="card__img"
+        [avatarUrl]="coffee.details.imageUrl"
+        text="coffeeModel.name"
+        size="xxl"
+        contentBottom="tuiIconSettings"
+        [rounded]="false"></tui-avatar>
+    </a>
 
     <div class="mediaIcons">
       <button
@@ -38,7 +41,9 @@
 
     <!-- Content -->
     <div class="card__body">
-      <p class="card__category">{{ coffee.details.type | titlecase }}</p>
+      <a (click)="viewCoffeeDetails(coffee.id)">
+        <p class="card__category">{{ coffee.details.type | titlecase }}</p>
+      </a>
 
       <ng-container *ngIf="listLayout === 'list' && coffee.cafe">
         <small class="card__text card__text--muted">

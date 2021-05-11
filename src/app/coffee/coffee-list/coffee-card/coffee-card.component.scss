@@ -13,8 +13,8 @@
 	&--vertical-cols {
 		@apply flex-col;
 
-		#{$this}__media {
-			min-height: 165px;
+		#{$this}__img {
+			min-height: 165px !important;
 		}
 
 		#{$this}__content {
