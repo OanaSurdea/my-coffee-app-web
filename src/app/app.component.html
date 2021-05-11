@@ -1,40 +1,40 @@
 <tui-root>
+  <tui-scrollbar>
+    <div [class.grayscale]="isAppOffline">
+      <mca-navbar
+        [title]="title">
+      </mca-navbar>
 
-  <div [class.grayscale]="isAppOffline">
-    <mca-navbar
-      [title]="title">
-    </mca-navbar>
+      <header class="header">
+        <a
+          tuiIconButton
+          type="button"
+          size="m"
+          icon="tuiIconArrowLeftLarge"
+          appearance="flat-dark"
+          routerLink="/"></a>
 
-    <header class="header">
-      <a
-        tuiIconButton
-        type="button"
-        size="m"
-        icon="tuiIconArrowLeftLarge"
-        appearance="flat-dark"
-        routerLink="/"></a>
+        <h1 class="header__title">{{ routeName | async }}</h1>
 
-      <h1 class="header__title">{{ routeName | async }}</h1>
+        <button
+          tuiIconButton
+          type="button"
+          size="m"
+          icon="tuiIconMoreVertLarge"
+          appearance="flat-dark"></button>
+      </header>
 
-      <button
-        tuiIconButton
-        type="button"
-        size="m"
-        icon="tuiIconMoreVertLarge"
-        appearance="flat-dark"></button>
-    </header>
-
-    <div class="page">
-      <router-outlet></router-outlet>
+      <div class="page">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-  </div>
 
-  <ng-container ngProjectAs="tuiOverDialogs">
-    <!-- Content over dialogs-->
-  </ng-container>
+    <ng-container ngProjectAs="tuiOverDialogs">
+      <!-- Content over dialogs-->
+    </ng-container>
 
-  <ng-container ngProjectAs="tuiOverNotifications">
-    <!-- Content over notifications -->
-  </ng-container>
-
+    <ng-container ngProjectAs="tuiOverNotifications">
+      <!-- Content over notifications -->
+    </ng-container>
+  </tui-scrollbar>
 </tui-root>

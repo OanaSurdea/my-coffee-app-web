@@ -24,10 +24,7 @@
 	filter: grayscale(1);
 }
 
-::ng-deep mca-root {
-	display: block;
-	max-width: 600px;
-	max-height: 2000px;
-	overflow-y: auto;
-	@apply shadow;
+.app-container {
+	// width: 256px;
+	// height: 156px;
 }

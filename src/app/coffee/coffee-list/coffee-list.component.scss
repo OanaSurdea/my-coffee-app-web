@@ -12,11 +12,13 @@ a.mat-fab {
 	bottom: 20px;
 }
 
-.coffeeList {
+.coffee-list {
 	display: grid;
 
 	gap: $spacing-300;
 	flex-wrap: wrap;
+
+	padding: 0 $spacing-300;
 
 	&--listView {
 		// @apply grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10;

@@ -85,4 +85,6 @@ h6,
 
 .container {
 	padding: 0 $spacing-300;
+	@media screen and (min-width: 1024px) {
+	}
 }
