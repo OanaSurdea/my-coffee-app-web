@@ -2,7 +2,7 @@
   class="tui-form"
   [formGroup]="form">
 
-  <div class="tui-form__image">
+  <div class="tui-form__row tui-form__image">
     <tui-badged-content
       class="tui-space_right-5"
       contentTop="tuiIconSettings"
@@ -50,6 +50,8 @@
         </tui-opt-group>
       </tui-data-list>
     </tui-select>
+
+    <tui-field-error formControlName="type"></tui-field-error>
   </div>
 
   <!-- Notes -->

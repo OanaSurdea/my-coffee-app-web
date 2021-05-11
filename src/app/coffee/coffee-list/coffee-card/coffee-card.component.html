@@ -1,8 +1,12 @@
 <div class="card" [class.card--vertical-cols]="listLayout === 'grid' ? true : false">
   <div class="card__media">
-    <div class="card__img"
-      style.background-image="url({{ coffee.details.imageUrl }})">
-    </div>
+    <tui-avatar
+      class="card__img"
+      [avatarUrl]="coffee.details.imageUrl"
+      text="coffeeModel.name"
+      size="xxl"
+      contentBottom="tuiIconSettings"
+      [rounded]="false"></tui-avatar>
 
     <div class="mediaIcons">
       <button

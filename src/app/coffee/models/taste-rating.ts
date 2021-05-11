@@ -10,13 +10,13 @@ export class TasteRating implements ITasteRating {
   aftertaste?: number;
 
   constructor(
-    overall = null,
-    aroma = null,
-    body = null,
-    flavor = null,
-    intensity = null,
-    sweetness = null,
-    aftertaste = null,
+    overall = 3,
+    aroma = 3,
+    body = 3,
+    flavor = 3,
+    intensity = 3,
+    sweetness = 3,
+    aftertaste = 3,
   ) {
     this.overall = aroma;
     this.aroma = aroma;

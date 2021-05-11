@@ -129,8 +129,28 @@ tui-wrapper[data-appearance='flat-danger'] {
 }
 
 // Form
-.tui-form__image {
-	width: fit-content;
-	padding: 0 0 $spacing-200 0;
-	margin: 0 auto;
+
+.tui-form {
+	@media screen and (max-width: 600px) {
+		max-width: 100vw;
+
+		.taste-rating {
+			width: calc(100vw - 5rem);
+		}
+	}
+
+	@media screen and (min-width: 600px) {
+		div,
+		tui-input,
+		.tui-group,
+		tui-input-slider,
+		tui-island {
+			max-width: 550px;
+		}
+	}
+
+	&__image {
+		width: fit-content;
+		margin: $spacing-100 auto $spacing-300 auto;
+	}
 }

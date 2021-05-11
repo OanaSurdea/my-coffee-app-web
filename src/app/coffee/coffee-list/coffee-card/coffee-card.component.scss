@@ -26,8 +26,8 @@
 		@apply flex-row;
 
 		#{$this}__media {
-			min-width: 125px;
-			min-height: 145px;
+			width: 125px;
+			height: 145px;
 		}
 
 		#{$this}__content {
@@ -42,8 +42,8 @@
 
 	&__img {
 		background-position-y: 25%;
-		min-height: inherit;
-		@apply bg-cover rounded-lg h-full;
+		width: 100% !important;
+		@apply bg-cover rounded-lg;
 	}
 
 	&__content {

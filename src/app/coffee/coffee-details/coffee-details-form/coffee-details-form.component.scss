@@ -1,5 +1,25 @@
 @import '../../../../assets/scss/mca-theme-variables';
 
 :host ::ng-deep .tui-form {
-	margin-bottom: $spacing-400;
+	&__row {
+		margin-bottom: $spacing-300;
+	}
+
+	&__buttons {
+		margin: $spacing-600 $spacing-300;
+	}
+
+	.tui-form {
+		padding: $spacing-400 $spacing-300;
+		margin: $negative-spacing-400 0 $negative-spacing-600 0;
+
+		&::after {
+			display: block;
+			content: '';
+
+			width: 200%;
+			margin-left: $negative-spacing-300;
+			border-bottom: 1px solid $grey-100;
+		}
+	}
 }

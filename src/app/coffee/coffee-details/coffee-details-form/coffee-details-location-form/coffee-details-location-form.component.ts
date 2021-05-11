@@ -8,17 +8,17 @@ import { FormGroup } from '@angular/forms';
 })
 export class CoffeeDetailsLocationFormComponent {
   @Input() public form: FormGroup;
-  @Output() public geolocationGet: EventEmitter<boolean> = new EventEmitter();
-  @Output() public geolocationReset: EventEmitter<boolean> = new EventEmitter();
+  @Output() public geolocationGet: EventEmitter<null> = new EventEmitter();
+  @Output() public geolocationReset: EventEmitter<null> = new EventEmitter();
 
   constructor() { }
 
   public requestGeolocation(): void {
-    this.geolocationGet.emit(true);
+    this.geolocationGet.emit();
   }
 
   public resetGeolocation(): void {
-    this.geolocationReset.emit(true);
+    this.geolocationReset.emit();
   }
 
 }

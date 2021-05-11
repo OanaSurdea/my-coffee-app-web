@@ -10,7 +10,9 @@ import { TuiPluralize } from '@taiga-ui/core';
 export class CoffeeDetailsRatingFormComponent implements OnInit {
   @Input() public form: FormGroup;
 
-  readonly pluralize: TuiPluralize = ['point', 'points', 'points'];
+  public showTasteRating: boolean = false;
+
+  readonly pluralize: TuiPluralize = ['star', 'stars', 'stars'];
 
   constructor() { }
 
