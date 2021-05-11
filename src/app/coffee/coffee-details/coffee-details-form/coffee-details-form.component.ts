@@ -49,7 +49,7 @@ export class CoffeeDetailsFormComponent implements OnChanges {
     this.mainForm = this.fb.group({
       details: this.aboutForm,
       location: this.locationForm,
-      rating: this.ratingForm,
+      tasteRating: this.ratingForm,
     });
 
     this.initFormValidationRules();
