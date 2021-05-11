@@ -12,7 +12,7 @@
       <tui-avatar
         class="tui-space_top-1"
         [avatarUrl]="form.get('imageUrl').value"
-        text="coffeeModel.name"
+        [text]="form.get('name').value || 'C'"
         size="xxl"
         contentBottom="tuiIconSettings"
         [rounded]="true"></tui-avatar>
