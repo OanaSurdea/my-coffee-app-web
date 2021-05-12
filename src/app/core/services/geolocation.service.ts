@@ -39,7 +39,7 @@ export class GeolocationService {
    * ex: <a href="htpps://maps.google.com/?q=Eiffel+Tower">
    * ex: <a href="htpps://maps.google.com/?q=34.44,56.44">
    */
-  public getUnformattedMapUrlFrom(location: Cafe): string {
+  public getUnformattedMapUrlFrom(location: Cafe): string | null {
     // Check if location is made from name OR coodinates
     if (location.latitude && location.longitude) {
       return `${location.latitude},${location.longitude}`;

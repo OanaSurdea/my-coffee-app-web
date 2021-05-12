@@ -21,7 +21,7 @@ type DocPredicate<T> = string | AngularFirestoreDocument<T>;
 export class FirestoreService {
 
   constructor(private aFirestore: AngularFirestore) { }
-
+  // @ts-ignore
   col<T>(ref: CollectionPredicate<T>, queryFn?): AngularFirestoreCollection<T> {
     return typeof ref === 'string' ? this.aFirestore.collection<T>(ref, queryFn) : ref;
   }
@@ -46,6 +46,7 @@ export class FirestoreService {
   }
 
   // Get Collection
+  // @ts-ignore
   col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
     return this.col(ref, queryFn).snapshotChanges().pipe(map(docs => {
       return docs.map(a => a.payload.doc.data()) as T[];
@@ -53,6 +54,7 @@ export class FirestoreService {
   }
 
   // Get Collection with Ids included
+  // @ts-ignore
   colWithIds$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
     return this.col(ref, queryFn).snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
@@ -105,6 +107,7 @@ export class FirestoreService {
     return this.doc(ref).delete();
   }
 
+  // @ts-ignore
   add<T>(ref: CollectionPredicate<T>, data): Promise<firebase.default.firestore.DocumentReference> {
     const timestamp = this.timestamp;
     delete data.id;
@@ -176,7 +179,9 @@ export class FirestoreService {
     return this.doc$(ref).pipe(
       map((doc: T) => {
         for (const k of Object.keys(doc)) {
+          // @ts-ignore
           if (doc[k] instanceof firebase.default.firestore.DocumentReference) {
+            // @ts-ignore
             doc[k] = this.doc(doc[k].path);
           }
         }
@@ -209,6 +214,7 @@ export class FirestoreService {
     const colRef = this.aFirestore.collection(path, ref => ref.orderBy('__name__').limit(batchSize));
 
     return colRef.snapshotChanges().pipe(
+      // @ts-ignore
       take(1),
       mergeMap((snapshot: DocumentChangeAction<{}>[]) => {
         // Delete documents in a batch

@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class StarRatingPipe implements PipeTransform {
 
   transform(rating: number): any {
-    let result: string[] = null;
+    let result: string[] = [];
 
     if (rating) {
       result = [];

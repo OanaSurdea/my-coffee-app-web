@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
-  @Input() title: string;
+  @Input() title: string = '';
   @Input() isSubscribedForNotifications: boolean = false;
 
   @Output() notificationsSubscribe: EventEmitter<boolean> = new EventEmitter();

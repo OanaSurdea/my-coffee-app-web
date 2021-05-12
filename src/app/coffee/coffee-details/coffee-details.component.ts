@@ -16,7 +16,7 @@ import { DeleteDialogComponent } from './../../core/components/dialogs/delete-di
 export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   // Subscriptions
   subscriptions: Subscription[] = [];
-  coffeeRouteId: string;
+  coffeeRouteId: string | null = null;
 
   // Formly
   coffee = new Coffee();
@@ -52,21 +52,25 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
   }
 
   public getCoffeeData(): void {
-    const coffeeDataSubscription = this.coffeeDataService
-      .getOne(this.coffeeRouteId)
-      .subscribe((coffee: Coffee) => {
-        if (coffee) {
-          this.coffee = coffee;
-        }
-      });
+    if (this.coffeeRouteId) {
+      const coffeeDataSubscription = this.coffeeDataService
+        .getOne(this.coffeeRouteId)
+        .subscribe((coffee: Coffee) => {
+          if (coffee) {
+            this.coffee = coffee;
+          }
+        });
 
-    this.subscriptions.push(coffeeDataSubscription);
+      this.subscriptions.push(coffeeDataSubscription);
+    }
   }
 
   public saveCoffee(event: Coffee): void {
-    event.id = this.coffeeRouteId;
+    if (this.coffeeRouteId) {
+      event.id = this.coffeeRouteId;
+    }
 
-    this.coffeeDataService.saveOne(event, success => {
+    this.coffeeDataService.saveOne(event, (success: boolean) => {
       if (success) {
         const message = this.coffeeRouteId ? 'The coffee was updated' : 'The new coffee was added';
 
@@ -90,7 +94,7 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     const dialogSubscription = this.dialog.subscribe({
       next: deleteConfirmed => {
         console.log('Dialog emitted data = ' + deleteConfirmed);
-        if (deleteConfirmed) {
+        if (deleteConfirmed && this.coffeeRouteId) {
           this.coffeeDataService
             .deleteOne(this.coffeeRouteId, () => console.log('Coffee deleted successfully.'))
             .then(() => {

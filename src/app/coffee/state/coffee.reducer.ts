@@ -16,7 +16,7 @@ export const initialCoffeeState: ICoffeeState = {
 
   areCoffeesLoading: false,
   coffees$: [],
-  coffeesLoadError: null,
+  coffeesLoadError: '',
 };
 
 // Reducer

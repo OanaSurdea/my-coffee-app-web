@@ -10,10 +10,10 @@ export class CoffeeDetails implements ICoffeeDetails {
 
   constructor(
     // Details
-    name = null,
-    type = null,
-    imageUrl = null,
-    notes = null,
+    name = '',
+    type = CoffeeTypeEnum.Cappuccino,
+    imageUrl = '',
+    notes = '',
   ) {
     // Details
     this.name = name;

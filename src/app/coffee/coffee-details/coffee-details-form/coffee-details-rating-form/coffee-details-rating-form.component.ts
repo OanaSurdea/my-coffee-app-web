@@ -8,7 +8,7 @@ import { TuiPluralize } from '@taiga-ui/core';
   styleUrls: ['./coffee-details-rating-form.component.scss']
 })
 export class CoffeeDetailsRatingFormComponent implements OnInit {
-  @Input() public form: FormGroup;
+  @Input() public form: FormGroup = new FormGroup({});
 
   public showTasteRating: boolean = false;
 

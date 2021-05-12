@@ -14,16 +14,16 @@ import { CoffeeDetails } from './../../models/coffee-details';
   styleUrls: ['./coffee-details-form.component.scss']
 })
 export class CoffeeDetailsFormComponent implements OnChanges {
-  mainForm: FormGroup;
+  mainForm: FormGroup = new FormGroup({});
 
   // About-coffee form
-  aboutForm: FormGroup;
+  aboutForm: FormGroup = new FormGroup({});
   coffeeTypeOptions: IFormOption<CoffeeTypeEnum, string>[] = CoffeeTypeFormOptions;
-  locationForm: FormGroup;
-  ratingForm: FormGroup;
+  locationForm: FormGroup = new FormGroup({});
+  ratingForm: FormGroup = new FormGroup({});
 
-  @Input() coffee: Coffee;
-  @Input() coffeeId: string;
+  @Input() coffee: Coffee = new Coffee();
+  @Input() coffeeId: string | null = null;
 
   @Output() update: EventEmitter<Coffee> = new EventEmitter();
   @Output() delete: EventEmitter<null> = new EventEmitter();
@@ -57,16 +57,16 @@ export class CoffeeDetailsFormComponent implements OnChanges {
 
   private initFormValidationRules(): void {
     // About/details
-    this.aboutForm.get('name').setValidators([Validators.required]);
-    this.aboutForm.get('type').setValidators([Validators.required]);
+    this.aboutForm.get('name')?.setValidators([Validators.required]);
+    this.aboutForm.get('type')?.setValidators([Validators.required]);
 
     // Location/cafe
-    this.locationForm.get('name').setValidators([Validators.required]);
-    this.locationForm.get('address').setValidators([Validators.required]);
-    this.locationForm.get('city').setValidators([Validators.required]);
+    this.locationForm.get('name')?.setValidators([Validators.required]);
+    this.locationForm.get('address')?.setValidators([Validators.required]);
+    this.locationForm.get('city')?.setValidators([Validators.required]);
 
     // Rating
-    this.ratingForm.get('overall').setValidators([Validators.required]);
+    this.ratingForm.get('overall')?.setValidators([Validators.required]);
   }
 
   private populateForms(): void {
@@ -82,22 +82,22 @@ export class CoffeeDetailsFormComponent implements OnChanges {
   }
 
   public requestGeolocation(): void {
-    const getLocation = (location) => {
+    const getLocation = (location: GeolocationCoordinates) => {
       this.coffee.cafe.latitude = location?.latitude;
       this.coffee.cafe.longitude = location?.longitude;
-      this.locationForm.get('latitude').patchValue(this.coffee.cafe.latitude);
-      this.locationForm.get('longitude').patchValue(this.coffee.cafe.longitude);
+      this.locationForm.get('latitude')?.patchValue(this.coffee.cafe.latitude);
+      this.locationForm.get('longitude')?.patchValue(this.coffee.cafe.longitude);
     };
-    const logError = (error) => console.error('Location Error: ', error);
+    const logError = (error: Error) => console.error('Location Error: ', error);
 
     this.geolocationService.requestLocation(getLocation, logError);
   }
 
   public resetGeolocation(): void {
-    this.coffee.cafe.latitude = null;
-    this.coffee.cafe.longitude = null;
-    this.locationForm.get('latitude').patchValue(this.coffee.cafe.latitude);
-    this.locationForm.get('longitude').patchValue(this.coffee.cafe.longitude);
+    this.coffee.cafe.latitude = undefined;
+    this.coffee.cafe.longitude = undefined;
+    this.locationForm.get('latitude')?.patchValue(this.coffee.cafe.latitude);
+    this.locationForm.get('longitude')?.patchValue(this.coffee.cafe.longitude);
   }
 
   public submitForm(): void {
