@@ -1,14 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-declare type Interval = { [key: string]: number };
-
 @Pipe({
   name: 'timeAgo',
   pure: true
 })
 export class TimeAgoPipe implements PipeTransform {
 
-  transform(value: string | number): string | number {
+  transform(value: Date): any {
     if (value) {
       const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
 
@@ -16,7 +14,7 @@ export class TimeAgoPipe implements PipeTransform {
         return 'Just now';
       }
 
-      const intervals: Interval = {
+      const intervals = {
         year: 31536000,
         month: 2592000,
         week: 604800,
@@ -26,22 +24,21 @@ export class TimeAgoPipe implements PipeTransform {
         second: 1
       };
 
-      let counter: number;
+      let counter;
 
       // tslint:disable-next-line: forin
-      for (const key in intervals) {
-        counter = Math.floor(seconds / intervals[key]);
+      for (const i in intervals) {
+        counter = Math.floor(seconds / intervals[i]);
 
         if (counter > 0) {
           if (counter === 1) {
-            return `${counter} ${key} ago`; // singular (1 day ago)
+            return `${counter} ${i} ago`; // singular (1 day ago)
           } else {
-            return `${counter} ${key}s ago`; // plural (2 days ago)
+            return `${counter} ${i}s ago`; // plural (2 days ago)
           }
         }
       }
     }
-
     return value;
   }
 

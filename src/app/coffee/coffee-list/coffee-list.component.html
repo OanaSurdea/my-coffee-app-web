@@ -10,7 +10,7 @@
 
     <!-- List -->
     <div class="coffee-list coffee-list--{{ listLayout }}View">
-      <ng-container *ngFor="let coffee of ((coffees$ | async) || []) | tuiFilter: matcher:filters.search; let i=index">
+      <ng-container *ngFor=" let coffee of coffees$ | async | tuiFilter: matcher:filters.search; let i=index">
         <mca-coffee-card
           [listLayout]="listLayout"
           [coffee]="coffee">

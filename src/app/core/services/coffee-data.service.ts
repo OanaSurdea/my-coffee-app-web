@@ -21,25 +21,22 @@ export class CoffeeDataService {
   }
 
   getAllSorted(filters: CoffeeListFilters): Observable<Coffee[]> {
-    const sortBy: string = filters.sortBy || 'createdAt';
-    const sortDirection: 'asc' | 'desc' = filters.sortDirection || 'desc';
-
-    return this.firestoreService.colWithIdsOrderBy$('coffees', sortBy, sortDirection);
+    return this.firestoreService.colWithIdsOrderBy$('coffees', filters.sortBy, filters.sortDirection);
   }
 
   getOne(id: string): Observable<Coffee> {
     return this.firestoreService.doc$(`coffees/${id}`);
   }
 
-  saveOne(coffee: Coffee, callBack: (response: boolean) => void): Promise<void> {
+  saveOne(coffee: Coffee, onSuccess: any): Promise<void> {
     if (coffee.id && coffee.id.length > 4) {
       return this.firestoreService.update(`coffees/${coffee.id}`, coffee).then(
-        () => callBack(true),
+        () => onSuccess(true),
         (error) => { throw new Error(`Update Coffee Error: ${error}`); }
       );
     } else {
       return this.firestoreService.add('coffees', coffee).then(
-        () => callBack(false),
+        () => onSuccess(true),
         (error) => { throw new Error(`Save Coffee Error: ${error}`); }
       );
     }

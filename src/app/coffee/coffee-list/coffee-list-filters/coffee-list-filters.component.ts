@@ -12,8 +12,8 @@ import { CoffeeListFilters } from '../../models/coffee-list-filters';
 })
 export class CoffeeListFiltersComponent implements OnInit, OnChanges {
 
-  @Input() filters: CoffeeListFilters = new CoffeeListFilters();
-  @Input() listLayout: ListLayoutEnum = ListLayoutEnum.Grid;
+  @Input() filters: CoffeeListFilters;
+  @Input() listLayout: ListLayoutEnum;
 
   public showFilters: boolean = false;
 

@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // Subscriptions
   subscriptions: Subscription[] = [];
 
-  isAppOffline: boolean = false;
+  isAppOffline: boolean;
   routeName: any;
 
   constructor(
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private inviteUserToInstallApp(): void {
     // Check if in the browser
     if ((navigator as any).standalone == false) {
-      this.snackBar.open('You can add this PWA to your Home Screen just like a regular app.', '', { duration: 3000 });
+      this.snackBar.open('You can add this PWA to your Home Screen just like a regular app.', null, { duration: 3000 });
       // Check if it's not IOS
     } else if ((navigator as any).standalone == undefined) {
       // Check if in the browser
@@ -111,8 +111,7 @@ export class AppComponent implements OnInit, OnDestroy {
           const swPromptInstallSubscription = snackBarInstance
             .onAction().subscribe(() => {
               (event as any).prompt();
-              (event as any).userChoice.then((result: any) => {
-                // tslint:disable-next-line: triple-equals
+              (event as any).userChoice.then(result => {
                 if (result.outcome == 'dismissed') {
                   // TODO: Track no installation
                 } else {

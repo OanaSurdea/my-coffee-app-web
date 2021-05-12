@@ -29,12 +29,12 @@ export class MockCofeeDataService {
 
     const coffeeList: Coffee[] = [
       new Coffee(
-        new CoffeeDetails('Double Espresso', CoffeeTypeEnum.Espresso, '', 'Great buzz'),
+        new CoffeeDetails('Double Espresso', CoffeeTypeEnum.Espresso, null, 'Great buzz'),
         new Cafe('Sunny Cafe', '123 Market St', 'San Francisco'),
         new TasteRating(4, 4, 4, 4, 3, 4, 3),
       ),
       new Coffee(
-        new CoffeeDetails('Caramel Americano', CoffeeTypeEnum.Americano, '', 'Strong taste'),
+        new CoffeeDetails('Caramel Americano', CoffeeTypeEnum.Americano, null, 'Strong taste'),
         new Cafe('Starcoffee', 'Gran Via 34', 'Madrid'),
         new TasteRating(4, 5, 5, 5, 5, 4, 4),
       )
@@ -43,9 +43,9 @@ export class MockCofeeDataService {
     onSuccess(coffeeList);
   }
 
-  saveOne(coffee: Coffee, callBack: (response: boolean) => void): void {
+  saveOne(coffee: Coffee, onSuccess: any): void {
     // TODO: Change it with a real Web Service
 
-    callBack(true);
+    onSuccess(true);
   }
 }

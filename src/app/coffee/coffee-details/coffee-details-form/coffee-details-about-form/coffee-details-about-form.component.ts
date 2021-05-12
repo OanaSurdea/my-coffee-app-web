@@ -9,9 +9,9 @@ import { CoffeeTypeEnum } from './../../../enums/coffee-type.enum';
   styleUrls: ['./coffee-details-about-form.component.scss'],
 })
 export class CoffeeDetailsAboutFormComponent {
-  @Input() public form: FormGroup = new FormGroup({});
+  @Input() public form: FormGroup;
 
-  @Input() public readonly coffeeTypeOptions: IFormOption<CoffeeTypeEnum, string>[] = [];
+  @Input() public readonly coffeeTypeOptions: IFormOption<CoffeeTypeEnum, string>[];
 
   constructor() { }
 

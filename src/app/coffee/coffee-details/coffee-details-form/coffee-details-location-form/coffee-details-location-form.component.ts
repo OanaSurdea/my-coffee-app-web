@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./coffee-details-location-form.component.scss']
 })
 export class CoffeeDetailsLocationFormComponent {
-  @Input() public form: FormGroup = new FormGroup({});
+  @Input() public form: FormGroup;
   @Output() public geolocationGet: EventEmitter<null> = new EventEmitter();
   @Output() public geolocationReset: EventEmitter<null> = new EventEmitter();
 

@@ -23,6 +23,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "angular2-text-mask"
+           ],
             "assets": [
               "src/assets",
               {

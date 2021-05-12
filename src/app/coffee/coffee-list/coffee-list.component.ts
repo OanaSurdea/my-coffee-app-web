@@ -21,11 +21,11 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   // List
-  public coffees$: BehaviorSubject<Coffee[]> = new BehaviorSubject([new Coffee()]);
+  public coffees$: BehaviorSubject<ICoffee[]> = new BehaviorSubject([]);
 
   // Filters
-  filters: ICoffeeListFilters = new CoffeeListFilters();
-  listLayout: ListLayoutEnum = ListLayoutEnum.Grid;
+  filters: ICoffeeListFilters;
+  listLayout: ListLayoutEnum;
 
   constructor(
     private store: Store<IAppState>
@@ -63,26 +63,22 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
     this._populateCoffeeList();
   }
 
-  public readonly matcher = (coffee: Coffee, search: string): boolean => {
-    let result: boolean | undefined = false;
+  public readonly matcher = (coffee: Coffee, search: string) => {
+    search = search.toLowerCase();
 
-    if (coffee && search) {
-      search = search.toLowerCase();
+    const result = (
+      (coffee.details.type.toLowerCase().includes(search)) ||
+      (coffee.details.name.toLowerCase().includes(search)) ||
+      (coffee.cafe.name.toLowerCase().includes(search)) ||
+      (coffee.cafe.address.toLowerCase().includes(search)) ||
+      (coffee.cafe.city.toLowerCase().includes(search)) ||
+      (coffee.createdAt.toDate().toString().toLowerCase().includes(search)) ||
+      (coffee.tasteRating.overall.toString().toLowerCase().includes(search)) ||
+      (coffee.details.notes.toLowerCase().includes(search))
+    );
 
-      result = (
-        (coffee.details.type.toLowerCase().includes(search)) ||
-        (coffee.details.name.toLowerCase().includes(search)) ||
-        (coffee.cafe.name.toLowerCase().includes(search)) ||
-        (coffee.cafe.address.toLowerCase().includes(search)) ||
-        (coffee.cafe.city.toLowerCase().includes(search)) ||
-        (coffee.createdAt?.toDate().toString().toLowerCase().includes(search)) ||
-        (coffee.tasteRating.overall.toString().toLowerCase().includes(search)) ||
-        (coffee.details.notes?.toLowerCase().includes(search))
-      );
-    }
-
-    return result || false;
-  }
+    return result;
+  };
 
 
   public updateListLayout(event: ListLayoutEnum): void {
@@ -97,7 +93,3 @@ export class CoffeeListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((s: Subscription) => s?.unsubscribe());
   }
 }
-function TuiMapper<T, U>() {
-  throw new Error('Function not implemented.');
-}
-

@@ -12,8 +12,8 @@ import { ListLayoutEnum } from './../../../core/enums/list-layout.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoffeeCardComponent implements OnInit {
-  @Input() coffee: Coffee = new Coffee();
-  @Input() listLayout: ListLayoutEnum = ListLayoutEnum.Grid;
+  @Input() coffee: Coffee;
+  @Input() listLayout: ListLayoutEnum;
 
   @Output() share: EventEmitter<Coffee> = new EventEmitter();
   @Output() viewDetails: EventEmitter<string> = new EventEmitter();
@@ -48,10 +48,8 @@ export class CoffeeCardComponent implements OnInit {
     }
   }
 
-  public viewCoffeeDetails(coffeeId: string | undefined): void {
-    if (coffeeId) {
-      this.router.navigate(['coffees', coffeeId]);
-    }
+  public viewCoffeeDetails(coffeeId: string): void {
+    this.router.navigate(['coffees', coffeeId]);
   }
 
 }
