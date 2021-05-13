@@ -83,7 +83,6 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
         this.subscriptions.push(notificationSubscription);
       }
     });
-
   }
 
   public deleteCoffee(): void {

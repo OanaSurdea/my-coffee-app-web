@@ -1,0 +1,57 @@
+<!-- <form [formGroup]="form"> -->
+<div class="avatarUpload relative text-center">
+  <div class="avatarUpload__avatar-container">
+    <tui-avatar
+      class="avatarUpload__avatar"
+      [avatarUrl]="form?.get('imageUrl')?.value"
+      [text]="form?.get('name')?.value || 'C'"
+      size="xxl"
+      contentBottom="tuiIconSettings"
+      [rounded]="true"></tui-avatar>
+
+    <button
+      class="avatarUpload__badge avatarUpload__badge--top"
+      appearance="flat"
+      tuiIconButton
+      type="button"
+      size="s"
+      [icon]="getFileStatusIcon()"
+      [disabled]="(isLoading || hasError) && !hasImageUrl()"
+      (click)="initChangeAvatar(isDropzoneVisible)">
+    </button>
+
+    <button
+      *ngIf="isDropzoneVisible"
+      class="avatarUpload__badge avatarUpload__badge--bottom"
+      appearance="flat-danger"
+      tuiIconButton
+      type="button"
+      size="s"
+      icon="tuiIconCloseLarge"
+      (click)="cancelChangeAvatar()">
+    </button>
+  </div>
+
+  <div
+    class="avatarUpload__upload-container">
+
+    <!-- <tui-input
+      class="avatarUpload__file-url"
+      formControlName="imageUrl">
+
+    </tui-input> -->
+
+    <tui-input-file
+      *ngIf="isDropzoneVisible"
+      class="avatarUpload__upload"
+      link="Choose an image"
+      accept="image/*"
+      [formControl]="fileInputControl"
+      [showSize]="false"
+      [loadingFiles]="loading$ | async"
+      [rejectedFiles]="rejected$ | async">
+    </tui-input-file>
+  </div>
+
+</div>
+<!-- </form> -->

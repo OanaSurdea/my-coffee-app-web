@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFormOption } from 'src/app/core/interfaces';
 import { CoffeeTypeEnum } from './../../../enums/coffee-type.enum';
@@ -9,11 +9,15 @@ import { CoffeeTypeEnum } from './../../../enums/coffee-type.enum';
   styleUrls: ['./coffee-details-about-form.component.scss'],
 })
 export class CoffeeDetailsAboutFormComponent {
-  @Input() public form: FormGroup;
-
+  @Input() public readonly form: FormGroup;
   @Input() public readonly coffeeTypeOptions: IFormOption<CoffeeTypeEnum, string>[];
+
+  @Output() public imageUploaded: EventEmitter<File> = new EventEmitter();
 
   constructor() { }
 
+  getImageUrl(event: File): void {
+    this.imageUploaded.emit(event);
+  }
 
 }

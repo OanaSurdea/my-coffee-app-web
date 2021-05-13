@@ -1,6 +1,6 @@
-import { ITasteRating } from '../interfaces/taste-rating.interface';
+import { ICoffeeDetailsRatingForm } from '../../interfaces';
 
-export class TasteRating implements ITasteRating {
+export class CoffeeDetailsRatingForm implements ICoffeeDetailsRatingForm {
   overall: number;
   aroma?: number;
   body?: number;

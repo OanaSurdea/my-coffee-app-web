@@ -1,7 +1,7 @@
-import { CoffeeTypeEnum } from '../enums/coffee-type.enum';
-import { ICoffeeDetails } from '../interfaces/coffee-details.interface';
+import { CoffeeTypeEnum } from '../../enums';
+import { ICoffeeDetailsAboutForm } from '../../interfaces';
 
-export class CoffeeDetails implements ICoffeeDetails {
+export class CoffeeDetailsAboutForm implements ICoffeeDetailsAboutForm {
   // Details
   public name: string;
   public type: CoffeeTypeEnum;

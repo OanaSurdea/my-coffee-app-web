@@ -18,8 +18,10 @@ import {
 import {
   TuiAvatarModule,
   TuiBadgedContentModule,
+  TuiBadgeModule,
   TuiDataListWrapperModule,
   TuiFieldErrorModule,
+  TuiInputFileModule,
   TuiInputModule,
   TuiInputSliderModule,
   TuiIslandModule,
@@ -41,6 +43,7 @@ import {
 
     // Components
     TuiAvatarModule,
+    TuiBadgeModule,
     TuiBadgedContentModule,
     TuiButtonModule,
     TuiGroupModule,
@@ -50,6 +53,7 @@ import {
     TuiDataListWrapperModule,
     TuiErrorModule,
     TuiFieldErrorModule,
+    TuiInputFileModule,
     TuiHintModule,
     TuiInputModule,
     TuiIslandModule,
@@ -75,6 +79,7 @@ import {
 
     // Components
     TuiAvatarModule,
+    TuiBadgeModule,
     TuiBadgedContentModule,
     TuiButtonModule,
     TuiGroupModule,
@@ -84,6 +89,7 @@ import {
     TuiDataListWrapperModule,
     TuiErrorModule,
     TuiFieldErrorModule,
+    TuiInputFileModule,
     TuiHintModule,
     TuiInputModule,
     TuiIslandModule,

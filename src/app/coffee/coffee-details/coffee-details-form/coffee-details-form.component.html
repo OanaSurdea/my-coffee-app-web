@@ -3,6 +3,13 @@
   [formGroup]="mainForm"
   (ngSubmit)="submitForm()">
 
+  <!-- Image Section -->
+  <div class="tui-form__row tui-form__image">
+    <mca-avatar-upload
+      [form]="aboutForm"
+      (fileInput)="uploadImage($event)"></mca-avatar-upload>
+  </div>
+
   <!-- About Section -->
   <mca-coffee-details-about-form
     [form]="aboutForm"

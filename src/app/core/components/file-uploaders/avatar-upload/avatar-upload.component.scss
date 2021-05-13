@@ -1,0 +1,85 @@
+@import '../../../../../assets/scss/mca-theme-variables';
+
+:host::ng-deep .avatarUpload {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 15px;
+	width: 260px;
+
+	&__badge {
+		position: absolute;
+		right: 0px;
+
+		&--top {
+			top: 10px;
+		}
+
+		&--bottom {
+			bottom: 10px;
+		}
+
+		.wrapper {
+			transform: scale(1.35);
+			background-color: white;
+			border-radius: 100px;
+		}
+	}
+
+	&__avatar {
+		&-container {
+			position: relative;
+		}
+	}
+
+	&__file-url {
+		display: none;
+	}
+
+	&__upload {
+		width: 100%;
+		height: 100%;
+
+		&-container {
+			max-width: calc(100vw - #{$spacing-400});
+			width: max-content;
+
+			// 		width: 144px;
+			// 		height: 144px;
+
+			// 		position: absolute;
+			// 		display: flex;
+
+			// 		border-radius: 100%;
+			// 		overflow: hidden;
+
+			// 		background-color: #fbf9fb;
+
+			// 		.wrapper {
+			// 			border-radius: 100px !important;
+			// 			min-height: inherit;
+			// 			font-size: 14px;
+			// 			font-weight: 500;
+			// 		}
+
+			// 		.files {
+			// 			height: inherit;
+			// 			width: inherit;
+			// 			justify-content: center;
+			// 			align-items: center;
+
+			// 			tui-file {
+			// 				width: inherit;
+			// 				border: none;
+			// 				padding: 0;
+
+			// 				.preview {
+			// 					width: 100%;
+			// 					height: 100%;
+			// 					margin-right: 0;
+			// 				}
+			// 			}
+			// 		}
+		}
+	}
+}

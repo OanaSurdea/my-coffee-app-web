@@ -2,11 +2,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, S
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IFormOption } from 'src/app/core/interfaces';
 import { CoffeeTypeFormOptions } from 'src/app/core/maps';
+import { Cafe } from 'src/app/core/models';
 import { GeolocationService } from 'src/app/core/services';
 import { CoffeeTypeEnum } from '../../enums';
-import { Coffee, TasteRating } from '../../models';
-import { Cafe } from './../../../core/models/cafe';
-import { CoffeeDetails } from './../../models/coffee-details';
+import { Coffee, CoffeeDetails, TasteRating } from '../../models';
 
 @Component({
   selector: 'mca-coffee-details-form',
@@ -26,6 +25,7 @@ export class CoffeeDetailsFormComponent implements OnChanges {
   @Input() coffeeId: string;
 
   @Output() update: EventEmitter<Coffee> = new EventEmitter();
+  @Output() imageUpdate: EventEmitter<File> = new EventEmitter();
   @Output() delete: EventEmitter<null> = new EventEmitter();
 
   constructor(
@@ -109,6 +109,16 @@ export class CoffeeDetailsFormComponent implements OnChanges {
       const updatedCoffee = Object.assign(this.coffee, this.mainForm.value);
       this.update.emit(updatedCoffee);
     }
+  }
+
+  public uploadImage(event: File): void {
+    // this.mainForm.markAllAsTouched();
+    // this.mainForm.updateValueAndValidity();
+    // this.cdRef.detectChanges();
+
+    // if (this.mainForm.valid) {
+    //   this.imageUpdate.emit(event);
+    // }
   }
 
   public deleteCoffee(): void {

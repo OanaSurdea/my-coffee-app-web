@@ -1,5 +1,5 @@
-import { SortDirectionEnum } from './../../core/enums/sort-direction.enum';
-import { CoffeeSortByEnum } from './../enums/coffee-sort-type.enum';
+import { SortDirectionEnum } from 'src/app/core/enums';
+import { CoffeeSortByEnum } from '../enums';
 
 export interface ICoffeeListFilters {
   search?: string;

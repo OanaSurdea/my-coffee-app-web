@@ -2,23 +2,6 @@
   class="tui-form"
   [formGroup]="form">
 
-  <div class="tui-form__row tui-form__image">
-    <tui-badged-content
-      class="tui-space_right-5"
-      contentTop="tuiIconSettings"
-      colorTop="var(--tui-accent)"
-      size="xxl"
-      [rounded]="true">
-      <tui-avatar
-        class="tui-space_top-1"
-        [avatarUrl]="form.get('imageUrl').value"
-        [text]="form.get('name').value || 'C'"
-        size="xxl"
-        contentBottom="tuiIconSettings"
-        [rounded]="true"></tui-avatar>
-    </tui-badged-content>
-  </div>
-
   <!-- Header -->
   <h3 class="tui-form__header tui-form__header_margin-top_none">
     About
