@@ -5,6 +5,7 @@ import { TuiDialogService } from '@taiga-ui/core/components';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { Subscription } from 'rxjs';
 import { CoffeeDataService } from 'src/app/core/services';
+import { FireStorageService } from 'src/app/core/services/fire-storage.service';
 import { Coffee } from '../models';
 import { DeleteDialogComponent } from './../../core/components/dialogs/delete-dialog/delete-dialog.component';
 
@@ -30,6 +31,7 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private coffeeDataService: CoffeeDataService,
+    private fireStorageService: FireStorageService,
     @Inject(Injector) private readonly injector: Injector,
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(TuiNotificationsService) private readonly notificationsService: TuiNotificationsService,
@@ -61,6 +63,11 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
       });
 
     this.subscriptions.push(coffeeDataSubscription);
+  }
+
+  // TODO: Refactor
+  public saveCoffeeImage(image: File): void {
+    this.fireStorageService.saveOneImage(this.coffee, image);
   }
 
   public saveCoffee(event: Coffee): void {

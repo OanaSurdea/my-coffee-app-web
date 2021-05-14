@@ -4,6 +4,7 @@
   <mca-coffee-details-form
     [coffee]="coffee"
     [coffeeId]="coffeeRouteId"
-    (update)="saveCoffee($event)"
+    (imageUpdate)="saveCoffeeImage($event)"
+    (coffeeUpdate)="saveCoffee($event)"
     (delete)="deleteCoffee()"></mca-coffee-details-form>
 </div>

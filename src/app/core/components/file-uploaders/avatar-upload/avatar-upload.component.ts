@@ -68,14 +68,7 @@ export class AvatarUploadComponent {
         if (file) {
           this._initPreivewImage(file);
 
-          return this._serverRequest(file).pipe(
-            tap((serverResponse: File | RejectedFile | null) => {
-              this.isLoading = false;
-
-              serverResponse instanceof RejectedFile ? this.hasError = true : this.hasError = false;
-            }),
-            startWith(file)
-          );
+          return this._checkFile(file).pipe(startWith(file));
         } else {
           this.cancelChangeAvatar();
 
@@ -107,12 +100,12 @@ export class AvatarUploadComponent {
   }
 
   public initChangeAvatar(isDropzoneVisible: boolean): void {
-    if (isDropzoneVisible && !this.hasError) {
+    if (isDropzoneVisible && this.initialImageUrl && !this.hasError) {
+      this.fileInput.emit(this.fileInputControl?.value);
+      this.isDropzoneVisible = false;
+    } else {
       this.isDropzoneVisible = true;
     }
-
-    this._toggleDropzoneVisibility();
-
   }
 
   public cancelChangeAvatar(): void {
@@ -154,20 +147,16 @@ export class AvatarUploadComponent {
     this.isDropzoneVisible = !this.isDropzoneVisible;
   }
 
-  private _serverRequest(file: File): Observable<RejectedFile | File | null> {
+  private _checkFile(file: File): Observable<RejectedFile | File | null> {
     this.isLoading = true;
-    // const delay = Math.round(Math.random() * 500 + 500);
-    const delay = 807; // use this to force success
-    // const delay = 2; // use this to force error
 
-    const result =
-      delay % 2
-        ? null
-        : new RejectedFile(file, 'Server responded for odd number of time');
+    const delay = 150;
+    const result = file ? null : new RejectedFile(file, 'Server responded for odd number of time');
+    result instanceof RejectedFile ? this.hasError = true : this.hasError = false;
 
+    this.isLoading = false;
 
     return timer(delay).pipe(
-      // tap(() => this.isLoading = true),
       mapTo(result),
     );
   }

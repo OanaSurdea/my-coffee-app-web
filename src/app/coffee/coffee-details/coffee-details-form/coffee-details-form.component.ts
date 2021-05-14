@@ -24,7 +24,7 @@ export class CoffeeDetailsFormComponent implements OnChanges {
   @Input() coffee: Coffee;
   @Input() coffeeId: string;
 
-  @Output() update: EventEmitter<Coffee> = new EventEmitter();
+  @Output() coffeeUpdate: EventEmitter<Coffee> = new EventEmitter();
   @Output() imageUpdate: EventEmitter<File> = new EventEmitter();
   @Output() delete: EventEmitter<null> = new EventEmitter();
 
@@ -107,18 +107,18 @@ export class CoffeeDetailsFormComponent implements OnChanges {
 
     if (this.mainForm.valid) {
       const updatedCoffee = Object.assign(this.coffee, this.mainForm.value);
-      this.update.emit(updatedCoffee);
+      this.coffeeUpdate.emit(updatedCoffee);
     }
   }
 
   public uploadImage(event: File): void {
-    // this.mainForm.markAllAsTouched();
-    // this.mainForm.updateValueAndValidity();
-    // this.cdRef.detectChanges();
+    this.mainForm.markAllAsTouched();
+    this.mainForm.updateValueAndValidity();
+    this.cdRef.detectChanges();
 
-    // if (this.mainForm.valid) {
-    //   this.imageUpdate.emit(event);
-    // }
+    if (this.mainForm.valid && event) {
+      this.imageUpdate.emit(event);
+    }
   }
 
   public deleteCoffee(): void {
