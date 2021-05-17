@@ -3,7 +3,7 @@
   <div class="avatarUpload__avatar-container">
     <tui-avatar
       class="avatarUpload__avatar"
-      [avatarUrl]="form?.get('imageUrl')?.value"
+      [avatarUrl]="form?.get('imageUrl')?.value || inputImageUrl"
       [text]="form?.get('name')?.value || 'C'"
       size="xxl"
       contentBottom="tuiIconSettings"

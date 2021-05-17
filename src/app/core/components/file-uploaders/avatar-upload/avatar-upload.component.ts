@@ -5,6 +5,8 @@ import { tuiPure } from '@taiga-ui/cdk';
 import { TuiFileLike } from '@taiga-ui/kit';
 import { Observable, of, timer } from 'rxjs';
 import { map, mapTo, share, startWith, switchMap, tap } from 'rxjs/operators';
+import { ResizedAndCompressedImage } from 'src/app/core/models';
+import { ImageResizeAndCompressService } from 'src/app/core/services/image-resize-and-compress.service';
 
 class RejectedFile {
   constructor(readonly file: TuiFileLike, readonly reason: string) { }
@@ -23,7 +25,7 @@ function convertRejected({ file, reason }: RejectedFile): TuiFileLike {
   selector: 'mca-avatar-upload',
   templateUrl: './avatar-upload.component.html',
   styleUrls: ['./avatar-upload.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarUploadComponent {
   @Input() readonly form: FormGroup = new FormGroup({});
@@ -38,7 +40,10 @@ export class AvatarUploadComponent {
 
   @Output() fileInput: EventEmitter<File> = new EventEmitter();
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(
+    private sanitizer: DomSanitizer,
+    private imageResizeAndCompressService: ImageResizeAndCompressService,
+  ) { }
 
   @tuiPure
   get loading$(): Observable<ReadonlyArray<File>> {
@@ -132,9 +137,14 @@ export class AvatarUploadComponent {
     }
 
     if (file) {
-      this.inputImageUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
+      this.imageResizeAndCompressService.resizeImage(file, 0.75, 400, 400).then(
+        (result: ResizedAndCompressedImage) => {
+          if (result) {
+            this.inputImageUrl = this.sanitizer.bypassSecurityTrustUrl(result.imagePreview.src);
 
-      imageUrlControl?.setValue(this.inputImageUrl);
+            imageUrlControl?.setValue(this.inputImageUrl);
+          }
+        });
     }
   }
 
