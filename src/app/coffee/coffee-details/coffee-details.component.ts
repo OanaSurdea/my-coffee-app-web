@@ -67,6 +67,7 @@ export class CoffeeDetailsComponent implements OnInit, OnDestroy {
 
   // TODO: Refactor
   public saveCoffeeImage(image: File): void {
+    this.coffee.id = this.coffeeRouteId;
     this.fireStorageService.saveOneImage(this.coffee, image);
   }
 
