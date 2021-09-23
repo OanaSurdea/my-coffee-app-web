@@ -1,5 +1,12 @@
 {
     "cSpell.enableFiletypes": [
         "json"
+    ],
+    "cSpell.words": [
+        "firestore",
+        "formly",
+        "ngneat",
+        "ngsw",
+        "tailwindcss"
     ]
 }
