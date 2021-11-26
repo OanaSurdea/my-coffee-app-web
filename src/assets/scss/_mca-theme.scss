@@ -1,7 +1,8 @@
+@use '~@angular/material' as mat;
 @import "~material-theme-creator/ngx-mtc";
 @import '~@angular/material/theming';
 @import 'mca-theme-variables';
-@include mat-core();
+@include mat.core();
 @include ngx-mtc-init();
 
 /* ------------------------------------------------------------ */
@@ -23,11 +24,11 @@ $warn-map: ngx-mtc-create-theme-map('warn');
 }
 
 // Creation
-@include angular-material-theme(
+@include mat.all-component-themes(
   ngx-mtc-custom-theme(
-    mat-palette($primary-map),
-    mat-palette($accent-map),
-    mat-palette($warn-map)
+    mat.define-palette($primary-map),
+    mat.define-palette($accent-map),
+    mat.define-palette($warn-map)
   )
 );
 /* ------------------------------------------------------------ */
